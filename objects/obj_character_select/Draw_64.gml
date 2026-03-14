@@ -21,50 +21,75 @@ for (var i = 0; i < panel_count; i++)
     var y1 = tile_y1[i];
     var x2 = tile_x2[i];
     var y2 = tile_y2[i];
+    var tcx = (x1 + x2) * 0.5;
+    var tcy = (y1 + y2) * 0.5;
 
-    var hovered_by_anyone = false;
+    var is_disabled = (i >= enabled_slots);
 
-    for (var p = 0; p < max_players; p++)
+    if (is_disabled)
     {
-        if (!player_active[p]) continue;
-        if (hovered_tile[p] == i)
-        {
-            hovered_by_anyone = true;
-            break;
-        }
-    }
+        // Disabled tile — dark, no hover response
+        draw_set_colour(make_colour_rgb(30, 32, 44));
+        draw_rectangle(x1, y1, x2, y2, false);
 
-    // Square background
-    if (hovered_by_anyone)
-        draw_set_colour(make_colour_rgb(80, 100, 140));
-    else
-        draw_set_colour(make_colour_rgb(55, 60, 80));
+        draw_set_colour(make_colour_rgb(55, 58, 72));
+        draw_rectangle(x1, y1, x2, y2, true);
 
-    draw_rectangle(x1, y1, x2, y2, false);
-
-    // Square border
-    draw_set_colour(make_colour_rgb(100, 110, 140));
-    draw_rectangle(x1, y1, x2, y2, true);
-
-    // Character image (scaled to fit the square)
-    var spr = char_sprite[i];
-    if (spr != -1)
-    {
-        var spr_w = sprite_get_width(spr);
-        var spr_h = sprite_get_height(spr);
-        var cx    = (x1 + x2) * 0.5;
-        var cy    = (y1 + y2) * 0.5;
-        var scale = min((x2 - x1 - 10) / spr_w, (y2 - y1 - 10) / spr_h);
-        draw_sprite_ext(spr, 0, cx, cy, scale, scale, 0, c_white, 1);
-    }
-    else
-    {
-        // Placeholder "?" for squares without an assigned sprite
+        // "DISABLED" label
         draw_set_font(VT323);
-        draw_set_colour(make_colour_rgb(140, 145, 170));
+        draw_set_colour(make_colour_rgb(75, 75, 88));
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
-        draw_text((x1 + x2) * 0.5, (y1 + y2) * 0.5, "?");
+        draw_text(tcx, tcy - 10, "DISABLED");
+
+        // XP requirement — xp_idx is always >= 0 here because is_disabled guarantees i >= enabled_slots
+        var xp_idx = i - enabled_slots;
+        draw_text(tcx, tcy + 10, string(xp_requirements[xp_idx]) + " XP");
+    }
+    else
+    {
+        var hovered_by_anyone = false;
+
+        for (var p = 0; p < max_players; p++)
+        {
+            if (!player_active[p]) continue;
+            if (hovered_tile[p] == i)
+            {
+                hovered_by_anyone = true;
+                break;
+            }
+        }
+
+        // Square background
+        if (hovered_by_anyone)
+            draw_set_colour(make_colour_rgb(80, 100, 140));
+        else
+            draw_set_colour(make_colour_rgb(55, 60, 80));
+
+        draw_rectangle(x1, y1, x2, y2, false);
+
+        // Square border
+        draw_set_colour(make_colour_rgb(100, 110, 140));
+        draw_rectangle(x1, y1, x2, y2, true);
+
+        // Character image (scaled to fit the square)
+        var spr = char_sprite[i];
+        if (spr != -1)
+        {
+            var spr_w = sprite_get_width(spr);
+            var spr_h = sprite_get_height(spr);
+            var scale = min((x2 - x1 - 10) / spr_w, (y2 - y1 - 10) / spr_h);
+            draw_sprite_ext(spr, 0, tcx, tcy, scale, scale, 0, c_white, 1);
+        }
+        else
+        {
+            // Placeholder "?" for squares without an assigned sprite
+            draw_set_font(VT323);
+            draw_set_colour(make_colour_rgb(140, 145, 170));
+            draw_set_halign(fa_center);
+            draw_set_valign(fa_middle);
+            draw_text(tcx, tcy, "?");
+        }
     }
 }
 
@@ -85,12 +110,42 @@ draw_set_colour(make_colour_rgb(80, 85, 110));
 draw_line(bar_x1, bar_y1, bar_x2, bar_y1);
 draw_line(bar_x1, bar_y2, bar_x2, bar_y2);
 
-// Greyed-out START text — uses fnt_fighter
+// START text — animated yellow when all players confirmed, greyed otherwise
 draw_set_font(fnt_fighter);
-draw_set_colour(make_colour_rgb(90, 90, 100));
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_text(gui_w * 0.5, (bar_y1 + bar_y2) * 0.5, "START");
+
+if (all_confirmed)
+{
+    var bar_cx = gui_w * 0.5;
+    var bar_cy = (bar_y1 + bar_y2) * 0.5;
+    var start_scale  = 1 + 0.015 * sin(current_time / 150);
+    var start_ripple = 0.5 + 0.5 * sin(current_time / 225);
+    var col_outer = merge_colour(make_colour_rgb(220, 170, 0), make_colour_rgb(255, 210, 0), start_ripple);
+    var col_inner = merge_colour(make_colour_rgb(255, 240, 30), make_colour_rgb(255, 255, 90), start_ripple);
+
+    draw_set_alpha(0.35);
+    draw_text_transformed_colour(
+        bar_cx, bar_cy, "START",
+        start_scale * 1.08, start_scale * 1.08, 0,
+        col_inner, col_inner, col_outer, col_outer, 0.35
+    );
+
+    draw_set_alpha(1);
+    draw_text_transformed_colour(
+        bar_cx, bar_cy, "START",
+        start_scale, start_scale, 0,
+        col_outer, col_outer, col_inner, col_inner, 1
+    );
+
+    draw_set_colour(c_white);
+    draw_set_alpha(1);
+}
+else
+{
+    draw_set_colour(make_colour_rgb(90, 90, 100));
+    draw_text(gui_w * 0.5, (bar_y1 + bar_y2) * 0.5, "START");
+}
 
 // --------------------------------------------------
 // BOTTOM SECTION: 4 SIDE-BY-SIDE VERTICAL PLAYER SLOTS

@@ -4,6 +4,7 @@
 // --------------------------------------------------
 
 all_confirmed = true;
+var any_start_pressed = false;
 
 // --------------------------------------------------
 // PROCESS EACH PLAYER STRICTLY BY THEIR ASSIGNED SCHEMA
@@ -176,11 +177,13 @@ for (var p = 0; p < max_players; p++)
     // ----------------------------------------------
     // HOVER DETECTION
     // Barebones rectangle hover over hardcoded character tiles.
+    // Disabled tiles (index >= enabled_slots) are skipped.
     // ----------------------------------------------
     hovered_tile[p] = -1;
 
     for (var i = 0; i < panel_count; i++)
     {
+        if (i >= enabled_slots) continue; // disabled — not hoverable
         if (cursor_x[p] >= tile_x1[i] && cursor_x[p] <= tile_x2[i] &&
             cursor_y[p] >= tile_y1[i] && cursor_y[p] <= tile_y2[i])
         {
@@ -242,6 +245,19 @@ for (var p = 0; p < max_players; p++)
     }
 
     // ----------------------------------------------
+    // START BAR PRESS
+    // When this player's cursor is over the divider bar and
+    // they press confirm, flag a potential START action.
+    // The actual room transition only fires if all_confirmed.
+    // ----------------------------------------------
+    if (confirm_pressed &&
+        cursor_y[p] >= divider_y &&
+        cursor_y[p] <= divider_y + divider_h)
+    {
+        any_start_pressed = true;
+    }
+
+    // ----------------------------------------------
     // ADVANCE CHECK STUB
     // Next guy can implement room transition / match boot here.
     // ----------------------------------------------
@@ -252,23 +268,12 @@ for (var p = 0; p < max_players; p++)
 }
 
 // --------------------------------------------------
-// ALL CONFIRMED STUB
-// DO NOT IMPLEMENT HANDOFF YET.
+// ALL CONFIRMED — START button press transitions to game
 // --------------------------------------------------
 if (all_confirmed)
 {
-    // --------------------------------------------------
-    // STUB FOR NEXT PERSON:
-    // 1. Build a final selected-character payload here
-    // 2. Export it into global match-start variables
-    // 3. Transition into gameplay / stage select / versus intro room
-    // --------------------------------------------------
-
-    // Example future fields:
-    // global.match_player_active[p]
-    // global.match_player_schema_type[p]
-    // global.match_player_schema_id[p]
-    // global.match_player_character[p]
-
-    // room_goto(rm_match_intro);
+    if (any_start_pressed)
+    {
+        room_goto(rm_main_game);
+    }
 }
