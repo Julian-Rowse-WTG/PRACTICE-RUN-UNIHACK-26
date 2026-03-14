@@ -127,13 +127,13 @@ if (activate) {
 
 	switch (selection) {
 		case 0:
-			show_debug_message("Going to rm_input_bind");
-			room_goto(rm_input_bind);
+			show_debug_message("Going to rm_mode_menu");
+			room_goto(rm_mode_menu);
 			break;
 
 		case 1:
-			show_debug_message("Going to rm_mode_menu");
-			room_goto(rm_mode_menu);
+			show_debug_message("Going to rm_settings");
+			room_goto(rm_settings);
 			break;
 		case 2:
 			game_end();

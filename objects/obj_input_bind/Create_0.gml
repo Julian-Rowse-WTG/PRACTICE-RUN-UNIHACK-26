@@ -12,11 +12,11 @@ show_debug_message("=== INPUT BIND CREATE START ===");
 startup_lock_frames = 60;
 
 // How many players max?
-max_players = 4;
-
+//max_players = 4; //old
+max_players = global.selected_player_count;
 // How many special-input confirmations required?
 required_special_count = 3;
-
+draw_set_font(VT323);
 // --------------------------------------------------
 // PLAYER ASSIGNMENT STATE
 // --------------------------------------------------

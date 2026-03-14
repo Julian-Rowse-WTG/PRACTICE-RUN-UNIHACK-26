@@ -125,8 +125,8 @@ for (var i = 0; i < 4; i++)
 // PLAYER SETUP
 // IMPORTANT: ONLY ACTIVE PLAYERS FROM INPUT BIND
 // --------------------------------------------------
-max_players = 4;
-
+//max_players = 4;
+max_players = global.selected_player_count;
 player_active         = array_create(max_players, false);
 player_schema_type    = array_create(max_players, "");
 player_schema_id      = array_create(max_players, -1);
