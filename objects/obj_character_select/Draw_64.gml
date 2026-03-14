@@ -250,7 +250,6 @@ if (transitioning && fade_alpha > 0) {
 
     // Loading text + spinner drawn on top of the black overlay so they are
     // visible throughout the entire fade-to-black (not just after it completes).
-    draw_set_alpha(1);
     draw_set_font(fnt_fighter);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);

@@ -69,3 +69,4 @@ if (cs_phase == 0) {
 }
 
 draw_set_colour(c_white);
+draw_set_font(-1);
