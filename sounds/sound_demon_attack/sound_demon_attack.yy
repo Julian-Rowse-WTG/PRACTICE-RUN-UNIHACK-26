@@ -1,6 +1,6 @@
 {
   "$GMSound":"v2",
-  "%Name":"sound_sword_zing",
+  "%Name":"sound_demon_attack",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -10,9 +10,9 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":1.9591837,
+  "duration":1.0559864,
   "exportDir":"",
-  "name":"sound_sword_zing",
+  "name":"sound_demon_attack",
   "parent":{
     "name":"SFX",
     "path":"folders/Sounds/SFX.yy",
@@ -21,6 +21,6 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sound_sword_zing.mp3",
+  "soundFile":"sound_demon_attack.mp3",
   "volume":1.0,
 }
