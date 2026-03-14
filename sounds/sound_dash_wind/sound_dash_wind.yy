@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"sound_dash_wind",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"audiogroup_generic_sfx",
+    "path":"audiogroups/audiogroup_generic_sfx",
   },
   "bitDepth":1,
   "channelFormat":0,

@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"sound_knight_ultimate_attack",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"audiogroup_knight_sfx",
+    "path":"audiogroups/audiogroup_knight_sfx",
   },
   "bitDepth":1,
   "channelFormat":0,

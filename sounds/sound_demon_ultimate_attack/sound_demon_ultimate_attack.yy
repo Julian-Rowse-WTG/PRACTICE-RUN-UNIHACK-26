@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"sound_demon_ultimate_attack",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"audiogroup_demon_sfx",
+    "path":"audiogroups/audiogroup_demon_sfx",
   },
   "bitDepth":1,
   "channelFormat":0,
