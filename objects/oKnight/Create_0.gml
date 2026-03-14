@@ -1,10 +1,10 @@
 event_inherited();
 // stats
-hpMax       = 100;
+hpMax       = 150;
 hp          = hpMax;
 canCharge   = false;
 block_reduction = 0.3;
-burstMax    = 2;
+burstMax    = 1;
 burstCharges = burstMax;
 superDamage = 1.5;
 burstSprite = sprSword_Hit;
@@ -22,7 +22,8 @@ burstDamage      = 5;   // burst reversal deals light damage
 specialPlatformDur = 300;       // 5 seconds at 60fps
 // burst
 burstSprite        = sprSword_Special; // same as special for now
-
+victorySprite = sprSword_Victory;
+fd_victory    = fd_sword_victory;
 // body sprites
 idleSprite         = sprSword_Idle_Body;
 runSprite          = sprSword_Run_Body;

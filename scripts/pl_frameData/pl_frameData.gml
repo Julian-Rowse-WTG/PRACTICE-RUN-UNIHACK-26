@@ -13,6 +13,7 @@ function pl_frameData() {
 	fd_pl_tumble   = frame_factory(1);
 	fd_pl_dead     = frame_factory(1);
 	fd_pl_recovery = frame_factory(1);
+	fd_victory = frame_factory(8, 8, 8); // 3 frame victory animation
 
 	//weapon data
 	//sword
@@ -20,12 +21,14 @@ function pl_frameData() {
 	fd_sword_up   = frame_factory(5,6,12);
 	fd_sword_down = frame_factory(5,6,12);
 	fd_sword_special = frame_factory(8, 8); // 8 frames windup, 8 frames cast
+	fd_sword_victory = frame_factory(30, 30, 60); // 3 frame victory animation
 
 	//dagger
 	fd_dagger_side = frame_factory(2,5,10);
 	fd_dagger_up   = frame_factory(2,5,10);
 	fd_dagger_down = frame_factory(2,5,10);
 	fd_dagger_special = frame_factory(6, 6);
+	fd_dagger_victory = frame_factory(12, 34, 60); // 3 frame victory animation
 
 	//axe
 	fd_axe_side = frame_factory(6,6,14);

@@ -40,4 +40,5 @@ function room_init() {
         // mark spawnpoint as taken
         _spawn.taken = true;
     }
+	team_asymmetry_check();
 }

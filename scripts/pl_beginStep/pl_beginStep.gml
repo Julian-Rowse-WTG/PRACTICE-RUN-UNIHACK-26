@@ -1,4 +1,5 @@
 function pl_beginStep() {
+	show_debug_message("player " + string(player) + " | gameSpeed: " + string(god.gameSpeed) + " | frameData valid: " + string(ds_exists(frameData, ds_type_list)) + " | frameCounter: " + string(frameCounter) + " | frameDuration: " + string(frameDuration));
 	//inheret code from parent
 	event_inherited();
 
