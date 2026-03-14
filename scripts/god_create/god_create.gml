@@ -12,7 +12,7 @@ function god_create() {
     showBox = false;
     // session
     session = array_create(4, undefined);
-    session_init_test();
+    //session_init_test();
     // death cinematic
     deathCinematic    = false;
     deathTarget       = noone;
