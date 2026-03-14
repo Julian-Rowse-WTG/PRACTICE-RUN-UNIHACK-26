@@ -6,4 +6,5 @@ function pl_victoryStart() {
     ySpeed          = 0;
     frame_reset();
     animation_set(fd_victory, victorySprite);
+    audio_play_sound(sound_victory, 1, false);
 }

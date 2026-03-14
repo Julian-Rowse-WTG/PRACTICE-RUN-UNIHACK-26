@@ -12,6 +12,8 @@
 - https://pixabay.com/sound-effects/film-special-effects-slap-hurt-pain-sound-effect-262618/: slap/hurt
 - https://pixabay.com/sound-effects/nature-tiger-roar-loudly-193229/: roar
 - https://www.youtube.com/@AZALI00013: background music
+- https://pixabay.com/sound-effects/film-special-effects-level-up-08-402152/: victory sfx
+- https://pixabay.com/sound-effects/success-videogame-sfx-423626/: success sfx
 
 And of course...
 - Special credits to Copilot, Claude, ChatGPT etc.

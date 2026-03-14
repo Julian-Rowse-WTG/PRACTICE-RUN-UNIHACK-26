@@ -217,6 +217,11 @@ for (var p = 0; p < max_players; p++)
         {
             player_confirm_count[p]++;
             show_debug_message("Player " + string(p + 1) + " confirm = " + string(player_confirm_count[p]) + "/" + string(required_special_count));
+            if(player_confirm_count[p] == required_special_count) {
+                global.play_ui_success_sfx();
+            } else {
+                global.play_ui_select_sfx();
+            }
         }
     }
 

@@ -200,6 +200,8 @@
     {"id":{"name":"sound_knight_ultimate_attack","path":"sounds/sound_knight_ultimate_attack/sound_knight_ultimate_attack.yy",},},
     {"id":{"name":"sound_ui_error","path":"sounds/sound_ui_error/sound_ui_error.yy",},},
     {"id":{"name":"sound_ui_select","path":"sounds/sound_ui_select/sound_ui_select.yy",},},
+    {"id":{"name":"sound_ui_success","path":"sounds/sound_ui_success/sound_ui_success.yy",},},
+    {"id":{"name":"sound_victory","path":"sounds/sound_victory/sound_victory.yy",},},
     {"id":{"name":"sArrow","path":"sprites/sArrow/sArrow.yy",},},
     {"id":{"name":"spr_background_castle","path":"sprites/spr_background_castle/spr_background_castle.yy",},},
     {"id":{"name":"spr_background_jungle","path":"sprites/spr_background_jungle/spr_background_jungle.yy",},},

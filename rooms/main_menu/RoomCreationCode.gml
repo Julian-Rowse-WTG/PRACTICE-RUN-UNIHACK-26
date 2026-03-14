@@ -9,3 +9,6 @@ global.play_ui_select_sfx = function() {
 global.play_ui_error_sfx = function() {
 	audio_play_sound(sound_ui_error, 1, false);
 };
+global.play_ui_success_sfx = function() {
+	audio_play_sound(sound_ui_success, 1, false);
+};
