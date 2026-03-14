@@ -8,13 +8,12 @@ if (cs_phase == 0) {
     draw_set_colour(c_black);
     draw_rectangle(0, 0, gw, gh, false);
 
-    // "LOADING..." with animated trailing dots
-    var _dots = string_repeat(".", dot_count);
-    draw_set_font(VT323);
+    // "LOADING.
+    draw_set_font(fnt_fighter);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
     draw_set_colour(c_white);
-    draw_text_transformed(gw * 0.5, gh * 0.5, "LOADING" + _dots, 3, 3, 0);
+    draw_text_transformed(gw * 0.5, gh * 0.5, "LOADING", 1.2, 1.2, 0);
 
     // Spinner: 8 line segments rotating around a point below the text
     var _cx    = gw * 0.5;

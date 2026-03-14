@@ -1,12 +1,5 @@
 // Cutscreen step event
 if (cs_phase == 0) {
-    // HOLD phase: count down the 2-second hold and animate dots
-    dot_timer++;
-    if (dot_timer >= 20) {
-        dot_timer = 0;
-        dot_count = (dot_count + 1) mod 4;
-    }
-
     hold_timer--;
     if (hold_timer <= 0) {
         // Switch to rm_game; this object persists and runs the fade-in there
