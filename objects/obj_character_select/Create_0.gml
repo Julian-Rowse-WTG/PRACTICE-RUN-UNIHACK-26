@@ -59,7 +59,7 @@ grid_y = 20;
 char_sprite = array_create(panel_count, -1);
 char_sprite[0] = sprSword_Idle_Body;   // Knight
 char_sprite[1] = sprDagger_Idle;  // Demon
-char_sprite[2] = sprAxe_Idle;     // Axe (oJudge)
+char_sprite[2] = sprSpear_Idle;     // Axe (oJudge)
 
 // Map tile index to weapon-class object for session building
 char_weapon_class = array_create(panel_count, noone);

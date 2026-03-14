@@ -49,4 +49,4 @@ if (is_fading) {
             current_sound = audio_play_sound(_category[_idx], 1, false);
         }
     }
-}
+} 
