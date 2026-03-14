@@ -184,7 +184,7 @@ for (var p = 0; p < 4; p++)
     var rcy = ry1 + 30;
     draw_text(rcx, rcy, player_labels[p]);
 
-    // READY overlay — diagonal fnt_fighter, yellow, bold
+    // READY overlay — diagonal fnt_fighter, yellow, bold; also show selected character sprite
     if (player_confirmed[p])
     {
         draw_set_font(fnt_fighter);
@@ -192,7 +192,23 @@ for (var p = 0; p < 4; p++)
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
         draw_text_transformed(rcx, rcy, "READY", 1, 1, 20);
-		draw_set_font(VT323);
+        draw_set_font(VT323);
+
+        // Draw the selected character's idle sprite in the lower part of the slot
+        if (player_choice[p] != -1)
+        {
+            var _spr = char_sprite[player_choice[p]];
+            if (_spr != -1)
+            {
+                var _spr_w  = sprite_get_width(_spr);
+                var _spr_h  = sprite_get_height(_spr);
+                var _max_w  = (rx2 - rx1) - 10;
+                var _max_h  = slot_h - 60;
+                var _scale  = min(_max_w / _spr_w, _max_h / _spr_h);
+                var _char_cy = ry1 + 50 + (_max_h * 0.5);
+                draw_sprite_ext(_spr, 0, rcx, _char_cy, _scale, _scale, 0, c_white, 1);
+            }
+        }
     }
 }
 
