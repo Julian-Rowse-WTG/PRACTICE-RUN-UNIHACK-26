@@ -261,6 +261,48 @@ for (var p = 0; p < max_players; p++) {
 // --------------------------------------------------
 if (any_start_pressed) {
     if (all_confirmed) {
+        // Build session array on the god object before entering the game room.
+        // Format matches session_init_test: { active, inputType, inputSlot, weaponClass, team }
+        var _team_list = [teams.red, teams.blue, teams.green, teams.yellow];
+        var _team_idx = 0;
+
+        for (var _p = 0; _p < max_players; _p++) {
+            if (player_active[_p]) {
+                // Determine inputType and inputSlot
+                var _input_type, _input_slot;
+                if (player_schema_type[_p] == "pad") {
+                    _input_type = inputType.gamepad;
+                    _input_slot = player_schema_id[_p]; // physical gamepad slot
+                } else {
+                    _input_type = inputType.keyboard;
+                    // kb1 → slot 0 (WASD), kb2 → slot 1 (IJKL), kb3 → slot 2 (numpad)
+                    switch (player_schema_type[_p]) {
+                        case "kb1": _input_slot = 0; break;
+                        case "kb2": _input_slot = 1; break;
+                        default:    _input_slot = 2; break; // kb3
+                    }
+                }
+
+                god.session[_p] = {
+                    active     : true,
+                    inputType  : _input_type,
+                    inputSlot  : _input_slot,
+                    weaponClass: char_weapon_class[player_choice[_p]],
+                    team       : _team_list[clamp(_team_idx, 0, array_length(_team_list) - 1)]
+                };
+                _team_idx++;
+            } else {
+                // Inactive slot — active: false, rest filled for struct compatibility
+                god.session[_p] = {
+                    active     : false,
+                    inputType  : inputType.keyboard,
+                    inputSlot  : 0,
+                    weaponClass: oKnight,
+                    team       : teams.none
+                };
+            }
+        }
+
         room_goto(rm_game);
         global.play_ui_select_sfx();
     } else {
