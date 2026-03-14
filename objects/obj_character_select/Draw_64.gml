@@ -112,7 +112,7 @@ draw_line(bar_x1, bar_y1, bar_x2, bar_y1);
 draw_line(bar_x1, bar_y2, bar_x2, bar_y2);
 
 // START text — animated yellow when all players confirmed, greyed otherwise
-draw_set_font(fnt_fighter);
+draw_set_font(VT323);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -132,6 +132,7 @@ if (all_confirmed) {
     );
 
     draw_set_alpha(1);
+	
     draw_text_transformed_colour(
         bar_cx, bar_cy, "START",
         start_scale, start_scale, 0,
@@ -151,7 +152,7 @@ else {
 // --------------------------------------------------
 draw_set_font(VT323);
 
-for (var p = 0; p < 4; p++) {
+for (var p = 0; p < max_players; p++) {
     var rx1 = slot_px[p];
     var ry1 = bottom_y;
     var rx2 = slot_px[p] + slot_w;
@@ -189,11 +190,11 @@ for (var p = 0; p < 4; p++) {
         }
 
         // READY overlay — diagonal fnt_fighter, yellow, bold; also show selected character sprite
-        draw_set_font(fnt_fighter);
+        draw_set_font(VT323);
         draw_set_colour(c_yellow);
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
-        draw_text_transformed(rcx, (ry1 + ry2) * 0.5, "READY", 1, 1, 20);
+        draw_text_transformed(rcx, (ry1 + ry2) * 0.5, "READY", 2.5, 2.5, 20);
         draw_set_font(VT323);
     }
 }

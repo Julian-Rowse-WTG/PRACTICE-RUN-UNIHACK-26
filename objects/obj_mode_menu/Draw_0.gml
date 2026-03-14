@@ -5,7 +5,7 @@
 // --------------------------------------------------
 // BACKGROUND
 // --------------------------------------------------
-draw_clear(c_ltgray);
+draw_clear_alpha(make_colour_rgb(30, 30, 40), 1);
 
 // --------------------------------------------------
 // STARTUP LOCK MESSAGE
@@ -110,15 +110,15 @@ if (left_locked || column_focus == 1 || final_locked)
 // DEBUG / STATUS TEXT
 // Keep this during jam development.
 // --------------------------------------------------
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-draw_set_color(c_black);
+//draw_set_halign(fa_left);
+//draw_set_valign(fa_top);
+//draw_set_color(c_black);
 
-var dbg_x = 40;
-var dbg_y = gui_h - 120;
+//var dbg_x = 40;
+//var dbg_y = gui_h - 120;
 
-draw_text(dbg_x, dbg_y + 0,  "column_focus: " + string(column_focus));
-draw_text(dbg_x, dbg_y + 20, "left_index: " + string(left_index));
-draw_text(dbg_x, dbg_y + 40, "right_index: " + string(right_index));
-draw_text(dbg_x, dbg_y + 60, "player_count: " + string(selected_player_count));
-draw_text(dbg_x, dbg_y + 80, "selected_mode: " + string(selected_mode));
+//draw_text(dbg_x, dbg_y + 0,  "column_focus: " + string(column_focus));
+//draw_text(dbg_x, dbg_y + 20, "left_index: " + string(left_index));
+//draw_text(dbg_x, dbg_y + 40, "right_index: " + string(right_index));
+//draw_text(dbg_x, dbg_y + 60, "player_count: " + string(selected_player_count));
+//draw_text(dbg_x, dbg_y + 80, "selected_mode: " + string(selected_mode));

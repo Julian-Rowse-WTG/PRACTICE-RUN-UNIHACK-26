@@ -244,8 +244,9 @@ if (!final_locked)
 
 			show_debug_message("FINAL MODE CONFIRMED: " + selected_mode);
 			show_debug_message("PLAYER COUNT CONFIRMED: " + string(selected_player_count));
-			show_debug_message("Placeholder behaviour: quitting game now.");
-
+			//show_debug_message("Placeholder behaviour: quitting game now.");
+            global.selected_mode = selected_mode;
+			global.selected_player_count = selected_player_count;
 			room_goto(rm_input_bind);
 		}
     }
