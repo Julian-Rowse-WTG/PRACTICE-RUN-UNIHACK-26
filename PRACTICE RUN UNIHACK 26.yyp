@@ -29,6 +29,7 @@
     {"id":{"name":"fn30","path":"fonts/fn30/fn30.yy",},},
     {"id":{"name":"fn60","path":"fonts/fn60/fn60.yy",},},
     {"id":{"name":"fnt_fighter","path":"fonts/fnt_fighter/fnt_fighter.yy",},},
+    {"id":{"name":"VT323","path":"fonts/VT323/VT323.yy",},},
     {"id":{"name":"How_to_use_it","path":"notes/How_to_use_it/How_to_use_it.yy",},},
     {"id":{"name":"obj_character_select","path":"objects/obj_character_select/obj_character_select.yy",},},
     {"id":{"name":"obj_input_bind","path":"objects/obj_input_bind/obj_input_bind.yy",},},
