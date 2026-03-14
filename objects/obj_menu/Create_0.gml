@@ -1,4 +1,4 @@
-options = ["PLAY", "SETTINGS"];
+options = ["PLAY", "SETTINGS", "QUIT"];
 selection = 0;
 
 menu_x = display_get_gui_width() / 2;

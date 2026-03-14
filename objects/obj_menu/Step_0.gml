@@ -147,5 +147,8 @@ if (activate)
             show_debug_message("Going to rm_settings");
             room_goto(rm_settings);
             break;
+		case 2:
+			game_end();
+			break;
     }
 }
