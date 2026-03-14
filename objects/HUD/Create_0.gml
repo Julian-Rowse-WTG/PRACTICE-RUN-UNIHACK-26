@@ -1,5 +1,5 @@
 // ghost bar drain speed
-ghostDrainSpeed = 0.3;
+ghostDrainSpeed = 0.5;
 
 // per-player ghost hp tracking (max 7 players)
 ghostHp = array_create(7, 0);

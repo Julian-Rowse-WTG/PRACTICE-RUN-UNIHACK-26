@@ -5,3 +5,4 @@ xScale  = 1;
 yScale  = 1;
 alpha   = 0.6;
 fadeDur = 10;
+teamCol = teams.none;

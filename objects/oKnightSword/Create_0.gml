@@ -1,11 +1,13 @@
-// special
-specialCooldownMax = 300;       // 5 seconds
-specialSprite      = sprSword_Special;
-specialFd          = fd_sword_special;
-specialDamage      = 2;
-specialKnockback   = 5;
-specialHitStun     = 30;
-specialSpeed       = 8;
-specialPlatformDur = 300;       // 5 seconds at 60fps
-// burst
-burstSprite        = sprSword_Special; // same as special for now
+ignoreList = ds_list_create();
+owner       = noone;
+team        = teams.none;
+facing      = 1;
+speed_x     = 8;
+damage      = 2;
+knockback   = 5;
+hitStun     = 30;
+platformDur = 300;
+embedded    = false;
+embedTimer  = 0;
+platform    = noone;
+image_index = 0; // frame 0 = thrown	

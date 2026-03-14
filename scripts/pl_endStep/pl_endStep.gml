@@ -48,6 +48,9 @@ function pl_endStep() {
         case states.softKnock:
             pl_softKnockState();
         break;
+		case states.special:
+		    pl_specialState();
+		break;
     }
 
 // hit handling

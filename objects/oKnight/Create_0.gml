@@ -10,6 +10,18 @@ superDamage = 1.5;
 burstSprite = sprSword_Hit;
 comboTimeoutMax = 120; // 2 seconds
 hardKnockEvery  = 3;
+// special
+specialCooldownMax = 300;       // 5 seconds
+specialSprite      = sprSword_Special;
+specialDamage    = 12;  // slightly stronger than a normal hit
+specialKnockback = 5;
+specialHitStun   = 30;
+specialSpeed     = 8;
+burstDamage      = 5;   // burst reversal deals light damage
+specialPlatformDur = 300;       // 5 seconds at 60fps
+// burst
+burstSprite        = sprSword_Special; // same as special for now
+
 // body sprites
 idleSprite         = sprSword_Idle_Body;
 runSprite          = sprSword_Run_Body;
@@ -36,6 +48,7 @@ downSpriteA = sprSword_Attack_Down_A;
 // attacks function
 _attacks = sword_attacks;
 // frame data
+specialFd = fd_sword_special;
 fd_side = fd_sword_side;
 fd_up   = fd_sword_up;
 fd_down = fd_sword_down;

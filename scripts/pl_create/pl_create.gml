@@ -37,7 +37,7 @@ function pl_create() {
 	specialCooldownMax = 300; // overridden per character
 	specialProjectile  = noone; // tracks active projectile
 	specialSprite      = sprEmpty;
-	specialFd          = fd_pl_idle; // frame data for cast anim, overridden per character
+
 	// burst sprite
 	burstSprite        = sprEmpty;
 	specialFired = false;
@@ -111,11 +111,12 @@ function pl_create() {
     fd_side     = fd_pl_idle;
     fd_up       = fd_pl_idle;
     fd_down     = fd_pl_idle;
+	specialFd          = fd_pl_idle; // frame data for cast anim, overridden per character
     canCharge   = false;
 	// burst
 	burstMax        = 3;        // default, overridden per character
 	burstCharges    = burstMax;
-	burstDamage     = 1;        // small fixed damage on reversal
+	burstDamage     = 2;        // small fixed damage on reversal
 	burstKnockback  = 4;        // outward knockback force
 	burstHitStun    = 20;
 	burstWindow     = 0;        // input leniency timer

@@ -12,7 +12,7 @@ function session_init_test() {
         active     : true,
         inputType  : inputType.keyboard,
         inputSlot  : 1,
-        weaponClass: oKnight,
+        weaponClass: oDemon,
         team       : teams.blue
     };
     // player 2 — gamepad slot 0, axe

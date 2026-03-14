@@ -14,6 +14,9 @@ function pl_beginStep() {
 	//basic speed control for movement, etc
 	speed_control();
 
-	//change weapons
-	//weapon_stats();
+	// tick special cooldown
+	if (specialCooldown > 0) {
+	    specialCooldown -= god.gameSpeed;
+	    if (specialCooldown < 0) specialCooldown = 0;
+	}
 }

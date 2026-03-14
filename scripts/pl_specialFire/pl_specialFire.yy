@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pl_specialFire",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pl_specialFire",
+  "parent":{
+    "name":"special",
+    "path":"folders/Scripts/player/special.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

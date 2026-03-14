@@ -15,6 +15,10 @@ function pl_animation() {
     }
 
     switch (currentState) {
+		case states.special:
+		    animation_set(specialFd, specialSprite);
+		    weaponSprite = sprEmpty;
+		break;
 
         case states.normal:
             if (onGround) {
@@ -125,14 +129,15 @@ function pl_animation() {
         break;
     }
 	
-		// super mode afterimage
+	// super mode afterimage
 	if (superMode) {
-	    var _after = instance_create_layer(xPos, yPos, "Effects", oAfterimage);
-	    _after.sprite    = sprite;
-	    _after.frame     = currentFrame;
-	    _after.facing    = facing;
-	    _after.xScale    = xScale;
-	    _after.yScale    = yScale;
+	    var _after      = instance_create_layer(xPos, yPos, "Effects", oAfterimage);
+	    _after.sprite   = sprite;
+	    _after.frame    = currentFrame;
+	    _after.facing   = facing;
+	    _after.xScale   = xScale;
+	    _after.yScale   = yScale;
+	    _after.teamCol  = team;
 	}
 
     if (lastSprite != currentSprite) {

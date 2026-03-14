@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sword_projectile_embed",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sword_projectile_embed",
+  "parent":{
+    "name":"special",
+    "path":"folders/Scripts/player/special.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
