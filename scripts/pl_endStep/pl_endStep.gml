@@ -98,6 +98,7 @@ if (hit) {
             currentState  = states.tumble;
             hp -= damage;
             hp  = max(hp, 0);
+            audio_play_sound(sfx_hit, 1, false);
         } else {
             softHitStun  = floor(hitStun * softHitStunScale);
             xSpeed       = xHit * softKnockXScale * facing * -1;
@@ -108,6 +109,7 @@ if (hit) {
             currentState = states.softKnock;
             hp -= damage;
             hp  = max(hp, 0);
+            audio_play_sound(sfx_hit, 1, false);
         }
         hit = false;
     }

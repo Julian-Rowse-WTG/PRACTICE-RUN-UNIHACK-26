@@ -13,3 +13,25 @@ gui_h = display_get_gui_height();
 // Loading animation state
 dot_timer = 0;
 dot_count = 0;  // 0-3 cycling dots appended to "LOADING"
+
+// Load audio groups for selected characters
+var _needKnight = false;
+var _needDemon  = false;
+for (var _p = 0; _p < 4; _p++) {
+    if (global.session[_p].active) {
+        if (global.session[_p].weaponClass == oDemon) {
+            _needDemon = true;
+        } else {
+            _needKnight = true; // knight and axe (judge) both use knight sounds
+        }
+    }
+}
+if (_needKnight && !audio_group_is_loaded(audiogroup_knight_sfx)) {
+    audio_group_load(audiogroup_knight_sfx);
+}
+if (_needDemon && !audio_group_is_loaded(audiogroup_demon_sfx)) {
+    audio_group_load(audiogroup_demon_sfx);
+}
+if (!audio_group_is_loaded(audiogroup_generic_sfx)) {
+    audio_group_load(audiogroup_generic_sfx);
+}

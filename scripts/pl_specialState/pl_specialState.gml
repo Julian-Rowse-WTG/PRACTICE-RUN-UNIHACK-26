@@ -9,6 +9,7 @@ function pl_specialState() {
     // fire projectile on frame 1 (second frame)
     if (currentFrame == 1 && !specialFired) {
         specialFired = true;
+        audio_play_sound(sfx_special, 1, false);
         pl_specialFire();
     }
 
