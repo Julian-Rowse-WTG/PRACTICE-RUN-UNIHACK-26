@@ -18,8 +18,9 @@ dot_count = 0;  // 0-3 cycling dots appended to "LOADING"
 var _needKnight = false;
 var _needDemon  = false;
 for (var _p = 0; _p < 4; _p++) {
-    if (global.session[_p].active) {
-        if (global.session[_p].weaponClass == oDemon) {
+    var _sess = global.session[_p];
+    if (!is_undefined(_sess) && _sess.active) {
+        if (_sess.weaponClass == oDemon) {
             _needDemon = true;
         } else {
             _needKnight = true; // knight and axe (judge) both use knight sounds
