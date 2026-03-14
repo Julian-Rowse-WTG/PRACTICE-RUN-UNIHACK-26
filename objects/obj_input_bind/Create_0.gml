@@ -3,7 +3,7 @@
 // --------------------------------------------------
 show_debug_message("=== INPUT BIND CREATE START ===");
 
-startup_lock_frames = 60;
+startup_lock_frames = room_speed * 0.4;
 max_players = global.selected_player_count;
 required_special_count = 3;
 draw_set_font(VT323);
