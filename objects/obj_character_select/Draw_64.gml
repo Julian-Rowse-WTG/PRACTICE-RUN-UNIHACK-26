@@ -128,28 +128,8 @@ for (var p = 0; p < 4; p++)
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
         draw_text_transformed(rcx, rcy, "READY", 1, 1, 20);
+		draw_set_font(VT323);
     }
-}
-
-// --------------------------------------------------
-// DRAW CURSORS (active players only)
-// --------------------------------------------------
-for (var p = 0; p < max_players; p++)
-{
-    if (!player_active[p]) continue;
-
-    var cx = cursor_x[p];
-    var cy = cursor_y[p];
-
-    draw_set_colour(player_colour[p]);
-    draw_circle(cx, cy, 18, true);
-    draw_circle(cx, cy, 4, false);
-
-    draw_set_font(VT323);
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
-    draw_set_colour(c_white);
-    draw_text(cx, cy - 28, "P" + string(p + 1));
 }
 
 // --------------------------------------------------
@@ -174,4 +154,25 @@ for (var p = 0; p < max_players; p++)
     {
         draw_sprite_ext(spr, 0, stamp_x[p], stamp_y[p], 4, 4, 0, c_white, 1);
     }
+}
+
+// --------------------------------------------------
+// DRAW CURSORS (active players only)
+// --------------------------------------------------
+for (var p = 0; p < max_players; p++)
+{
+    if (!player_active[p]) continue;
+
+    var cx = cursor_x[p];
+    var cy = cursor_y[p];
+
+    draw_set_colour(player_colour[p]);
+    draw_circle(cx, cy, 18, true);
+    draw_circle(cx, cy, 4, false);
+
+    draw_set_font(VT323);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_colour(c_white);
+    draw_text(cx, cy - 28, "P" + string(p + 1));
 }
