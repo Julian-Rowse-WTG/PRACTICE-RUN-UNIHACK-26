@@ -34,12 +34,13 @@ function pl_frameData() {
 	fd_axe_side = frame_factory(6,6,14);
 	fd_axe_up   = frame_factory(6,6,14);
 	fd_axe_down = frame_factory(6,6,14);
-
+	
 	//spear
 	fd_spear_side = frame_factory(5,6,18);
 	fd_spear_up   = frame_factory(5,6,18);
 	fd_spear_down = frame_factory(5,6,18);
-
+	fd_spear_special = frame_factory(7, 7);
+	fd_spear_victory = frame_factory(25, 25, 60); // 3 frame victory animation
 
 
 }

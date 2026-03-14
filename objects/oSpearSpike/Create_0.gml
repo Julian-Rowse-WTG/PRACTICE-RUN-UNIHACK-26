@@ -1,0 +1,15 @@
+owner        = noone;
+team         = teams.none;
+facing       = 1;
+speed_x      = 7;
+speed_y      = 0;
+damage       = 3;
+knockback    = 0;
+hitStun      = 20;
+launchDamage = 12;
+launchSpeed  = -12;
+isVertical   = false;
+isBounced    = false;
+embedTimer   = 120;
+angle        = 0;
+ignoreList   = ds_list_create();
