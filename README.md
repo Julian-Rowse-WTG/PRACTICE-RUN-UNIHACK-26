@@ -1,2 +1,17 @@
 # PRACTICE RUN UNIHACK 26
 
+## 3rd-party material credits
+- https://pixabay.com/sound-effects/film-special-effects-fantasy-game-sword-cut-sound-effect-get-more-on-my-patreon-339824/: Sword zing sound effect
+- https://mixkit.co/free-sound-effects/game/: Death sound effect, power up effect
+- https://pixabay.com/sound-effects/film-special-effects-simple-whoosh-382724/: Woosh sound effect
+- https://pixabay.com/sound-effects/film-special-effects-swing-whoosh-metal-hit-14-234631/: Armour clank
+- https://pixabay.com/sound-effects/film-special-effects-casual-click-pop-ui-2-262119/: UI click/pop
+- https://pixabay.com/sound-effects/film-special-effects-casual-click-pop-ui-7-262127/: UI click failure
+- https://pixabay.com/sound-effects/film-special-effects-sword-slice-393847/: Sword unsheathe
+- https://pixabay.com/sound-effects/film-special-effects-punch-04-383965/: punch
+- https://pixabay.com/sound-effects/film-special-effects-slap-hurt-pain-sound-effect-262618/: slap/hurt
+- https://pixabay.com/sound-effects/nature-tiger-roar-loudly-193229/: roar
+- https://www.youtube.com/@AZALI00013: background music
+
+And of course...
+- Special credits to Copilot, Claude, ChatGPT etc.
