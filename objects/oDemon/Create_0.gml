@@ -60,3 +60,7 @@ fd_side = fd_dagger_side;
 fd_up   = fd_dagger_up;
 fd_down = fd_dagger_down;
 specialFd = fd_dagger_special;
+// sounds
+sfx_attack  = sound_demon_attack;
+sfx_hit     = sound_demon_is_hit;
+sfx_special = sound_demon_ultimate_attack;

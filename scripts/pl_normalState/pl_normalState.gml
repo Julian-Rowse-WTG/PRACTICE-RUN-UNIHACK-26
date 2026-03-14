@@ -72,10 +72,12 @@ function pl_normalState() {
         }
         currentState = states.attack;
         frame_reset();
+        audio_play_sound(sfx_attack, 1, false);
     }
 
     // dash
     if (dash && !dashHold) {
+        var _dashed = false;
         if (!onGround) {
             if (!airDash) {
                 dashDur = dashDurMax;
@@ -83,12 +85,17 @@ function pl_normalState() {
                 squash_stretch(1.3, 0.7);
                 currentState = states.dash;
                 airDash = true;
+                _dashed = true;
             }
         } else {
             dashDur = dashDurMax;
             xSpeed  = 7 * facing;
             squash_stretch(1.3, 0.7);
             currentState = states.dash;
+            _dashed = true;
+        }
+        if (_dashed) {
+            audio_play_sound(sound_dash_wind, 1, false);
         }
     }
 

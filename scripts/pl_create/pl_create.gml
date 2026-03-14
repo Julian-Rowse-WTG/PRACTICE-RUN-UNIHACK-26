@@ -132,6 +132,10 @@ function pl_create() {
 	burstSprite     = sprEmpty;
 	// block
 	blockReduction  = 0.5;	
+    // sounds — overridden per character; axe and any unknown default to knight sounds
+    sfx_attack  = sound_knight_attack;
+    sfx_hit     = sound_knight_is_hit;
+    sfx_special = sound_knight_ultimate_attack;
     // destroy
     destroy = false;
 }
