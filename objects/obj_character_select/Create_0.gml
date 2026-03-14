@@ -213,8 +213,23 @@ slot_off_x[2] = 105; slot_off_y[2] = 265;
 slot_off_x[3] = 225; slot_off_y[3] = 315;
 
 // --------------------------------------------------
+// DISABLED SLOTS SETUP
+// Only the first 3 slots are selectable; the rest are locked
+// and display an exponentially increasing XP requirement.
+// --------------------------------------------------
+enabled_slots = 3;
+
+var _disabled_count = max(0, panel_count - enabled_slots);
+xp_requirements = array_create(_disabled_count, 0);
+var _xp = 1000;
+for (var i = 0; i < _disabled_count; i++)
+{
+    xp_requirements[i] = _xp;
+    _xp = _xp * 3;
+}
+
+// --------------------------------------------------
 // READY TO ADVANCE FLAG
-// Not implemented yet - stub only for next person.
 // --------------------------------------------------
 all_confirmed = false;
 
