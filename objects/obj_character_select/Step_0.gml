@@ -274,6 +274,6 @@ if (all_confirmed)
 {
     if (any_start_pressed)
     {
-        room_goto(rm_main_game);
+        room_goto(rm_game);
     }
 }
