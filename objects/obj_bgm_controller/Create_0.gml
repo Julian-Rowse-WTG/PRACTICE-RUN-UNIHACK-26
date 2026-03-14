@@ -24,5 +24,5 @@ bgm_muted = false;
 // Steps remaining before starting music after entering rm_game (allows fade-in to complete first)
 music_start_delay = 0;
 
-// without this, the audio tracks are determinister (irandom() is a prng)
+// without this, the audio tracks are deterministic (irandom() is a prng)
 randomize();

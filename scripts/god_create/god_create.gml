@@ -35,6 +35,4 @@ function god_create() {
 	victoryZoomDone     = false;
 	victoryInputReady   = false;  // true after animation finishes
 	victoryHoldTimer = 0;
-	
-	audio_play_sound(BGM_Knight,10,true);
 }
