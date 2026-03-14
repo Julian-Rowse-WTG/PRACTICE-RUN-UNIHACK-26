@@ -55,12 +55,17 @@ var grid_total_w = grid_cols * sq_w + (grid_cols - 1) * sq_col_gap;
 grid_x = floor((gui_w - grid_total_w) * 0.5);
 grid_y = 20;
 
-// Character images for each square (first 4 use player counter icons)
+// Character images for each square — idle sprites for the 3 unlocked characters
 char_sprite = array_create(panel_count, -1);
-char_sprite[0] = spr_counter_icon_p1;
-char_sprite[1] = spr_counter_icon_p2;
-char_sprite[2] = spr_counter_icon_p3;
-char_sprite[3] = spr_counter_icon_p4;
+char_sprite[0] = sprSword_Idle_Body;   // Knight
+char_sprite[1] = sprDagger_Idle;  // Demon
+char_sprite[2] = sprAxe_Idle;     // Axe (oJudge)
+
+// Map tile index to weapon-class object for session building
+char_weapon_class = array_create(panel_count, noone);
+char_weapon_class[0] = oKnight;
+char_weapon_class[1] = oDemon;
+char_weapon_class[2] = oJudge;
 
 // Character names for hover display
 character_names = array_create(panel_count, "");
@@ -120,8 +125,8 @@ for (var i = 0; i < 4; i++)
 // PLAYER SETUP
 // IMPORTANT: ONLY ACTIVE PLAYERS FROM INPUT BIND
 // --------------------------------------------------
-max_players = 4;
-
+//max_players = 4;
+max_players = global.selected_player_count;
 player_active         = array_create(max_players, false);
 player_schema_type    = array_create(max_players, "");
 player_schema_id      = array_create(max_players, -1);

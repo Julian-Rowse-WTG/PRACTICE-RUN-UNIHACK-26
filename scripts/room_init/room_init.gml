@@ -10,7 +10,7 @@ function room_init() {
     var _spawnIndex = 0;
 
     for (var _i = 0; _i < 4; _i++) {
-        var _data = god.session[_i];
+        var _data = global.session[_i];
 
         // skip inactive slots
         if (_data == undefined || !_data.active) continue;

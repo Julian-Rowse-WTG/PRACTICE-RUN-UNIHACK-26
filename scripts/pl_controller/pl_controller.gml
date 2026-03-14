@@ -43,12 +43,12 @@ function pl_controller() {
                 special = keyboard_check(ord("O"));
             break;
             case 2:
-                left    = keyboard_check(vk_numpad4);
-                right   = keyboard_check(vk_numpad6);
-                up      = keyboard_check(vk_numpad8);
-                down    = keyboard_check(vk_numpad5);
-                attack  = keyboard_check(vk_numpad7);
-                special = keyboard_check(vk_numpad9);
+                left    = keyboard_check(vk_left);
+                right   = keyboard_check(vk_right);
+                up      = keyboard_check(vk_up);
+                down    = keyboard_check(vk_down);
+                attack  = keyboard_check(vk_shift);
+                special = keyboard_check(vk_enter);
             break;
         }
         block = down;
