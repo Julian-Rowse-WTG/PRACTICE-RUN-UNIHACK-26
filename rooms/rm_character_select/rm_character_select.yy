@@ -17,8 +17,8 @@
   ],
   "name":"rm_character_select",
   "parent":{
-    "name":"BLANK GAME",
-    "path":"BLANK GAME.yyp",
+    "name":"PRACTICE RUN UNIHACK 26",
+    "path":"PRACTICE RUN UNIHACK 26.yyp",
   },
   "parentRoom":null,
   "physicsSettings":{

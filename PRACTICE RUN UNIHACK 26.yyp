@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"BLANK GAME",
+  "%Name":"PRACTICE RUN UNIHACK 26",
   "AudioGroups":[
     {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -24,7 +24,7 @@
   "MetaData":{
     "IDEVersion":"2024.14.3.217",
   },
-  "name":"BLANK GAME",
+  "name":"PRACTICE RUN UNIHACK 26",
   "resources":[
     {"id":{"name":"fn30","path":"fonts/fn30/fn30.yy",},},
     {"id":{"name":"fn60","path":"fonts/fn60/fn60.yy",},},
