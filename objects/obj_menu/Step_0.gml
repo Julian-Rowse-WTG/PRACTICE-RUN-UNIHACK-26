@@ -103,9 +103,11 @@ else
 
 
 // ---------------------------------
-// CLAMP SELECTION
+// MAKE SELECTION WRAP AROUND
 // ---------------------------------
-selection = clamp(selection, 0, array_length(options) - 1);
+
+var max_options = array_length(options);
+selection = (selection + max_options) % max_options;
 
 
 // ---------------------------------
