@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"BGM_touhou_inspired_sketch",
+  "audioGroupId":{
+    "name":"audiogroup_BGM",
+    "path":"audiogroups/audiogroup_BGM",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":107.11365,
+  "exportDir":"",
+  "name":"BGM_touhou_inspired_sketch",
+  "parent":{
+    "name":"BGM",
+    "path":"folders/Sounds/BGM.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"BGM_touhou_inspired_sketch.mp3",
+  "volume":1.0,
+}
