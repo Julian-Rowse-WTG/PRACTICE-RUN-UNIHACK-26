@@ -15,8 +15,7 @@ draw_set_valign(fa_middle);
 // --------------------------------------------------
 // TOP SECTION: 2 x 6 CHARACTER SELECTION SQUARES
 // --------------------------------------------------
-for (var i = 0; i < panel_count; i++)
-{
+for (var i = 0; i < panel_count; i++) {
     var x1 = tile_x1[i];
     var y1 = tile_y1[i];
     var x2 = tile_x2[i];
@@ -26,8 +25,7 @@ for (var i = 0; i < panel_count; i++)
 
     var is_disabled = (i >= enabled_slots);
 
-    if (is_disabled)
-    {
+    if (is_disabled) {
         // Disabled tile — dark, no hover response
         draw_set_colour(make_colour_rgb(30, 32, 44));
         draw_rectangle(x1, y1, x2, y2, false);
@@ -44,26 +42,23 @@ for (var i = 0; i < panel_count; i++)
 
         // XP requirement — xp_idx is always >= 0 here because is_disabled guarantees i >= enabled_slots
         var xp_idx = i - enabled_slots;
-		var xp_needed = xp_requirements[xp_idx];
-		var xp_string = "";
-		if(xp_needed < 10000) {
-			xp_string = string(xp_needed);
-		} else if(xp_needed < 1000000) {
-			xp_string = string(floor(xp_needed / 1000)) + "K";
-		} else {
-			xp_string = string(floor(xp_needed / 1000000)) + "M";
-		}
+        var xp_needed = xp_requirements[xp_idx];
+        var xp_string = "";
+        if (xp_needed < 10000) {
+            xp_string = string(xp_needed);
+        } else if (xp_needed < 1000000) {
+            xp_string = string(floor(xp_needed / 1000)) + "K";
+        } else {
+            xp_string = string(floor(xp_needed / 1000000)) + "M";
+        }
         draw_text(tcx, tcy + 20, xp_string + " XP");
     }
-    else
-    {
+    else {
         var hovered_by_anyone = false;
 
-        for (var p = 0; p < max_players; p++)
-        {
+        for (var p = 0; p < max_players; p++) {
             if (!player_active[p]) continue;
-            if (hovered_tile[p] == i)
-            {
+            if (hovered_tile[p] == i) {
                 hovered_by_anyone = true;
                 break;
             }
@@ -83,15 +78,12 @@ for (var i = 0; i < panel_count; i++)
 
         // Character image (scaled to fit the square)
         var spr = char_sprite[i];
-        if (spr != -1)
-        {
+        if (spr != -1) {
             var spr_w = sprite_get_width(spr);
             var spr_h = sprite_get_height(spr);
             var scale = min((x2 - x1 - 10) / spr_w, (y2 - y1 - 10) / spr_h);
-            draw_sprite_ext(spr, 0, tcx, tcy, scale, scale, 0, c_white, 1);
-        }
-        else
-        {
+            draw_sprite_ext(spr, 0, tcx, tcy + 60, scale, scale, 0, c_white, 1);
+        } else {
             // Placeholder "?" for squares without an assigned sprite
             draw_set_font(VT323);
             draw_set_colour(make_colour_rgb(140, 145, 170));
@@ -124,11 +116,10 @@ draw_set_font(fnt_fighter);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-if (all_confirmed)
-{
+if (all_confirmed) {
     var bar_cx = gui_w * 0.5;
     var bar_cy = (bar_y1 + bar_y2) * 0.5;
-    var start_scale  = 1 + 0.015 * sin(current_time / 150);
+    var start_scale = 1 + 0.015 * sin(current_time / 150);
     var start_ripple = 0.5 + 0.5 * sin(current_time / 225);
     var col_outer = merge_colour(make_colour_rgb(220, 170, 0), make_colour_rgb(255, 210, 0), start_ripple);
     var col_inner = merge_colour(make_colour_rgb(255, 240, 30), make_colour_rgb(255, 255, 90), start_ripple);
@@ -150,8 +141,7 @@ if (all_confirmed)
     draw_set_colour(c_white);
     draw_set_alpha(1);
 }
-else
-{
+else {
     draw_set_colour(make_colour_rgb(90, 90, 100));
     draw_text(gui_w * 0.5, (bar_y1 + bar_y2) * 0.5, "START");
 }
@@ -161,8 +151,7 @@ else
 // --------------------------------------------------
 draw_set_font(VT323);
 
-for (var p = 0; p < 4; p++)
-{
+for (var p = 0; p < 4; p++) {
     var rx1 = slot_px[p];
     var ry1 = bottom_y;
     var rx2 = slot_px[p] + slot_w;
@@ -184,54 +173,48 @@ for (var p = 0; p < 4; p++)
     var rcy = ry1 + 30;
     draw_text(rcx, rcy, player_labels[p]);
 
-    // READY overlay — diagonal fnt_fighter, yellow, bold; also show selected character sprite
-    if (player_confirmed[p])
-    {
+    if (player_confirmed[p]) {
+        // Draw the selected character's idle sprite in the lower part of the slot
+        if (player_choice[p] != -1) {
+            var _spr = char_sprite[player_choice[p]];
+            if (_spr != -1) {
+                var _spr_w = sprite_get_width(_spr);
+                var _spr_h = sprite_get_height(_spr);
+                var _max_w = (rx2 - rx1) - 10;
+                var _max_h = slot_h - 60;
+                var _scale = min(_max_w / _spr_w, _max_h / _spr_h);
+                var _char_cy = (ry1 + ry2) * 0.5;
+                draw_sprite_ext(_spr, 0, rcx, _char_cy + 165, _scale, _scale, 0, c_white, 1);
+            }
+        }
+
+        // READY overlay — diagonal fnt_fighter, yellow, bold; also show selected character sprite
         draw_set_font(fnt_fighter);
         draw_set_colour(c_yellow);
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
-        draw_text_transformed(rcx, rcy, "READY", 1, 1, 20);
+        draw_text_transformed(rcx, (ry1 + ry2) * 0.5, "READY", 1, 1, 20);
         draw_set_font(VT323);
-
-        // Draw the selected character's idle sprite in the lower part of the slot
-        if (player_choice[p] != -1)
-        {
-            var _spr = char_sprite[player_choice[p]];
-            if (_spr != -1)
-            {
-                var _spr_w  = sprite_get_width(_spr);
-                var _spr_h  = sprite_get_height(_spr);
-                var _max_w  = (rx2 - rx1) - 10;
-                var _max_h  = slot_h - 60;
-                var _scale  = min(_max_w / _spr_w, _max_h / _spr_h);
-                var _char_cy = ry1 + 50 + (_max_h * 0.5);
-                draw_sprite_ext(_spr, 0, rcx, _char_cy, _scale, _scale, 0, c_white, 1);
-            }
-        }
     }
 }
 
 // --------------------------------------------------
 // DRAW CONFIRMED PLAYER BADGES (sprite icon at stamp position)
 // --------------------------------------------------
-for (var p = 0; p < max_players; p++)
-{
+for (var p = 0; p < max_players; p++) {
     if (!player_active[p]) continue;
     if (!player_confirmed[p]) continue;
 
     var spr = -1;
 
-    switch (p)
-    {
+    switch (p) {
         case 0: spr = spr_counter_icon_p1; break;
         case 1: spr = spr_counter_icon_p2; break;
         case 2: spr = spr_counter_icon_p3; break;
         case 3: spr = spr_counter_icon_p4; break;
     }
 
-    if (spr != -1)
-    {
+    if (spr != -1) {
         draw_sprite_ext(spr, 0, stamp_x[p], stamp_y[p], 4, 4, 0, c_white, 1);
     }
 }
@@ -239,8 +222,7 @@ for (var p = 0; p < max_players; p++)
 // --------------------------------------------------
 // DRAW CURSORS (active players only)
 // --------------------------------------------------
-for (var p = 0; p < max_players; p++)
-{
+for (var p = 0; p < max_players; p++) {
     if (!player_active[p]) continue;
 
     var cx = cursor_x[p];

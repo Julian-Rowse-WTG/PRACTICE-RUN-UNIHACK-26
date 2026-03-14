@@ -57,7 +57,7 @@ grid_y = 20;
 
 // Character images for each square — idle sprites for the 3 unlocked characters
 char_sprite = array_create(panel_count, -1);
-char_sprite[0] = sprSword_Idle;   // Knight
+char_sprite[0] = sprSword_Idle_Body;   // Knight
 char_sprite[1] = sprDagger_Idle;  // Demon
 char_sprite[2] = sprAxe_Idle;     // Axe (oJudge)
 
