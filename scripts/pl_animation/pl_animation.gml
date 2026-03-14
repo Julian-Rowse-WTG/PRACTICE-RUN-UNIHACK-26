@@ -46,6 +46,11 @@ function pl_animation() {
                 facing = 1;
             }
         break;
+		
+		case states.softKnock:
+		    animation_set(fd_pl_tumble, hitSprite);
+		    weaponSprite = sprEmpty;
+		break;
 
         case states.dash:
             animation_set(fd_pl_roll, sprPlayer_Dash_Base);

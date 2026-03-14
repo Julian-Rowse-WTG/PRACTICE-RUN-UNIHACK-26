@@ -7,6 +7,8 @@ function enum_init() {
 	    dodge,
 	    block,
 	    burst,
+	    special,
+	    softKnock,
 	    tumble,
 	    dead,
 	    recovery

@@ -8,6 +8,8 @@ burstMax    = 2;
 burstCharges = burstMax;
 superDamage = 1.5;
 burstSprite = sprSword_Hit;
+comboTimeoutMax = 120; // 2 seconds
+hardKnockEvery  = 3;
 // body sprites
 idleSprite         = sprSword_Idle_Body;
 runSprite          = sprSword_Run_Body;

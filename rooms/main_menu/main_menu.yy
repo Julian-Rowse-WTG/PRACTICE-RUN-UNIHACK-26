@@ -17,8 +17,8 @@
   ],
   "name":"main_menu",
   "parent":{
-    "name":"PRACTICE RUN UNIHACK 26",
-    "path":"PRACTICE RUN UNIHACK 26.yyp",
+    "name":"Rooms",
+    "path":"folders/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

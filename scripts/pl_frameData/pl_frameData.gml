@@ -19,6 +19,7 @@ function pl_frameData() {
 	fd_sword_side = frame_factory(5,6,12);
 	fd_sword_up   = frame_factory(5,6,12);
 	fd_sword_down = frame_factory(5,6,12);
+	fd_sword_special = frame_factory(8, 8); // 8 frames windup, 8 frames cast
 
 	//dagger
 	fd_dagger_side = frame_factory(2,5,10);

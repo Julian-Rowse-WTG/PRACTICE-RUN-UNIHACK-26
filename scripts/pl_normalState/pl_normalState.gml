@@ -29,65 +29,70 @@ function pl_normalState() {
 	    frame_reset();
 	    exit;
 	}
-
-	//attack
-	//change to the attack state and relevant subState based on direction and attack
-	if(attack && !attackHold){
-	    //grounded attacks
-	    if(onGround){
-	        if(up){
-	            subState = attacks.up_ground;
-	            squash_stretch(0.7,1.3);
-	        }else if(down){
-	            subState = attacks.down_ground;
-	            squash_stretch(0.7,1.3);
-	        }else{
-	            subState = attacks.side_ground;
-	            squash_stretch(1.3,0.7);
-	        }
-	    }else{
-	        //air attacks
-	        if(up){
-	            subState = attacks.up_air;
-	            squash_stretch(0.7,1.3);
-	        }else if(down){
-	            subState = attacks.down_air;
-	            squash_stretch(0.7,1.3);
-	        }else{
-	            subState = attacks.side_air;
-	            squash_stretch(1.3,0.7);
-	        }
-	    }
-	    currentState = states.attack;
+// burst input detection
+    if (attack && !attackHold) burstWindow = burstWindowMax;
+    if (special && !specialHold) burstWindow = burstWindowMax;
+    if (burstWindow > 0) burstWindow--;
+    if (attack && special && burstWindow > 0) {
+        pl_burstActivate();
+        exit;
+    }
+	
+	// special input
+	if (special && !specialHold && specialCooldown <= 0 && specialProjectile == noone) {
+	    currentState = states.special;
 	    frame_reset();
+	    exit;
 	}
 
-	//dash
-	if(dash && !dashHold){
-	    //air dash. only dash in the air if airDash is false
-	    //set airDash to true if you have dashed in the air
-	    if(!onGround){
-	        if(!airDash){
-	            dashDur = dashDurMax;
-	            xSpeed = 7 * facing;
-	            squash_stretch(1.3,0.7);
-	            currentState = states.dash;
-	            airDash = true;
-	        }
-	    //ground dash
-	    }else if(onGround){
-	        dashDur = dashDurMax;
-	        xSpeed = 7 * facing;
-	        squash_stretch(1.3,0.7);
-	        currentState = states.dash;    
-	    }
-	}
+    // attack
+    if (attack && !attackHold) {
+        if (onGround) {
+            if (up) {
+                subState = attacks.up_ground;
+                squash_stretch(0.7, 1.3);
+            } else if (down) {
+                subState = attacks.down_ground;
+                squash_stretch(0.7, 1.3);
+            } else {
+                subState = attacks.side_ground;
+                squash_stretch(1.3, 0.7);
+            }
+        } else {
+            if (up) {
+                subState = attacks.up_air;
+                squash_stretch(0.7, 1.3);
+            } else if (down) {
+                subState = attacks.down_air;
+                squash_stretch(0.7, 1.3);
+            } else {
+                subState = attacks.side_air;
+                squash_stretch(1.3, 0.7);
+            }
+        }
+        currentState = states.attack;
+        frame_reset();
+    }
 
-	//reset airDash after landing on the ground
-	if(onGround){
-	    airDash = false;
-	}
+    // dash
+    if (dash && !dashHold) {
+        if (!onGround) {
+            if (!airDash) {
+                dashDur = dashDurMax;
+                xSpeed  = 7 * facing;
+                squash_stretch(1.3, 0.7);
+                currentState = states.dash;
+                airDash = true;
+            }
+        } else {
+            dashDur = dashDurMax;
+            xSpeed  = 7 * facing;
+            squash_stretch(1.3, 0.7);
+            currentState = states.dash;
+        }
+    }
 
-
-
+    if (onGround) {
+        airDash = false;
+    }
 }

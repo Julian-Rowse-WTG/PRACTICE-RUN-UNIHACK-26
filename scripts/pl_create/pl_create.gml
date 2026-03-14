@@ -32,6 +32,25 @@ function pl_create() {
 	_tapDown  = 0;
 	blocking = false;
 	angle    = 0;
+	// special
+	specialCooldown    = 0;
+	specialCooldownMax = 300; // overridden per character
+	specialProjectile  = noone; // tracks active projectile
+	specialSprite      = sprEmpty;
+	specialFd          = fd_pl_idle; // frame data for cast anim, overridden per character
+	// burst sprite
+	burstSprite        = sprEmpty;
+	specialFired = false;
+	// combo tracking — one counter per possible attacker slot (4 max)
+	comboCount      = array_create(4, 0);   // hits received per attacker
+	comboTimer      = array_create(4, 0);   // timeout per attacker
+	comboTimeoutMax = 120;                  // overridden per character
+	hardKnockEvery  = 3;                    // hard knockdown on every Nth hit
+	// soft knockdown
+	softHitStun     = 0;                    // current soft hitstun counter
+	softKnockXScale = 0.4;                  // fraction of xHit applied on soft hit
+	softKnockYScale = 0.2;                  // fraction of yHit applied on soft hit
+	softHitStunScale = 0.35;               // fraction of hitStun applied on soft hit
     // states
     currentState = states.normal;
     lastState    = currentState;

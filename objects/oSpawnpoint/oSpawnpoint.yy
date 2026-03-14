@@ -34,5 +34,5 @@
     "path":"sprites/sprPlayer_Dead_Base/sprPlayer_Dead_Base.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
