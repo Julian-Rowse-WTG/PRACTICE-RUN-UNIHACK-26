@@ -112,14 +112,14 @@ draw_line(bar_x1, bar_y1, bar_x2, bar_y1);
 draw_line(bar_x1, bar_y2, bar_x2, bar_y2);
 
 // START text — animated yellow when all players confirmed, greyed otherwise
-draw_set_font(VT323);
+draw_set_font(fnt_fighter);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
 if (all_confirmed) {
     var bar_cx = gui_w * 0.5;
     var bar_cy = (bar_y1 + bar_y2) * 0.5;
-    var start_scale = 1 + 0.015 * sin(current_time / 150);
+    var start_scale = 1.4 + 0.03 * sin(current_time / 150);
     var start_ripple = 0.5 + 0.5 * sin(current_time / 225);
     var col_outer = merge_colour(make_colour_rgb(220, 170, 0), make_colour_rgb(255, 210, 0), start_ripple);
     var col_inner = merge_colour(make_colour_rgb(255, 240, 30), make_colour_rgb(255, 255, 90), start_ripple);
@@ -144,7 +144,7 @@ if (all_confirmed) {
 }
 else {
     draw_set_colour(make_colour_rgb(90, 90, 100));
-    draw_text(gui_w * 0.5, (bar_y1 + bar_y2) * 0.5, "START");
+    draw_text_transformed(gui_w * 0.5, (bar_y1 + bar_y2) * 0.5, "START", 1.3, 1.3, 0);
 }
 
 // --------------------------------------------------
