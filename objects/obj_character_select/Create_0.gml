@@ -40,30 +40,36 @@ gui_h = display_get_gui_height();
 show_debug_message("GUI size = " + string(gui_w) + " x " + string(gui_h));
 
 // --------------------------------------------------
-// CHARACTER PANELS / TILES
-// Hardcoded rectangles because jam speed matters.
+// CHARACTER GRID (2 rows x 6 columns = 12 squares)
 // --------------------------------------------------
-panel_count = 3;
+grid_cols = 6;
+grid_rows = 2;
+panel_count = grid_cols * grid_rows; // 12
 
-panel_w = 320;
-panel_h = 520;
-panel_y = 180;
-panel_gap = 140;
+sq_w = 160; // character square width
+sq_h = 125; // character square height
+sq_col_gap = 15;
+sq_row_gap = 15;
 
-total_w = panel_count * panel_w + (panel_count - 1) * panel_gap;
-start_x = (gui_w - total_w) * 0.5;
+var grid_total_w = grid_cols * sq_w + (grid_cols - 1) * sq_col_gap;
+grid_x = floor((gui_w - grid_total_w) * 0.5);
+grid_y = 20;
 
-panel_x = array_create(panel_count, 0);
-panel_x[0] = start_x;
-panel_x[1] = start_x + panel_w + panel_gap;
-panel_x[2] = start_x + (panel_w + panel_gap) * 2;
+// Character images for each square (first 4 use player counter icons)
+char_sprite = array_create(panel_count, -1);
+char_sprite[0] = spr_counter_icon_p1;
+char_sprite[1] = spr_counter_icon_p2;
+char_sprite[2] = spr_counter_icon_p3;
+char_sprite[3] = spr_counter_icon_p4;
 
+// Character names for hover display
 character_names = array_create(panel_count, "");
-character_names[0] = "Character 1";
-character_names[1] = "Character 2";
-character_names[2] = "Character 3";
+for (var i = 0; i < panel_count; i++)
+{
+    character_names[i] = "Char " + string(i + 1);
+}
 
-// Store tile bounds explicitly for easy hover checks
+// Store tile bounds for hover checks
 tile_x1 = array_create(panel_count, 0);
 tile_y1 = array_create(panel_count, 0);
 tile_x2 = array_create(panel_count, 0);
@@ -71,16 +77,39 @@ tile_y2 = array_create(panel_count, 0);
 
 for (var i = 0; i < panel_count; i++)
 {
-    tile_x1[i] = panel_x[i];
-    tile_y1[i] = panel_y;
-    tile_x2[i] = panel_x[i] + panel_w;
-    tile_y2[i] = panel_y + panel_h;
+    var col = i mod grid_cols;
+    var row = i div grid_cols;
+    tile_x1[i] = grid_x + col * (sq_w + sq_col_gap);
+    tile_y1[i] = grid_y + row * (sq_h + sq_row_gap);
+    tile_x2[i] = tile_x1[i] + sq_w;
+    tile_y2[i] = tile_y1[i] + sq_h;
 
     show_debug_message(
         "Tile " + string(i) +
         " bounds = (" + string(tile_x1[i]) + ", " + string(tile_y1[i]) + ")" +
         " to (" + string(tile_x2[i]) + ", " + string(tile_y2[i]) + ")"
     );
+}
+
+// --------------------------------------------------
+// MIDDLE DIVIDER BAR + START BUTTON
+// --------------------------------------------------
+var top_section_bottom = grid_y + grid_rows * sq_h + (grid_rows - 1) * sq_row_gap;
+divider_y  = top_section_bottom + 20;
+divider_h  = 40;
+
+// --------------------------------------------------
+// BOTTOM PLAYER SLOTS
+// --------------------------------------------------
+bottom_y    = divider_y + divider_h + 15;
+slot_w      = floor(gui_w * 0.88);
+slot_x      = floor((gui_w - slot_w) * 0.5);
+slot_h      = 82;
+slot_gap    = 8;
+player_labels = array_create(4, "");
+for (var i = 0; i < 4; i++)
+{
+    player_labels[i] = "PLAYER " + string(i + 1);
 }
 
 // --------------------------------------------------
@@ -132,7 +161,7 @@ for (var p = 0; p < max_players; p++)
     var start_tile = clamp(p, 0, panel_count - 1);
 
     cursor_x[p] = (tile_x1[start_tile] + tile_x2[start_tile]) * 0.5;
-    cursor_y[p] = tile_y1[start_tile] + panel_h * 0.5;
+    cursor_y[p] = (tile_y1[start_tile] + tile_y2[start_tile]) * 0.5;
 
     show_debug_message("P" + string(p + 1) + " cursor start = (" + string(cursor_x[p]) + ", " + string(cursor_y[p]) + ")");
 }
