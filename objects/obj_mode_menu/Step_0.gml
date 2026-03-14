@@ -6,9 +6,9 @@
 // STARTUP LOCK
 // Prevent accidental confirms when entering room.
 // --------------------------------------------------
-if (startup_lock_frames > 0)
+if (mode_menu_startup_lock_frames > 0)
 {
-    startup_lock_frames--;
+    mode_menu_startup_lock_frames--;
     exit;
 }
 

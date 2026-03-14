@@ -90,7 +90,7 @@ show_debug_message("stick_deadzone = " + string(stick_deadzone));
 // OPTIONAL STARTUP LOCK
 // Prevent accidental input on room entry.
 // --------------------------------------------------
-startup_lock_frames = room_speed / 2; // ~0.5 sec
-show_debug_message("startup_lock_frames = " + string(startup_lock_frames));
+mode_menu_startup_lock_frames = room_speed * 0.05; // 0.05 sec
+show_debug_message("mode_menu_startup_lock_frames = " + string(mode_menu_startup_lock_frames));
 
 show_debug_message("=== MODE MENU CREATE END ===");

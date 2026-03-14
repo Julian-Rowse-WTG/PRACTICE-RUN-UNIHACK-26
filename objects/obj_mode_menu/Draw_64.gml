@@ -155,17 +155,3 @@ if (left_locked || column_focus == 1 || final_locked)
         }
     }
 }
-
-// --------------------------------------------------
-// STARTUP LOCK MESSAGE
-// --------------------------------------------------
-if (startup_lock_frames > 0)
-{
-    draw_set_font(VT323);
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
-    draw_set_colour(make_color_rgb(200, 200, 200));
-    draw_set_alpha(0.7);
-    draw_text_transformed(gui_w * 0.5, gui_h * 0.1, "...", 1.5, 1.5, 0);
-    draw_set_alpha(1);
-}
