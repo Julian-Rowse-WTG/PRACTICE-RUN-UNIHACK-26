@@ -1,0 +1,11 @@
+owner        = noone;
+team         = teams.none;
+facing       = 1;
+speed_x      = 10;
+damage       = 0;        // projectile itself deals no damage — teleport arrival does
+knockback    = 0;
+hitStun      = 0;
+embedded     = false;
+embedTimer   = 0;
+image_index  = 0;
+ignoreList   = ds_list_create();

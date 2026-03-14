@@ -1,5 +1,5 @@
 function pl_burstReversal() {
-    with (obj_player) {
+    with (oPlayer) {
         if (id == other.id) continue;
         if (team == other.team && team != teams.none) continue;
         var _dx   = x - other.x;

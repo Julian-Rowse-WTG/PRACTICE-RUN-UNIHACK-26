@@ -1,5 +1,6 @@
 function pl_specialFire() {
-    var _proj = instance_create_layer(x, y - 11, "Instances", oKnightSword);
+    var _projObj = specialProjectileObject;
+    var _proj    = instance_create_layer(x, y - 11, "Instances", _projObj);
     _proj.owner       = id;
     _proj.team        = team;
     _proj.facing      = facing;
@@ -9,4 +10,4 @@ function pl_specialFire() {
     _proj.hitStun     = specialHitStun;
     _proj.platformDur = specialPlatformDur;
     specialProjectile = _proj;
-}	
+}

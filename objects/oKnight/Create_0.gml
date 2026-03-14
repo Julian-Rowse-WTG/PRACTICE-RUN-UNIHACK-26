@@ -11,6 +11,7 @@ burstSprite = sprSword_Hit;
 comboTimeoutMax = 120; // 2 seconds
 hardKnockEvery  = 3;
 // special
+specialProjectileObject = oKnightSword;
 specialCooldownMax = 300;       // 5 seconds
 specialSprite      = sprSword_Special;
 specialDamage    = 12;  // slightly stronger than a normal hit

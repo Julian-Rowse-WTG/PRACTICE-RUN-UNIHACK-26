@@ -1,5 +1,5 @@
 function session_init_test() {
-    // player 0 — keyboard slot 0, sword
+    // player 0 — keyboard slot 0
     session[0] = {
         active     : true,
         inputType  : inputType.keyboard,
@@ -7,7 +7,7 @@ function session_init_test() {
         weaponClass: oKnight,
         team       : teams.red
     };
-    // player 1 — keyboard slot 1, dagger
+    // player 1 — keyboard slot 1
     session[1] = {
         active     : true,
         inputType  : inputType.keyboard,
@@ -15,15 +15,15 @@ function session_init_test() {
         weaponClass: oDemon,
         team       : teams.blue
     };
-    // player 2 — gamepad slot 0, axe
+    // player 2 — gamepad slot 0
     session[2] = {
         active     : true,
         inputType  : inputType.gamepad,
         inputSlot  : 0,
-        weaponClass: oKnight,
+        weaponClass: oDemon,
         team       : teams.green
     };
-    // player 3 — gamepad slot 1, spear
+    // player 3 — gamepad slot 1
     session[3] = {
         active     : true,
         inputType  : inputType.gamepad,

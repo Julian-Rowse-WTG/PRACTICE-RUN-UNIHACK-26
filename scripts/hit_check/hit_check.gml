@@ -19,17 +19,17 @@ function hit_check() {
                         }
                         //if it is NOT on the ignore list, hit it, and add it to
                         //the ignore list
-                        if(!ignore){
-                            other.owner.hit       = true;
-                            other.owner.hitBy     = id;
-                            other.owner.xHit      = xHit;
-                            other.owner.yHit      = yHit;
-                            other.owner.hitStun   = hitStun;
-                            other.owner.damage    = damage;
-                            other.owner.hitDepth  = depth;
-                            other.owner.hitFacing = owner.facing * -1;
-                            ds_list_add(ignoreList, other.owner);
-                        }
+						if (!ignore && !other.owner.invincible) {
+						    other.owner.hit       = true;
+						    other.owner.hitBy     = id;
+						    other.owner.xHit      = xHit;
+						    other.owner.yHit      = yHit;
+						    other.owner.hitStun   = hitStun;
+						    other.owner.damage    = damage;
+						    other.owner.hitDepth  = depth;
+						    other.owner.hitFacing = owner.facing * -1;
+						    ds_list_add(ignoreList, other.owner);
+						}
                     }
                 }
             }

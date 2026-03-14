@@ -13,9 +13,10 @@ burstHitStun    = 20;
 comboTimeoutMax = 90;   // 1.5 seconds — faster, more aggressive
 hardKnockEvery  = 3;
 // special
+specialProjectileObject = oDemonOrb;
+specialPlatformDur      = 180; // 3 seconds before projectile vanishes if not arrived
 specialCooldownMax = 240;       // 4 seconds — faster cooldown than knight
-specialSprite      = sprEmpty;
-specialFd          = fd_dagger_special;
+specialSprite      = sprDagger_Special;
 specialDamage      = 10;
 specialKnockback   = 4;
 specialHitStun     = 25;
@@ -28,7 +29,7 @@ burstSprite = sprDagger_Special;
 idleSprite         = sprDagger_Idle;
 runSprite          = sprDagger_Run;
 jumpSprite         = sprDagger_Jump_Body;
-blockSprite        = sprEmpty;
+blockSprite        = sprDagger_Block;
 recoverySprite     = sprEmpty;
 hitSprite          = sprEmpty;
 tumbleGroundSprite = sprDagger_Dead;
@@ -36,7 +37,7 @@ tumbleAirSprite    = sprDagger_Dead;
 deadSprite         = sprDagger_Dead;
 // no weapon overlays
 weaponIdle   = sprDagger_Idle;
-weaponRun    = sprDagger_Run;
+weaponRun    = sprEmpty;
 weaponJump   = sprDagger_Jump;
 weaponDash   = sprDagger_Idle;
 weaponSprite = sprDagger_Idle;
@@ -47,9 +48,15 @@ upSpriteG   = sprDagger_Attack_Up_G;
 upSpriteA   = sprDagger_Attack_Up_A;
 downSpriteG = sprDagger_Attack_Down_G;
 downSpriteA = sprDagger_Attack_Down_A;
+
+teleportInvincible  = 0;
+teleportInvincibleMax = 5;
+arrivalAttackFired  = false;
+
 // attacks function
 _attacks = dagger_attacks;
 // frame data
 fd_side = fd_dagger_side;
 fd_up   = fd_dagger_up;
 fd_down = fd_dagger_down;
+specialFd = fd_dagger_special;

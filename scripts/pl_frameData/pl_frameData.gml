@@ -25,6 +25,7 @@ function pl_frameData() {
 	fd_dagger_side = frame_factory(2,5,10);
 	fd_dagger_up   = frame_factory(2,5,10);
 	fd_dagger_down = frame_factory(2,5,10);
+	fd_dagger_special = frame_factory(6, 6);
 
 	//axe
 	fd_axe_side = frame_factory(6,6,14);

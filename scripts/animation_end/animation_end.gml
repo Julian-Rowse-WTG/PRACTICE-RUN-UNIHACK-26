@@ -1,4 +1,4 @@
 function animation_end() {
-	//used to check when animation has ended
-	return currentFrame == maxFrames && frameCounter == frameDuration - 1;
+    if (frameDuration == 0) return false;
+    return currentFrame == maxFrames && frameCounter == frameDuration - 1;
 }

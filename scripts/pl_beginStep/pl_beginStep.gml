@@ -19,4 +19,13 @@ function pl_beginStep() {
 	    specialCooldown -= god.gameSpeed;
 	    if (specialCooldown < 0) specialCooldown = 0;
 	}
+	
+	// tick teleport invincibility
+	if (teleportInvincible > 0) {
+	    teleportInvincible -= god.gameSpeed;
+	    if (teleportInvincible <= 0) {
+	        teleportInvincible = 0;
+	        invincible         = false;
+	    }
+	}
 }

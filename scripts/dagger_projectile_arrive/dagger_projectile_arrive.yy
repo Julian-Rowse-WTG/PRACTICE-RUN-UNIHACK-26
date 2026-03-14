@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"dagger_projectile_arrive",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"dagger_projectile_arrive",
+  "parent":{
+    "name":"special",
+    "path":"folders/Scripts/player/special.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

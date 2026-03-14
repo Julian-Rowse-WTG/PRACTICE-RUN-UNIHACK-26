@@ -33,10 +33,16 @@ function pl_create() {
 	blocking = false;
 	angle    = 0;
 	// special
+	specialProjectileObject = noone;
 	specialCooldown    = 0;
 	specialCooldownMax = 300; // overridden per character
 	specialProjectile  = noone; // tracks active projectile
 	specialSprite      = sprEmpty;
+
+	teleportInvincible    = 0;
+	teleportInvincibleMax = 5;
+	arrivalAttackFired    = false;
+	specialProjectileObject = noone;
 
 	// burst sprite
 	burstSprite        = sprEmpty;
