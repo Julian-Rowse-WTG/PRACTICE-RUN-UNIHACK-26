@@ -41,6 +41,7 @@ for (var p = 0; p < max_players; p++) {
     var down_down_now = false;
 
     var confirm_pressed = false;
+    var any_button_held = false;
     var back_pressed = false;
 
     // ----------------------------------------------
@@ -56,6 +57,7 @@ for (var p = 0; p < max_players; p++) {
 
         confirm_pressed = keyboard_check_pressed(ord("Q"));
         back_pressed = keyboard_check_pressed(ord("E"));
+        any_button_held = keyboard_check(ord("Q")) || keyboard_check(ord("E"));
     }
 
     // ----------------------------------------------
@@ -71,6 +73,7 @@ for (var p = 0; p < max_players; p++) {
 
         confirm_pressed = keyboard_check_pressed(ord("U"));
         back_pressed = keyboard_check_pressed(ord("O"));
+        any_button_held = keyboard_check(ord("U")) || keyboard_check(ord("O"));
     }
 
     // ----------------------------------------------
@@ -86,6 +89,7 @@ for (var p = 0; p < max_players; p++) {
 
         confirm_pressed = keyboard_check_pressed(vk_shift);
         back_pressed = keyboard_check_pressed(vk_enter);
+        any_button_held = keyboard_check(vk_shift) || keyboard_check(vk_enter);
     }
 
     // ----------------------------------------------
@@ -131,6 +135,12 @@ for (var p = 0; p < max_players; p++) {
                 gamepad_button_check_pressed(pad, gp_face2) ||
                 gamepad_button_check_pressed(pad, gp_shoulderrb);
 
+            any_button_held =
+                gamepad_button_check(pad, gp_face1) ||
+                gamepad_button_check(pad, gp_shoulderlb) ||
+                gamepad_button_check(pad, gp_face2) ||
+                gamepad_button_check(pad, gp_shoulderrb);
+
             // Continuous analog motion for stick users
             // D-pad users still get digital stepping below.
             if (abs(ax) >= stick_deadzone) {
@@ -170,6 +180,8 @@ for (var p = 0; p < max_players; p++) {
     if (move_right) cursor_x[p] += cursor_speed;
     if (move_up) cursor_y[p] -= cursor_speed;
     if (move_down) cursor_y[p] += cursor_speed;
+
+    cursor_held_down[p] = any_button_held;
 
     // ----------------------------------------------
     // CLAMP CURSOR TO SCREEN

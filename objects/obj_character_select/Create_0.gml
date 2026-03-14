@@ -161,6 +161,7 @@ for (var p = 0; p < max_players; p++)
 // --------------------------------------------------
 cursor_x = array_create(max_players, 0);
 cursor_y = array_create(max_players, 0);
+cursor_held_down = array_create(max_players, false); // whether the player is holding confirm OR back
 
 // Start positions: spread them a bit so they are visible.
 for (var p = 0; p < max_players; p++)

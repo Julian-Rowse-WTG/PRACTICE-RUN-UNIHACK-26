@@ -230,7 +230,7 @@ for (var p = 0; p < max_players; p++) {
     var cy = cursor_y[p];
 
     draw_set_colour(player_colour[p]);
-    draw_circle(cx, cy, 18, true);
+    draw_circle(cx, cy, 18 - cursor_held_down[p] * 4, true);
     draw_circle(cx, cy, 4, false);
 
     draw_set_font(VT323);
