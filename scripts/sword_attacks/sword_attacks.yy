@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"sword_attacks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sword_attacks",
+  "parent":{
+    "name":"weapons",
+    "path":"folders/Scripts/player/weapons.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"hurtbox_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hurtbox_create",
+  "parent":{
+    "name":"hitboxes",
+    "path":"folders/Scripts/player/hitboxes.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"god_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"god_create",
+  "parent":{
+    "name":"god",
+    "path":"folders/Scripts/god.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

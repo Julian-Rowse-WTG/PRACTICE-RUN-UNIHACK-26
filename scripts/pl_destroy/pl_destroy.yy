@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pl_destroy",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pl_destroy",
+  "parent":{
+    "name":"player",
+    "path":"folders/Scripts/player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

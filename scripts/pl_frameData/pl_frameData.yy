@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pl_frameData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pl_frameData",
+  "parent":{
+    "name":"animation",
+    "path":"folders/Scripts/player/animation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pl_draw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pl_draw",
+  "parent":{
+    "name":"events",
+    "path":"folders/Scripts/player/events.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

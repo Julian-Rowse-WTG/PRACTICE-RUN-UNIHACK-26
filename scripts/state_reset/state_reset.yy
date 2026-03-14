@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"state_reset",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"state_reset",
+  "parent":{
+    "name":"states",
+    "path":"folders/Scripts/player/states.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

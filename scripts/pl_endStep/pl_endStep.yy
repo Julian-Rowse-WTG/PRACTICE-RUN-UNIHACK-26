@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pl_endStep",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pl_endStep",
+  "parent":{
+    "name":"events",
+    "path":"folders/Scripts/player/events.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

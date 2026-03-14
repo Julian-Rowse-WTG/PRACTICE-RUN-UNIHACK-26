@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pl_burstReversal",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pl_burstReversal",
+  "parent":{
+    "name":"burst",
+    "path":"folders/Scripts/player/burst.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

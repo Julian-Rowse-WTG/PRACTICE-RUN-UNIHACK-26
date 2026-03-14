@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"session_init_test",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"session_init_test",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

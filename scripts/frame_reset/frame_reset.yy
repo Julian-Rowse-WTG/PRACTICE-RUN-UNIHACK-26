@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"frame_reset",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"frame_reset",
+  "parent":{
+    "name":"animation",
+    "path":"folders/Scripts/animation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"enum_init",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"enum_init",
+  "parent":{
+    "name":"god",
+    "path":"folders/Scripts/god.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

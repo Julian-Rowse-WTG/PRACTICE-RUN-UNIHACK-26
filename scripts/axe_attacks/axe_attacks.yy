@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"axe_attacks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"axe_attacks",
+  "parent":{
+    "name":"weapons",
+    "path":"folders/Scripts/player/weapons.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

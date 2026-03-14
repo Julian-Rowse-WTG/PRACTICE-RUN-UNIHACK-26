@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"hit_check",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hit_check",
+  "parent":{
+    "name":"hitboxes",
+    "path":"folders/Scripts/player/hitboxes.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

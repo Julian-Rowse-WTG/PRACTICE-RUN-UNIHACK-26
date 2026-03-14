@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"squash_stretch",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"squash_stretch",
+  "parent":{
+    "name":"animation",
+    "path":"folders/Scripts/player/animation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

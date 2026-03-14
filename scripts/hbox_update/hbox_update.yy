@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"hbox_update",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"hbox_update",
+  "parent":{
+    "name":"hitboxes",
+    "path":"folders/Scripts/player/hitboxes.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"speed_control",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"speed_control",
+  "parent":{
+    "name":"player",
+    "path":"folders/Scripts/player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

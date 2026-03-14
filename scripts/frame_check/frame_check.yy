@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"frame_check",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"frame_check",
+  "parent":{
+    "name":"hitboxes",
+    "path":"folders/Scripts/player/hitboxes.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

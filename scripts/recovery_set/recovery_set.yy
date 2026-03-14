@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"recovery_set",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"recovery_set",
+  "parent":{
+    "name":"player",
+    "path":"folders/Scripts/player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

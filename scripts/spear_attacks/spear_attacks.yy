@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"spear_attacks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"spear_attacks",
+  "parent":{
+    "name":"weapons",
+    "path":"folders/Scripts/player/weapons.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

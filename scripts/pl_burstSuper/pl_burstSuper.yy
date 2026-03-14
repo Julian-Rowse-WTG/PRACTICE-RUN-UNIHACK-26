@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pl_burstSuper",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pl_burstSuper",
+  "parent":{
+    "name":"burst",
+    "path":"folders/Scripts/player/burst.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
