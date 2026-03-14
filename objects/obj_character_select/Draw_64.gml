@@ -2,12 +2,13 @@
 // CHARACTER SELECT - DRAW GUI EVENT
 // Layout:
 //   Top    - 2 rows x 6 character selection squares
-//   Middle - thin divider bar with greyed-out START
-//   Bottom - 4 player slot rectangles
+//   Middle - thick divider bar with greyed-out START (fnt_fighter)
+//   Bottom - 4 side-by-side vertical player slot columns
+// Fonts: VT323 for all general text, fnt_fighter for START + READY
 // --------------------------------------------------
 draw_clear_alpha(make_colour_rgb(30, 30, 40), 1);
 
-draw_set_font(-1);
+draw_set_font(VT323);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -59,7 +60,8 @@ for (var i = 0; i < panel_count; i++)
     else
     {
         // Placeholder "?" for squares without an assigned sprite
-        draw_set_colour(make_colour_rgb(70, 75, 100));
+        draw_set_font(VT323);
+        draw_set_colour(make_colour_rgb(140, 145, 170));
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
         draw_text((x1 + x2) * 0.5, (y1 + y2) * 0.5, "?");
@@ -67,7 +69,7 @@ for (var i = 0; i < panel_count; i++)
 }
 
 // --------------------------------------------------
-// MIDDLE SECTION: THIN DIVIDER BAR + START TEXT
+// MIDDLE SECTION: THICK DIVIDER BAR + START TEXT
 // --------------------------------------------------
 var bar_x1 = 0;
 var bar_x2 = gui_w;
@@ -83,21 +85,24 @@ draw_set_colour(make_colour_rgb(80, 85, 110));
 draw_line(bar_x1, bar_y1, bar_x2, bar_y1);
 draw_line(bar_x1, bar_y2, bar_x2, bar_y2);
 
-// Greyed-out START text in the center of the bar
+// Greyed-out START text — uses fnt_fighter
+draw_set_font(fnt_fighter);
 draw_set_colour(make_colour_rgb(90, 90, 100));
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_text(gui_w * 0.5, (bar_y1 + bar_y2) * 0.5, "START");
 
 // --------------------------------------------------
-// BOTTOM SECTION: 4 PLAYER SLOT RECTANGLES
+// BOTTOM SECTION: 4 SIDE-BY-SIDE VERTICAL PLAYER SLOTS
 // --------------------------------------------------
+draw_set_font(VT323);
+
 for (var p = 0; p < 4; p++)
 {
-    var rx1 = slot_x;
-    var ry1 = bottom_y + p * (slot_h + slot_gap);
-    var rx2 = slot_x + slot_w;
-    var ry2 = ry1 + slot_h;
+    var rx1 = slot_px[p];
+    var ry1 = bottom_y;
+    var rx2 = slot_px[p] + slot_w;
+    var ry2 = bottom_y + slot_h;
 
     // Slot background
     draw_set_colour(make_colour_rgb(45, 48, 65));
@@ -107,11 +112,23 @@ for (var p = 0; p < 4; p++)
     draw_set_colour(make_colour_rgb(80, 85, 110));
     draw_rectangle(rx1, ry1, rx2, ry2, true);
 
-    // Player label
+    // Player label (VT323, player colour)
     draw_set_colour(player_colour[p]);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
-    draw_text((rx1 + rx2) * 0.5, (ry1 + ry2) * 0.5, player_labels[p]);
+    var rcx = (rx1 + rx2) * 0.5;
+    var rcy = (ry1 + ry2) * 0.5;
+    draw_text(rcx, rcy, player_labels[p]);
+
+    // READY overlay — diagonal fnt_fighter, yellow, bold
+    if (player_confirmed[p])
+    {
+        draw_set_font(fnt_fighter);
+        draw_set_colour(c_yellow);
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_middle);
+        draw_text_transformed(rcx, rcy, "READY", 1, 1, 20);
+    }
 }
 
 // --------------------------------------------------
@@ -128,6 +145,7 @@ for (var p = 0; p < max_players; p++)
     draw_circle(cx, cy, 18, true);
     draw_circle(cx, cy, 4, false);
 
+    draw_set_font(VT323);
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
     draw_set_colour(c_white);
@@ -135,7 +153,7 @@ for (var p = 0; p < max_players; p++)
 }
 
 // --------------------------------------------------
-// DRAW CONFIRMED PLAYER BADGES
+// DRAW CONFIRMED PLAYER BADGES (sprite icon at stamp position)
 // --------------------------------------------------
 for (var p = 0; p < max_players; p++)
 {
@@ -152,46 +170,8 @@ for (var p = 0; p < max_players; p++)
         case 3: spr = spr_counter_icon_p4; break;
     }
 
-    var bx = stamp_x[p];
-    var by = stamp_y[p];
-
     if (spr != -1)
     {
-        draw_sprite_ext(spr, 0, bx, by, 4, 4, 0, c_white, 1);
-        draw_set_colour(c_white);
-        draw_set_halign(fa_center);
-        draw_set_valign(fa_middle);
-        draw_text(bx, by + 55, "READY");
+        draw_sprite_ext(spr, 0, stamp_x[p], stamp_y[p], 4, 4, 0, c_white, 1);
     }
-}
-
-// --------------------------------------------------
-// DEBUG: ACTIVE PLAYER INPUT LABELS (top-left)
-// --------------------------------------------------
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-
-var info_x   = 30;
-var info_y   = divider_y + divider_h + 8;
-var info_gap = 26;
-
-for (var p = 0; p < max_players; p++)
-{
-    if (!player_active[p]) continue;
-
-    draw_set_colour(player_colour[p]);
-
-    var hover_text   = "none";
-    if (hovered_tile[p] != -1) hover_text = character_names[hovered_tile[p]];
-
-    var confirm_text = (player_confirmed[p]) ? "YES" : "NO";
-
-    draw_text(
-        info_x,
-        info_y + p * info_gap,
-        "P" + string(p + 1) +
-        " | " + player_input_label[p] +
-        " | Hover: " + hover_text +
-        " | Confirmed: " + confirm_text
-    );
 }

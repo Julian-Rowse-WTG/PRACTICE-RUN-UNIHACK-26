@@ -96,16 +96,20 @@ for (var i = 0; i < panel_count; i++)
 // --------------------------------------------------
 var top_section_bottom = grid_y + grid_rows * sq_h + (grid_rows - 1) * sq_row_gap;
 divider_y  = top_section_bottom + 20;
-divider_h  = 40;
+divider_h  = 70;
 
 // --------------------------------------------------
-// BOTTOM PLAYER SLOTS
+// BOTTOM PLAYER SLOTS (4 side-by-side vertical columns)
 // --------------------------------------------------
-bottom_y    = divider_y + divider_h + 15;
-slot_w      = floor(gui_w * 0.88);
-slot_x      = floor((gui_w - slot_w) * 0.5);
-slot_h      = 82;
-slot_gap    = 8;
+bottom_y      = divider_y + divider_h + 15;
+slot_gap      = 8;
+slot_w        = floor((gui_w - 60 - 3 * slot_gap) / 4);
+slot_h        = gui_h - bottom_y - 15;
+slot_px       = array_create(4, 0);
+for (var i = 0; i < 4; i++)
+{
+    slot_px[i] = 30 + i * (slot_w + slot_gap);
+}
 player_labels = array_create(4, "");
 for (var i = 0; i < 4; i++)
 {
