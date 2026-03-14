@@ -164,7 +164,6 @@
     {"id":{"name":"pl_tumbleState","path":"scripts/pl_tumbleState/pl_tumbleState.yy",},},
     {"id":{"name":"recovery_set","path":"scripts/recovery_set/recovery_set.yy",},},
     {"id":{"name":"room_init","path":"scripts/room_init/room_init.yy",},},
-    {"id":{"name":"session_init_test","path":"scripts/session_init_test/session_init_test.yy",},},
     {"id":{"name":"spear_attacks","path":"scripts/spear_attacks/spear_attacks.yy",},},
     {"id":{"name":"speed_control","path":"scripts/speed_control/speed_control.yy",},},
     {"id":{"name":"squash_stretch","path":"scripts/squash_stretch/squash_stretch.yy",},},

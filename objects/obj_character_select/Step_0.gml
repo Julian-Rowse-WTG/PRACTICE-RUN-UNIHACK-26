@@ -283,7 +283,7 @@ if (any_start_pressed) {
                     }
                 }
 
-                god.session[_p] = {
+                global.session[_p] = {
                     active     : true,
                     inputType  : _input_type,
                     inputSlot  : _input_slot,
@@ -293,7 +293,7 @@ if (any_start_pressed) {
                 _team_idx++;
             } else {
                 // Inactive slot — active: false, rest filled for struct compatibility
-                god.session[_p] = {
+                global.session[_p] = {
                     active     : false,
                     inputType  : inputType.keyboard,
                     inputSlot  : 0,

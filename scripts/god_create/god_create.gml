@@ -12,6 +12,6 @@ function god_create() {
     showBox = false;
     // session — populated by the character select room before entering a match
     // each entry is a struct: { active, inputType, inputSlot, weaponClass, team }
-    session = array_create(4, undefined);
-    session_init_test();
+    
+	show_debug_message(global.session);
 }
