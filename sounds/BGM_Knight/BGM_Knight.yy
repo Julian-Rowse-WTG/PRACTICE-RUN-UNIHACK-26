@@ -10,7 +10,7 @@
   "compression":0,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":183.28,
+  "duration":183.23,
   "exportDir":"",
   "name":"BGM_Knight",
   "parent":{
