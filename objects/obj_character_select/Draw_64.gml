@@ -181,7 +181,7 @@ for (var p = 0; p < 4; p++)
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
     var rcx = (rx1 + rx2) * 0.5;
-    var rcy = (ry1 + ry2) * 0.5;
+    var rcy = ry1 + 30;
     draw_text(rcx, rcy, player_labels[p]);
 
     // READY overlay — diagonal fnt_fighter, yellow, bold
