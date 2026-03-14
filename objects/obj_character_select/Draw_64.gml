@@ -40,11 +40,20 @@ for (var i = 0; i < panel_count; i++)
         draw_set_colour(make_colour_rgb(75, 75, 88));
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
-        draw_text(tcx, tcy - 10, "DISABLED");
+        draw_text(tcx, tcy - 20, "LOCKED");
 
         // XP requirement — xp_idx is always >= 0 here because is_disabled guarantees i >= enabled_slots
         var xp_idx = i - enabled_slots;
-        draw_text(tcx, tcy + 10, string(xp_requirements[xp_idx]) + " XP");
+		var xp_needed = xp_requirements[xp_idx];
+		var xp_string = "";
+		if(xp_needed < 10000) {
+			xp_string = string(xp_needed);
+		} else if(xp_needed < 1000000) {
+			xp_string = string(floor(xp_needed / 1000)) + "K";
+		} else {
+			xp_string = string(floor(xp_needed / 1000000)) + "M";
+		}
+        draw_text(tcx, tcy + 20, xp_string + " XP");
     }
     else
     {
