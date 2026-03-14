@@ -3,6 +3,18 @@
 // CURSOR-BASED VERSION
 // --------------------------------------------------
 
+// --------------------------------------------------
+// CUTSCREEN FADE-OUT TRANSITION
+// Once transitioning, advance the fade and go to rm_cutscreen when done.
+// --------------------------------------------------
+if (transitioning) {
+    fade_alpha = min(1.0, fade_alpha + (1.0 / fade_duration));
+    if (fade_alpha >= 1.0) {
+        room_goto(rm_cutscreen);
+    }
+    exit;
+}
+
 all_confirmed = true;
 var any_start_pressed = false;
 
@@ -303,8 +315,18 @@ if (any_start_pressed) {
             }
         }
 
-        room_goto(rm_game);
+        // Kick off 1-second fade-to-black transition to rm_cutscreen.
+        // Fade out BGM simultaneously over the same duration.
         global.play_ui_select_sfx();
+        transitioning = true;
+        fade_alpha    = 0.0;
+        if (instance_exists(obj_bgm_controller)) {
+            with (obj_bgm_controller) {
+                if (current_sound != -1 && audio_is_playing(current_sound)) {
+                    audio_sound_gain(current_sound, 0, (other.fade_duration / room_speed) * 1000);
+                }
+            }
+        }
     } else {
         global.play_ui_error_sfx();
     }

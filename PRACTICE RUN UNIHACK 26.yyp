@@ -86,6 +86,7 @@
     {"id":{"name":"oAfterimage","path":"objects/oAfterimage/oAfterimage.yy",},},
     {"id":{"name":"obj_bgm_controller","path":"objects/obj_bgm_controller/obj_bgm_controller.yy",},},
     {"id":{"name":"obj_character_select","path":"objects/obj_character_select/obj_character_select.yy",},},
+    {"id":{"name":"obj_cutscreen","path":"objects/obj_cutscreen/obj_cutscreen.yy",},},
     {"id":{"name":"obj_input_bind","path":"objects/obj_input_bind/obj_input_bind.yy",},},
     {"id":{"name":"obj_menu","path":"objects/obj_menu/obj_menu.yy",},},
     {"id":{"name":"obj_mode_menu","path":"objects/obj_mode_menu/obj_mode_menu.yy",},},
@@ -105,6 +106,7 @@
     {"id":{"name":"settings_menu","path":"objects/settings_menu/settings_menu.yy",},},
     {"id":{"name":"main_menu","path":"rooms/main_menu/main_menu.yy",},},
     {"id":{"name":"rm_character_select","path":"rooms/rm_character_select/rm_character_select.yy",},},
+    {"id":{"name":"rm_cutscreen","path":"rooms/rm_cutscreen/rm_cutscreen.yy",},},
     {"id":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
     {"id":{"name":"rm_input_bind","path":"rooms/rm_input_bind/rm_input_bind.yy",},},
     {"id":{"name":"rm_mode_menu","path":"rooms/rm_mode_menu/rm_mode_menu.yy",},},
@@ -275,6 +277,7 @@
     {"roomId":{"name":"rm_character_select","path":"rooms/rm_character_select/rm_character_select.yy",},},
     {"roomId":{"name":"rm_input_bind","path":"rooms/rm_input_bind/rm_input_bind.yy",},},
     {"roomId":{"name":"rm_mode_menu","path":"rooms/rm_mode_menu/rm_mode_menu.yy",},},
+    {"roomId":{"name":"rm_cutscreen","path":"rooms/rm_cutscreen/rm_cutscreen.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
