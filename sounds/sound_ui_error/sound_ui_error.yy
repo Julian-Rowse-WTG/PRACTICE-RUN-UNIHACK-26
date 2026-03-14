@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"sound_ui_error",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"audiogroup_ui_sfx",
+    "path":"audiogroups/audiogroup_ui_sfx",
   },
   "bitDepth":1,
   "channelFormat":0,
