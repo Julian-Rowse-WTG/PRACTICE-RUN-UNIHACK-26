@@ -251,7 +251,7 @@ for (var p = 0; p < max_players; p++)
     }
 }
 
-if (assigned_players <= 0) all_ready = false;
+if (assigned_players < max_players) all_ready = false;
 
 if (all_ready)
 {
