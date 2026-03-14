@@ -17,3 +17,6 @@ current_sound = -1;
 if (!audio_group_is_loaded(audiogroup_BGM)) {
     audio_group_load(audiogroup_BGM);
 }
+
+// without this, the audio tracks are determinister (irandom() is a prng)
+randomize();
