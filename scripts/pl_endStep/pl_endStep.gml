@@ -1,6 +1,22 @@
 function pl_endStep() {
     event_inherited();
-
+	// victory animation — lock all input and state changes
+	if (victoryAnim) {
+	    animation_set(fd_victory, victorySprite);
+	    weaponSprite = sprEmpty;
+	    xSpeed = approach(xSpeed, 0, aSpeed * god.gameSpeed);
+	    ySpeed += gSpeed  * god.gameSpeed;
+	    hbox_update();
+	    pl_animation();
+	    pl_destroy();
+	    // check if animation finished
+	    if (animation_end()) {
+	        victoryAnimDone = true;
+	        // hold on last frame
+	        currentFrame = maxFrames;
+	    }
+	    exit;
+	}
     // tick combo timers and reset expired ones
     for (var _i = 0; _i < 4; _i++) {
         if (comboTimer[_i] > 0) {
@@ -51,6 +67,9 @@ function pl_endStep() {
 		case states.special:
 		    pl_specialState();
 		break;
+		case states.victory:
+		    pl_victoryState();
+		break;
     }
 
 // hit handling
@@ -84,7 +103,7 @@ if (hit) {
         var _hardKnock = (_isSuper || (_attackerSlot != -1 && comboCount[_attackerSlot] % hardKnockEvery == 0));
 
         if (_hardKnock) {
-            superMode    = false;
+            if (!soloSuperLocked) superMode = false;
             squash_stretch(1.5, 1.5);
             weaponSprite  = sprEmpty;
             god.shake     = true;
@@ -96,7 +115,7 @@ if (hit) {
             depth         = hitDepth;
             hitStun       = hitStun;
             currentState  = states.tumble;
-            hp -= damage;
+            hp = floor(hp - damage);
             hp  = max(hp, 0);
             audio_play_sound(sfx_hit, 1, false);
         } else {
@@ -107,15 +126,32 @@ if (hit) {
             god.freeze   = true;
             god.freezeDur = 2;
             currentState = states.softKnock;
-            hp -= damage;
+            hp = floor(hp - damage);
             hp  = max(hp, 0);
             audio_play_sound(sfx_hit, 1, false);
         }
         hit = false;
     }
 }
-
+if (hp <= 0 && currentState != states.dead) {
+    currentState = states.dead;
+    xSpeed       = xSpeed * 0.5;
+    ySpeed       = -3;
+    if (!god.deathCinematic) {
+        god.deathCinematic   = true;
+        god.deathTarget      = id;
+        god.deathTimer       = god.deathTimerMax;
+        god.deathFreezeTimer = god.deathFreezeFrames;
+    } else {
+        destroy = true;
+    }
+}
+// re-lock super mode for solo player
+if (soloSuperLocked) superMode = true;
+// update hitbox position
     hbox_update();
+    // animation control
     pl_animation();
+    // destroy
     pl_destroy();
 }

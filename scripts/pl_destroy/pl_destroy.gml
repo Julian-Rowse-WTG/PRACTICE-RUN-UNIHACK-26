@@ -13,7 +13,4 @@ function pl_destroy() {
 	if(ds_list_size(fd_master) == 0){
 	    ds_list_destroy(fd_master);
 	}
-
-
-
 }

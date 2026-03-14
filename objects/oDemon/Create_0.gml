@@ -1,17 +1,17 @@
 event_inherited();
 // stats
-hpMax           = 70;
+hpMax           = 100;
 hp              = hpMax;
 canCharge       = false;
 block_reduction = 0.4;  // slightly worse block than knight
-burstMax        = 3;    // more bursts to compensate for low hp
+burstMax        = 2;    // more bursts to compensate for low hp
 burstCharges    = burstMax;
 superDamage     = 1.75; // hits harder in super
 burstDamage     = 5;
 burstKnockback  = 4;
 burstHitStun    = 20;
 comboTimeoutMax = 90;   // 1.5 seconds — faster, more aggressive
-hardKnockEvery  = 3;
+hardKnockEvery  = 5;
 // special
 specialProjectileObject = oDemonOrb;
 specialPlatformDur      = 180; // 3 seconds before projectile vanishes if not arrived
@@ -25,13 +25,14 @@ specialPlatformDur = 300;
 specialFired       = false;
 // burst
 burstSprite = sprDagger_Special;
+victorySprite = sprDagger_Victory;
 // body sprites — full sprites, no overlay
 idleSprite         = sprDagger_Idle;
 runSprite          = sprDagger_Run;
 jumpSprite         = sprDagger_Jump_Body;
 blockSprite        = sprDagger_Block;
-recoverySprite     = sprEmpty;
-hitSprite          = sprEmpty;
+recoverySprite     = sprDagger_Recovery;
+hitSprite          = sprDagger_Hit;
 tumbleGroundSprite = sprDagger_Dead;
 tumbleAirSprite    = sprDagger_Dead;
 deadSprite         = sprDagger_Dead;
@@ -60,6 +61,7 @@ fd_side = fd_dagger_side;
 fd_up   = fd_dagger_up;
 fd_down = fd_dagger_down;
 specialFd = fd_dagger_special;
+fd_victory    = fd_dagger_victory;
 // sounds
 sfx_attack  = sound_demon_attack;
 sfx_hit     = sound_demon_is_hit;

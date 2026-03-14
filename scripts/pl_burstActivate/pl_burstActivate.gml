@@ -13,9 +13,8 @@ function pl_burstActivate() {
     currentState = states.burst;
     frame_reset();
 
-    // reversal — tumble, softKnock, or mid-combo
-    if (lastState == states.tumble || lastState == states.softKnock) {
-        // auto get-up
+    // solo players always get reversal since they're permanently in super
+    if (isSolo || lastState == states.tumble || lastState == states.softKnock) {
         softHitStun = 0;
         ySpeed      = jPower * 0.5;
         pl_burstReversal();

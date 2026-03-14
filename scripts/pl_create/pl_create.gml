@@ -1,5 +1,11 @@
 function pl_create() {
     event_inherited();
+	victoryAnim     = false;
+	victoryAnimDone = false;
+	victorySprite   = sprEmpty;
+	fd_victory      = fd_victory; // overridden per character
+	isSolo          = false; // true if this player is outnumbered alone
+	soloSuperLocked = false; // true when super is permanently locked on
     landed = 0;
 	player    = 0;
 	inputType = inputType.keyboard;
@@ -75,6 +81,7 @@ function pl_create() {
     dashDurMax    = 10;
     recoverDur    = 20;
     airDash       = true;
+	frameData = -1;	
 	blockReduction = 0.5; // blocks reduce damage by 50%, tune as needed
     // fighting
     hbox_init();

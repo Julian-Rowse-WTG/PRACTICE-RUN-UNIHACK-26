@@ -56,6 +56,11 @@ function pl_animation() {
 		    weaponSprite = sprEmpty;
 		break;
 
+		case states.victory:
+		    animation_set(fd_victory, victorySprite);
+		    weaponSprite = sprEmpty;
+		break;
+		
         case states.dash:
             animation_set(fd_pl_roll, sprPlayer_Dash_Base);
             weaponSprite = weaponDash;
@@ -130,7 +135,7 @@ function pl_animation() {
     }
 	
 	// super mode afterimage
-	if (superMode) {
+	if (superMode && currentState != states.dead) {
 	    var _after      = instance_create_layer(xPos, yPos, "Effects", oAfterimage);
 	    _after.sprite   = sprite;
 	    _after.frame    = currentFrame;

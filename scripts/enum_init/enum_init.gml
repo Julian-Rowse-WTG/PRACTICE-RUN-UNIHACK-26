@@ -11,7 +11,8 @@ function enum_init() {
 	    softKnock,
 	    tumble,
 	    dead,
-	    recovery
+	    recovery,
+		victory
 	}
     enum attacks {
         side_ground,
@@ -38,4 +39,12 @@ function enum_init() {
         green,
         yellow
     }
+	enum victoryState {
+	    none,
+	    delay,
+	    zoom,
+	    animate,
+	    display,
+	    leave
+	}
 }

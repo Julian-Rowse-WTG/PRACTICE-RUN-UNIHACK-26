@@ -1,5 +1,5 @@
 function sword_attacks() {
-    var _dmg = 8 * (superMode ? superDamage : 1);
+    var _dmg = 10 * (superMode ? superDamage : 1);
 
     switch (subState) {
         case attacks.side_ground:
