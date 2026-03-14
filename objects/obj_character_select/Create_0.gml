@@ -225,7 +225,7 @@ var _xp = 1000;
 for (var i = 0; i < _disabled_count; i++)
 {
     xp_requirements[i] = _xp;
-    _xp = _xp * 3;
+    _xp = _xp * (i < 3? 3 : 2) + 1000;
 }
 
 // --------------------------------------------------
