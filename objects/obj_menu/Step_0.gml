@@ -146,8 +146,8 @@ if (activate)
             break;
 
         case 1:
-            show_debug_message("Going to rm_settings");
-            room_goto(rm_settings);
+            show_debug_message("Going to rm_mode_menu");
+            room_goto(rm_mode_menu);
             break;
 		case 2:
 			game_end();
