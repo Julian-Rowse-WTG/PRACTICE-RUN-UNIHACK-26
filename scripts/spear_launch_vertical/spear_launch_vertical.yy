@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"spear_launch_vertical",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"spear_launch_vertical",
+  "parent":{
+    "name":"special",
+    "path":"folders/Scripts/player/special.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

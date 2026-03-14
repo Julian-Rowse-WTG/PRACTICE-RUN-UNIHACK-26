@@ -1,4 +1,5 @@
 function room_init() {
+	//window_set_fullscreen(true);
     // collect all spawnpoints in the room into an array
     var _spawns = [];
     var _inst   = instance_find(oSpawnpoint, 0);
