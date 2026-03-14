@@ -187,6 +187,7 @@ if (!final_locked)
         {
             left_index--;
             if (left_index < 0) left_index = array_length(left_options) - 1;
+            global.play_ui_select_sfx();
             show_debug_message("LEFT MENU moved UP. left_index = " + string(left_index));
         }
 
@@ -194,6 +195,7 @@ if (!final_locked)
         {
             left_index++;
             if (left_index >= array_length(left_options)) left_index = 0;
+            global.play_ui_select_sfx();
             show_debug_message("LEFT MENU moved DOWN. left_index = " + string(left_index));
         }
 
@@ -204,6 +206,8 @@ if (!final_locked)
             if (left_index == 0) selected_player_count = 2;
             if (left_index == 1) selected_player_count = 3;
             if (left_index == 2) selected_player_count = 4;
+            
+            global.play_ui_select_sfx();
 
             show_debug_message("LEFT MENU confirmed. selected_player_count = " + string(selected_player_count));
 
@@ -220,6 +224,7 @@ if (!final_locked)
         {
             right_index--;
             if (right_index < 0) right_index = array_length(right_options) - 1;
+            global.play_ui_select_sfx();
             show_debug_message("RIGHT MENU moved UP. right_index = " + string(right_index));
         }
 
@@ -227,6 +232,7 @@ if (!final_locked)
         {
             right_index++;
             if (right_index >= array_length(right_options)) right_index = 0;
+            global.play_ui_select_sfx();
             show_debug_message("RIGHT MENU moved DOWN. right_index = " + string(right_index));
         }
 
@@ -234,6 +240,7 @@ if (!final_locked)
         {
             column_focus = 0;
             left_locked = false;
+            global.play_ui_error_sfx();
             show_debug_message("RIGHT MENU cancel pressed. Returning to LEFT MENU");
         }
 
@@ -241,6 +248,7 @@ if (!final_locked)
 		{
 			selected_mode = right_options[right_index];
 			final_locked = true;
+			global.play_ui_select_sfx();
 
 			show_debug_message("FINAL MODE CONFIRMED: " + selected_mode);
 			show_debug_message("PLAYER COUNT CONFIRMED: " + string(selected_player_count));
