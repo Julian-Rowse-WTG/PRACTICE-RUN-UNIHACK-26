@@ -247,6 +247,31 @@ if (transitioning && fade_alpha > 0) {
     draw_set_alpha(fade_alpha);
     draw_set_colour(c_black);
     draw_rectangle(0, 0, gui_w, gui_h, false);
+
+    // Loading text + spinner drawn on top of the black overlay so they are
+    // visible throughout the entire fade-to-black (not just after it completes).
+    draw_set_alpha(1);
+    draw_set_font(fnt_fighter);
+    draw_set_halign(fa_center);
+    draw_set_valign(fa_middle);
+    draw_set_colour(c_white);
+    draw_text_transformed(gui_w * 0.5, gui_h * 0.5, "LOADING", 1.2, 1.2, 0);
+
+    var _cx   = gui_w * 0.5;
+    var _cy   = gui_h * 0.5 + 80;
+    var _r    = 22;
+    var _time = current_time / 5.0;
+    draw_set_colour(c_white);
+    for (var i = 0; i < 8; i++) {
+        var _angle     = _time + i * 45;
+        var _seg_alpha = (i + 1) / 8.0;
+        draw_set_alpha(_seg_alpha);
+        var _x1 = _cx + lengthdir_x(_r * 0.45, _angle);
+        var _y1 = _cy + lengthdir_y(_r * 0.45, _angle);
+        var _x2 = _cx + lengthdir_x(_r, _angle);
+        var _y2 = _cy + lengthdir_y(_r, _angle);
+        draw_line_width(_x1, _y1, _x2, _y2, 3);
+    }
     draw_set_alpha(1);
     draw_set_colour(c_white);
 }
