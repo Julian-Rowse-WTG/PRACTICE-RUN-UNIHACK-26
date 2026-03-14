@@ -13,7 +13,7 @@ for (var i = 0; i < array_length(options); i++) {
 
         // Top/bottom colors shift over time
         var col_outer = merge_color(make_color_rgb(220, 170, 0), make_color_rgb(255, 210, 0), ripple);
-        var col_inner = merge_color(make_color_rgb(255, 235, 120), make_color_rgb(255, 255, 200), ripple);
+        var col_inner = merge_color(make_color_rgb(255, 240, 30), make_color_rgb(255, 255, 90), ripple);
 
         // Approximate center-out glow by layering text
         draw_set_alpha(0.35);
