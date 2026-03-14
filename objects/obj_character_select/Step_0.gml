@@ -9,43 +9,41 @@ var any_start_pressed = false;
 // --------------------------------------------------
 // PROCESS EACH PLAYER STRICTLY BY THEIR ASSIGNED SCHEMA
 // --------------------------------------------------
-for (var p = 0; p < max_players; p++)
-{
+for (var p = 0; p < max_players; p++) {
     if (!player_active[p]) continue;
 
     var schema_type = player_schema_type[p];
-    var schema_id   = player_schema_id[p];
+    var schema_id = player_schema_id[p];
 
     // ----------------------------------------------
     // INPUT STATE FOR THIS PLAYER ONLY
     // ----------------------------------------------
-    var move_left  = false;
+    var move_left = false;
     var move_right = false;
-    var move_up    = false;
-    var move_down  = false;
+    var move_up = false;
+    var move_down = false;
 
-    var left_down_now  = false;
+    var left_down_now = false;
     var right_down_now = false;
-    var up_down_now    = false;
-    var down_down_now  = false;
+    var up_down_now = false;
+    var down_down_now = false;
 
     var confirm_pressed = false;
-    var back_pressed    = false;
+    var back_pressed = false;
 
     // ----------------------------------------------
     // KEYBOARD SCHEMA 1 = WASD + QE
     // confirm = Q
     // back    = E
     // ----------------------------------------------
-    if (schema_type == "kb1")
-    {
-        left_down_now  = keyboard_check(ord("A"));
+    if (schema_type == "kb1") {
+        left_down_now = keyboard_check(ord("A"));
         right_down_now = keyboard_check(ord("D"));
-        up_down_now    = keyboard_check(ord("W"));
-        down_down_now  = keyboard_check(ord("S"));
+        up_down_now = keyboard_check(ord("W"));
+        down_down_now = keyboard_check(ord("S"));
 
         confirm_pressed = keyboard_check_pressed(ord("Q"));
-        back_pressed    = keyboard_check_pressed(ord("E"));
+        back_pressed = keyboard_check_pressed(ord("E"));
     }
 
     // ----------------------------------------------
@@ -53,15 +51,14 @@ for (var p = 0; p < max_players; p++)
     // confirm = U
     // back    = O
     // ----------------------------------------------
-    else if (schema_type == "kb2")
-    {
-        left_down_now  = keyboard_check(ord("J"));
+    else if (schema_type == "kb2") {
+        left_down_now = keyboard_check(ord("J"));
         right_down_now = keyboard_check(ord("L"));
-        up_down_now    = keyboard_check(ord("I"));
-        down_down_now  = keyboard_check(ord("K"));
+        up_down_now = keyboard_check(ord("I"));
+        down_down_now = keyboard_check(ord("K"));
 
         confirm_pressed = keyboard_check_pressed(ord("U"));
-        back_pressed    = keyboard_check_pressed(ord("O"));
+        back_pressed = keyboard_check_pressed(ord("O"));
     }
 
     // ----------------------------------------------
@@ -69,15 +66,14 @@ for (var p = 0; p < max_players; p++)
     // confirm = Shift
     // back    = Enter
     // ----------------------------------------------
-    else if (schema_type == "kb3")
-    {
-        left_down_now  = keyboard_check(vk_left);
+    else if (schema_type == "kb3") {
+        left_down_now = keyboard_check(vk_left);
         right_down_now = keyboard_check(vk_right);
-        up_down_now    = keyboard_check(vk_up);
-        down_down_now  = keyboard_check(vk_down);
+        up_down_now = keyboard_check(vk_up);
+        down_down_now = keyboard_check(vk_down);
 
         confirm_pressed = keyboard_check_pressed(vk_shift);
-        back_pressed    = keyboard_check_pressed(vk_enter);
+        back_pressed = keyboard_check_pressed(vk_enter);
     }
 
     // ----------------------------------------------
@@ -90,31 +86,29 @@ for (var p = 0; p < max_players; p++)
     // - only poll this player's assigned pad slot
     // - use documented constants only
     // ----------------------------------------------
-    else if (schema_type == "pad")
-    {
+    else if (schema_type == "pad") {
         var pad = schema_id;
 
-        if (gamepad_is_connected(pad))
-        {
+        if (gamepad_is_connected(pad)) {
             var ax = gamepad_axis_value(pad, gp_axislh);
             var ay = gamepad_axis_value(pad, gp_axislv);
 
             // Analog stick to digital intent
-            var stick_left  = (ax <= -stick_deadzone);
-            var stick_right = (ax >=  stick_deadzone);
-            var stick_up    = (ay <= -stick_deadzone);
-            var stick_down  = (ay >=  stick_deadzone);
+            var stick_left = (ax <= -stick_deadzone);
+            var stick_right = (ax >= stick_deadzone);
+            var stick_up = (ay <= -stick_deadzone);
+            var stick_down = (ay >= stick_deadzone);
 
             // D-pad also counts
-            var dpad_left  = gamepad_button_check(pad, gp_padl);
+            var dpad_left = gamepad_button_check(pad, gp_padl);
             var dpad_right = gamepad_button_check(pad, gp_padr);
-            var dpad_up    = gamepad_button_check(pad, gp_padu);
-            var dpad_down  = gamepad_button_check(pad, gp_padd);
+            var dpad_up = gamepad_button_check(pad, gp_padu);
+            var dpad_down = gamepad_button_check(pad, gp_padd);
 
-            left_down_now  = stick_left  || dpad_left;
+            left_down_now = stick_left || dpad_left;
             right_down_now = stick_right || dpad_right;
-            up_down_now    = stick_up    || dpad_up;
-            down_down_now  = stick_down  || dpad_down;
+            up_down_now = stick_up || dpad_up;
+            down_down_now = stick_down || dpad_down;
 
             // Confirm / back
             confirm_pressed =
@@ -127,46 +121,43 @@ for (var p = 0; p < max_players; p++)
 
             // Continuous analog motion for stick users
             // D-pad users still get digital stepping below.
-            if (abs(ax) >= stick_deadzone)
-            {
+            if (abs(ax) >= stick_deadzone) {
                 cursor_x[p] += ax * stick_speed;
             }
 
-            if (abs(ay) >= stick_deadzone)
-            {
+            if (abs(ay) >= stick_deadzone) {
                 cursor_y[p] += ay * stick_speed;
             }
         }
-        else
-        {
+        else {
             show_debug_message("WARNING: P" + string(p + 1) + " assigned pad slot " + string(pad) + " is disconnected.");
         }
     }
 
-	// ----------------------------------------------
-	// DIGITAL HELD MOVEMENT
-	// Holding a direction keeps moving every step.
-	// This is what keyboard_check() is for.
-	// ----------------------------------------------
-	move_left  = left_down_now;
-	move_right = right_down_now;
-	move_up    = up_down_now;
-	move_down  = down_down_now;
+    // ----------------------------------------------
+    // DIGITAL HELD MOVEMENT
+    // Holding a direction keeps moving every step.
+    // This is what keyboard_check() is for.
+    // ----------------------------------------------
+    move_left = left_down_now;
+    move_right = right_down_now;
+    move_up = up_down_now;
+    move_down = down_down_now;
 
-	// Keep these assignments only if other code still expects them.
-	// Otherwise you can delete them entirely.
-	left_held[p]  = left_down_now;
-	right_held[p] = right_down_now;
-	up_held[p]    = up_down_now;
-	down_held[p]  = down_down_now;
+    // Keep these assignments only if other code still expects them.
+    // Otherwise you can delete them entirely.
+    left_held[p] = left_down_now;
+    right_held[p] = right_down_now;
+    up_held[p] = up_down_now;
+    down_held[p] = down_down_now;
     // ----------------------------------------------
     // KEYBOARD / DPAD DIGITAL MOVEMENT
     // Keep it simple and readable.
     // ----------------------------------------------
-    if (move_left)  cursor_x[p] -= cursor_speed;
+    if (move_left) cursor_x[p] -= cursor_speed;
     if (move_right) cursor_x[p] += cursor_speed;
-    if (move_up)    cursor_y[p] -= cursor_speed;
-    if (move_down)  cursor_y[p] += cursor_speed;
+    if (move_up) cursor_y[p] -= cursor_speed;
+    if (move_down) cursor_y[p] += cursor_speed;
 
     // ----------------------------------------------
     // CLAMP CURSOR TO SCREEN
@@ -181,15 +172,19 @@ for (var p = 0; p < max_players; p++)
     // ----------------------------------------------
     hovered_tile[p] = -1;
 
-    for (var i = 0; i < panel_count; i++)
-    {
-        if (i >= enabled_slots) continue; // disabled — not hoverable
+    for (var i = 0; i < panel_count; i++) {
         if (cursor_x[p] >= tile_x1[i] && cursor_x[p] <= tile_x2[i] &&
-            cursor_y[p] >= tile_y1[i] && cursor_y[p] <= tile_y2[i])
-        {
+            cursor_y[p] >= tile_y1[i] && cursor_y[p] <= tile_y2[i]) {
+            if (i >= enabled_slots) {
+                if (confirm_pressed) {
+                    global.play_ui_error_sfx();
+                }
+                break;
+            }
             hovered_tile[p] = i;
             break;
         }
+
     }
 
     // ----------------------------------------------
@@ -198,33 +193,31 @@ for (var p = 0; p < max_players; p++)
     // IMPORTANT:
     // We only confirm if actually hovering a tile.
     // ----------------------------------------------
-    if (confirm_pressed)
-    {
-        if (hovered_tile[p] != -1)
-        {
-            if(true) { // Just have this if statement incase we need to gate this
-				player_confirmed[p] = true;
-				stamp_x[p] = cursor_x[p];
-				stamp_y[p] = cursor_y[p];
+    if (confirm_pressed) {
+        if (hovered_tile[p] != -1) {
+            if (true) { // Just have this if statement incase we need to gate this
+                player_confirmed[p] = true;
+                global.play_ui_select_sfx();
+                stamp_x[p] = cursor_x[p];
+                stamp_y[p] = cursor_y[p];
 
-				show_debug_message(
-				"P" + string(p + 1) +
-				" confirmed at (" + string(stamp_x[p]) + ", " + string(stamp_y[p]) + ")"
-				);
-		        player_choice[p] = hovered_tile[p];
+                show_debug_message(
+                    "P" + string(p + 1) +
+                    " confirmed at (" + string(stamp_x[p]) + ", " + string(stamp_y[p]) + ")"
+                );
+                player_choice[p] = hovered_tile[p];
 
-		        
 
-		        show_debug_message(
-		            "P" + string(p + 1) +
-		            " CONFIRMED tile " + string(player_choice[p]) +
-		            " at stamp (" + string(stamp_x[p]) + ", " + string(stamp_y[p]) + ")"
-		        );
-			}
-			
+
+                show_debug_message(
+                    "P" + string(p + 1) +
+                    " CONFIRMED tile " + string(player_choice[p]) +
+                    " at stamp (" + string(stamp_x[p]) + ", " + string(stamp_y[p]) + ")"
+                );
+            }
+
         }
-        else
-        {
+        else {
             show_debug_message("P" + string(p + 1) + " confirm pressed, but cursor is not hovering any tile.");
         }
     }
@@ -233,10 +226,8 @@ for (var p = 0; p < max_players; p++)
     // BACK
     // Remove player's stamped selection.
     // ----------------------------------------------
-    if (back_pressed)
-    {
-        if (player_confirmed[p])
-        {
+    if (back_pressed) {
+        if (player_confirmed[p]) {
             show_debug_message("P" + string(p + 1) + " BACK pressed. Clearing confirmed selection.");
         }
 
@@ -252,8 +243,7 @@ for (var p = 0; p < max_players; p++)
     // ----------------------------------------------
     if (confirm_pressed &&
         cursor_y[p] >= divider_y &&
-        cursor_y[p] <= divider_y + divider_h)
-    {
+        cursor_y[p] <= divider_y + divider_h) {
         any_start_pressed = true;
     }
 
@@ -261,8 +251,7 @@ for (var p = 0; p < max_players; p++)
     // ADVANCE CHECK STUB
     // Next guy can implement room transition / match boot here.
     // ----------------------------------------------
-    if (!player_confirmed[p])
-    {
+    if (!player_confirmed[p]) {
         all_confirmed = false;
     }
 }
@@ -270,10 +259,11 @@ for (var p = 0; p < max_players; p++)
 // --------------------------------------------------
 // ALL CONFIRMED — START button press transitions to game
 // --------------------------------------------------
-if (all_confirmed)
-{
-    if (any_start_pressed)
-    {
+if (any_start_pressed) {
+    if (all_confirmed) {
         room_goto(rm_game);
+        global.play_ui_select_sfx();
+    } else {
+        global.play_ui_error_sfx();
     }
 }
