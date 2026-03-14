@@ -18,5 +18,11 @@ if (!audio_group_is_loaded(audiogroup_BGM)) {
     audio_group_load(audiogroup_BGM);
 }
 
+// Silence flag (true while in rm_cutscreen — no BGM should play there)
+bgm_muted = false;
+
+// Steps remaining before starting music after entering rm_game (allows fade-in to complete first)
+music_start_delay = 0;
+
 // without this, the audio tracks are determinister (irandom() is a prng)
 randomize();

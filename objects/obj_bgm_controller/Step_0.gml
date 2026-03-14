@@ -3,6 +3,17 @@ if (!audio_group_is_loaded(audiogroup_BGM)) {
     exit;
 }
 
+// No music while muted (e.g. in rm_cutscreen)
+if (bgm_muted) {
+    exit;
+}
+
+// Delay before starting music (e.g. waiting for rm_game fade-in to finish)
+if (music_start_delay > 0) {
+    music_start_delay--;
+    exit;
+}
+
 // Start the first track once the audio group has just become ready
 if (current_sound == -1) {
     var _category = last_room_is_game ? bgm_game : bgm_menu;

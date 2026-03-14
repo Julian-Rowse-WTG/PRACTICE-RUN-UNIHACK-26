@@ -239,3 +239,14 @@ for (var p = 0; p < max_players; p++) {
     draw_set_colour(c_white);
     draw_text(cx, cy - 28, "P" + string(p + 1));
 }
+
+// --------------------------------------------------
+// FADE-TO-BLACK OVERLAY (active during cutscreen transition)
+// --------------------------------------------------
+if (transitioning && fade_alpha > 0) {
+    draw_set_alpha(fade_alpha);
+    draw_set_colour(c_black);
+    draw_rectangle(0, 0, gui_w, gui_h, false);
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+}

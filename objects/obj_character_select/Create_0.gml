@@ -277,3 +277,10 @@ player_cursor_sprite[3] = spr_counter_icon_p4;
 
 show_debug_message("=== CHARACTER SELECT CREATE END ===");
 
+// --------------------------------------------------
+// CUTSCREEN TRANSITION
+// --------------------------------------------------
+transitioning  = false;  // true once the player has confirmed + pressed start
+fade_alpha     = 0.0;
+fade_duration  = room_speed;  // 1 second fade-to-black
+
