@@ -1,3 +1,18 @@
+// Wait until the BGM audio group has finished loading before doing anything
+if (!audio_group_is_loaded(audiogroup_BGM)) {
+    exit;
+}
+
+// Start the first track once the audio group has just become ready
+if (current_sound == -1) {
+    var _category = last_room_is_game ? bgm_game : bgm_menu;
+    if (array_length(_category) > 0) {
+        var _idx = irandom(array_length(_category) - 1);
+        current_sound = audio_play_sound(_category[_idx], 1, false);
+    }
+    exit;
+}
+
 if (is_fading) {
     // Count down the fade timer
     fade_timer--;
