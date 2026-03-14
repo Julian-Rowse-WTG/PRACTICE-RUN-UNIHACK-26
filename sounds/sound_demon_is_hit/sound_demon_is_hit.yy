@@ -10,7 +10,7 @@
   "compression":1,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":0.9404082,
+  "duration":0.9665306,
   "exportDir":"",
   "name":"sound_demon_is_hit",
   "parent":{
