@@ -200,6 +200,7 @@
     {"id":{"name":"BGM_Knight","path":"sounds/BGM_Knight/BGM_Knight.yy",},},
     {"id":{"name":"BGM_touhou_inspired_sketch","path":"sounds/BGM_touhou_inspired_sketch/BGM_touhou_inspired_sketch.yy",},},
     {"id":{"name":"BGM_woodlands_battle","path":"sounds/BGM_woodlands_battle/BGM_woodlands_battle.yy",},},
+    {"id":{"name":"sound_burst","path":"sounds/sound_burst/sound_burst.yy",},},
     {"id":{"name":"sound_dash_wind","path":"sounds/sound_dash_wind/sound_dash_wind.yy",},},
     {"id":{"name":"sound_death_boom","path":"sounds/sound_death_boom/sound_death_boom.yy",},},
     {"id":{"name":"sound_demon_attack","path":"sounds/sound_demon_attack/sound_demon_attack.yy",},},
