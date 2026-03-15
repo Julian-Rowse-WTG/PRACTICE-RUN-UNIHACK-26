@@ -26,3 +26,11 @@ music_start_delay = 0;
 
 // without this, the audio tracks are deterministic (irandom() is a prng)
 randomize();
+
+is_fading_for_victory = false;
+victory_fade_timer = 0;
+
+fade_out_current_music_for_victory = function(fade_time) {
+    is_fading_for_victory = true;
+    victory_fade_timer = room_speed * 1; // 1s
+};
