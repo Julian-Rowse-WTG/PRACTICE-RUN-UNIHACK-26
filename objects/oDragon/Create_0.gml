@@ -65,3 +65,7 @@ fd_down     = fd_spear_down;
 // victory
 victorySprite = sprSpear_Victory;
 fd_victory    = fd_spear_victory;
+// sounds
+sfx_attack  = sound_dragon_attack;
+sfx_hit     = sound_dragon_is_hit;
+sfx_special = sound_dragon_ultimate_attack;

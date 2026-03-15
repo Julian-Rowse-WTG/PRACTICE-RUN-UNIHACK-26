@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"sound_dragon_ultimate_attack",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":3.4481633,
+  "exportDir":"",
+  "name":"sound_dragon_ultimate_attack",
+  "parent":{
+    "name":"SFX",
+    "path":"folders/Sounds/SFX.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"sound_dragon_ultimate_attack.mp3",
+  "volume":0.67,
+}

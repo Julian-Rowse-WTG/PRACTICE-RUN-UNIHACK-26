@@ -16,6 +16,9 @@
 - https://pixabay.com/sound-effects/success-videogame-sfx-423626/: success sfx
 - https://www.artstation.com/artwork/3Eo4KJ/: base demon sprite, we fully animated it
 - https://pin.it/6V9GS223i/: base knight sprite, we fully animated it
+- https://pixabay.com/sound-effects/film-special-effects-epic-dragon-roar-364481/: dragon roar sfx
+- https://pixabay.com/sound-effects/film-special-effects-blade-piercing-body-352462/: dragon hurt sfx
+- https://pixabay.com/sound-effects/film-special-effects-scorpion-claw-attack-4-482507/: dragon atk sfx
 
 And of course...
 - Special credits to Copilot, Claude, ChatGPT etc.
