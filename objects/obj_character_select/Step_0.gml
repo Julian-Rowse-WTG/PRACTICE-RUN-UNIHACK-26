@@ -10,7 +10,13 @@
 if (transitioning) {
     fade_alpha = min(1.0, fade_alpha + (1.0 / fade_duration));
     if (fade_alpha >= 1.0) {
-        room_goto(rm_cutscreen);
+        //room_goto(rm_cutscreen);
+		// Juggernaut modes skip cutscreen and go to role selection first
+		if (global.selected_mode == "1v2" || global.selected_mode == "1v3") {
+		    room_goto(rm_juggernaut_select);
+		} else {
+		    room_goto(rm_cutscreen);
+		}
     }
     exit;
 }
@@ -30,6 +36,8 @@ for (var p = 0; p < max_players; p++) {
     // ----------------------------------------------
     // INPUT STATE FOR THIS PLAYER ONLY
     // ----------------------------------------------
+	
+	
     var move_left = false;
     var move_right = false;
     var move_up = false;
@@ -41,114 +49,105 @@ for (var p = 0; p < max_players; p++) {
     var down_down_now = false;
 
     var confirm_pressed = false;
+	var back_pressed    = false;
     var any_button_held = false;
 
-    // ----------------------------------------------
-    // KEYBOARD SCHEMA 1 = WASD + QE
-    // confirm = Q
-    // back    = E
-    // ----------------------------------------------
-    if (schema_type == "kb1") {
-        left_down_now = keyboard_check(ord("A"));
-        right_down_now = keyboard_check(ord("D"));
-        up_down_now = keyboard_check(ord("W"));
-        down_down_now = keyboard_check(ord("S"));
+	// ----------------------------------------------
+	// KEYBOARD SCHEMA 1 = WASD + QE
+	// confirm = E  (was Q — swapped per Feature 1)
+	// back    = Q  (was E — swapped per Feature 1)
+	// ----------------------------------------------
+	if (schema_type == "kb1") {
+	    left_down_now  = keyboard_check(ord("A"));
+	    right_down_now = keyboard_check(ord("D"));
+	    up_down_now    = keyboard_check(ord("W"));
+	    down_down_now  = keyboard_check(ord("S"));
 
-        confirm_pressed = keyboard_check_pressed(ord("Q")) || keyboard_check_pressed(ord("E"));
-        any_button_held = keyboard_check(ord("Q")) || keyboard_check(ord("E"));
-    }
+	    confirm_pressed = keyboard_check_pressed(ord("E"));
+	    back_pressed    = keyboard_check_pressed(ord("Q"));
+	    any_button_held = keyboard_check(ord("E")) || keyboard_check(ord("Q"));
+	}
 
-    // ----------------------------------------------
-    // KEYBOARD SCHEMA 2 = IJKL + UO
-    // confirm = U
-    // back    = O
-    // ----------------------------------------------
-    else if (schema_type == "kb2") {
-        left_down_now = keyboard_check(ord("J"));
-        right_down_now = keyboard_check(ord("L"));
-        up_down_now = keyboard_check(ord("I"));
-        down_down_now = keyboard_check(ord("K"));
+	// ----------------------------------------------
+	// KEYBOARD SCHEMA 2 = IJKL + UO
+	// confirm = O  (was U — swapped per Feature 1)
+	// back    = U  (was O — swapped per Feature 1)
+	// ----------------------------------------------
+	else if (schema_type == "kb2") {
+	    left_down_now  = keyboard_check(ord("J"));
+	    right_down_now = keyboard_check(ord("L"));
+	    up_down_now    = keyboard_check(ord("I"));
+	    down_down_now  = keyboard_check(ord("K"));
 
-        confirm_pressed = keyboard_check_pressed(ord("U")) || keyboard_check_pressed(ord("O"));
-        any_button_held = keyboard_check(ord("U")) || keyboard_check(ord("O"));
-    }
+	    confirm_pressed = keyboard_check_pressed(ord("O"));
+	    back_pressed    = keyboard_check_pressed(ord("U"));
+	    any_button_held = keyboard_check(ord("O")) || keyboard_check(ord("U"));
+	}
 
-    // ----------------------------------------------
-    // KEYBOARD SCHEMA 3 = ARROWS + SHIFT/ENTER
-    // confirm = Shift
-    // back    = Enter
-    // ----------------------------------------------
-    else if (schema_type == "kb3") {
-        left_down_now = keyboard_check(vk_left);
-        right_down_now = keyboard_check(vk_right);
-        up_down_now = keyboard_check(vk_up);
-        down_down_now = keyboard_check(vk_down);
+	// ----------------------------------------------
+	// KEYBOARD SCHEMA 3 = ARROWS + SHIFT/ENTER
+	// confirm = Enter  (was Shift — swapped per Feature 1)
+	// back    = Shift  (was Enter — swapped per Feature 1)
+	// ----------------------------------------------
+	else if (schema_type == "kb3") {
+	    left_down_now  = keyboard_check(vk_left);
+	    right_down_now = keyboard_check(vk_right);
+	    up_down_now    = keyboard_check(vk_up);
+	    down_down_now  = keyboard_check(vk_down);
 
-        confirm_pressed = keyboard_check_pressed(vk_shift) || keyboard_check_pressed(vk_enter);
-        any_button_held = keyboard_check(vk_shift) || keyboard_check(vk_enter);
-    }
+	    confirm_pressed = keyboard_check_pressed(vk_enter);
+	    back_pressed    = keyboard_check_pressed(vk_shift);
+	    any_button_held = keyboard_check(vk_enter) || keyboard_check(vk_shift);
+	}
 
-    // ----------------------------------------------
-    // PAD = LEFT STICK OR DPAD
-    // confirm = A or LT
-    // back    = B or RT
-    //
-    // IMPORTANT:
-    // - never assume slot 0
-    // - only poll this player's assigned pad slot
-    // - use documented constants only
-    // ----------------------------------------------
-    else if (schema_type == "pad") {
-        var pad = schema_id;
+	// ----------------------------------------------
+	// PAD = LEFT STICK OR DPAD
+	// confirm = A (gp_face1) or LB/RB shoulders
+	// back    = B (gp_face2) — split out from confirm for Feature 2
+	// ----------------------------------------------
+	else if (schema_type == "pad") {
+	    var pad = schema_id;
 
-        if (gamepad_is_connected(pad)) {
-            var ax = gamepad_axis_value(pad, gp_axislh);
-            var ay = gamepad_axis_value(pad, gp_axislv);
+	    if (gamepad_is_connected(pad)) {
+	        var ax = gamepad_axis_value(pad, gp_axislh);
+	        var ay = gamepad_axis_value(pad, gp_axislv);
 
-            // Analog stick to digital intent
-            var stick_left = (ax <= -stick_deadzone);
-            var stick_right = (ax >= stick_deadzone);
-            var stick_up = (ay <= -stick_deadzone);
-            var stick_down = (ay >= stick_deadzone);
+	        var stick_left  = (ax <= -stick_deadzone);
+	        var stick_right = (ax >=  stick_deadzone);
+	        var stick_up    = (ay <= -stick_deadzone);
+	        var stick_down  = (ay >=  stick_deadzone);
 
-            // D-pad also counts
-            var dpad_left = gamepad_button_check(pad, gp_padl);
-            var dpad_right = gamepad_button_check(pad, gp_padr);
-            var dpad_up = gamepad_button_check(pad, gp_padu);
-            var dpad_down = gamepad_button_check(pad, gp_padd);
+	        var dpad_left  = gamepad_button_check(pad, gp_padl);
+	        var dpad_right = gamepad_button_check(pad, gp_padr);
+	        var dpad_up    = gamepad_button_check(pad, gp_padu);
+	        var dpad_down  = gamepad_button_check(pad, gp_padd);
 
-            left_down_now = stick_left || dpad_left;
-            right_down_now = stick_right || dpad_right;
-            up_down_now = stick_up || dpad_up;
-            down_down_now = stick_down || dpad_down;
+	        left_down_now  = stick_left  || dpad_left;
+	        right_down_now = stick_right || dpad_right;
+	        up_down_now    = stick_up    || dpad_up;
+	        down_down_now  = stick_down  || dpad_down;
 
-            // Confirm / back
-            confirm_pressed =
-                gamepad_button_check_pressed(pad, gp_face1) ||
-                gamepad_button_check_pressed(pad, gp_shoulderlb) ||
-                gamepad_button_check_pressed(pad, gp_face2) ||
-                gamepad_button_check_pressed(pad, gp_shoulderrb);
+	        // A / LB / RB = confirm.  B is now handled separately below (Feature 2).
+	        confirm_pressed =
+	            gamepad_button_check_pressed(pad, gp_face1)     ||
+	            gamepad_button_check_pressed(pad, gp_shoulderlb) ||
+	            gamepad_button_check_pressed(pad, gp_shoulderrb);
 
-            any_button_held =
-                gamepad_button_check(pad, gp_face1) ||
-                gamepad_button_check(pad, gp_shoulderlb) ||
-                gamepad_button_check(pad, gp_face2) ||
-                gamepad_button_check(pad, gp_shoulderrb);
+	        back_pressed = gamepad_button_check_pressed(pad, gp_face2);
 
-            // Continuous analog motion for stick users
-            // D-pad users still get digital stepping below.
-            if (abs(ax) >= stick_deadzone) {
-                cursor_x[p] += ax * stick_speed;
-            }
+	        any_button_held =
+	            gamepad_button_check(pad, gp_face1)      ||
+	            gamepad_button_check(pad, gp_shoulderlb)  ||
+	            gamepad_button_check(pad, gp_face2)       ||
+	            gamepad_button_check(pad, gp_shoulderrb);
 
-            if (abs(ay) >= stick_deadzone) {
-                cursor_y[p] += ay * stick_speed;
-            }
-        }
-        else {
-            show_debug_message("WARNING: P" + string(p + 1) + " assigned pad slot " + string(pad) + " is disconnected.");
-        }
-    }
+	        if (abs(ax) >= stick_deadzone) cursor_x[p] += ax * stick_speed;
+	        if (abs(ay) >= stick_deadzone) cursor_y[p] += ay * stick_speed;
+	    }
+	    else {
+	        show_debug_message("WARNING: P" + string(p + 1) + " assigned pad slot " + string(pad) + " is disconnected.");
+	    }
+	}    
 
     // ----------------------------------------------
     // DIGITAL HELD MOVEMENT
@@ -239,7 +238,25 @@ for (var p = 0; p < max_players; p++) {
             show_debug_message("P" + string(p + 1) + " confirm pressed, but cursor is not hovering any tile.");
         }
     }
-
+	// ----------------------------------------------
+	// BACK / DESELECT
+	// Keyboard back key (Q / U / Shift): deselect if confirmed.
+	// Controller B: deselect if confirmed; go to rm_mode_menu if not confirmed.
+	// Global Esc or letter-B key: always return to rm_mode_menu.
+	// ----------------------------------------------
+	if (back_pressed) {
+	    if (player_confirmed[p]) {
+	        // Deselect — let the player rechoose
+	        player_confirmed[p] = false;
+	        player_choice[p]    = -1;
+	        global.play_ui_error_sfx();
+	        show_debug_message("P" + string(p + 1) + " deselected their character.");
+	    }
+	    else if (schema_type == "pad") {
+	        // Controller B with no character locked in → back to mode menu
+	        room_goto(rm_mode_menu);
+	    }
+	}
     // ----------------------------------------------
     // START BAR PRESS
     // When this player's cursor is over the divider bar and
@@ -260,7 +277,13 @@ for (var p = 0; p < max_players; p++) {
         all_confirmed = false;
     }
 }
-
+// ----------------------------------------------
+// GLOBAL KEYBOARD BACK (any frame, any state)
+// Esc or letter B returns to the mode menu.
+// ----------------------------------------------
+if (keyboard_check_pressed(vk_escape) || keyboard_check_pressed(ord("B"))) {
+    room_goto(rm_mode_menu);
+}
 // --------------------------------------------------
 // ALL CONFIRMED — START button press transitions to game
 // --------------------------------------------------
@@ -293,7 +316,8 @@ if (any_start_pressed) {
                     inputType  : _input_type,
                     inputSlot  : _input_slot,
                     weaponClass: char_weapon_class[player_choice[_p]],
-                    team       : _team_list[clamp(_team_idx, 0, array_length(_team_list) - 1)]
+                    team       : _team_list[clamp(_team_idx, 0, array_length(_team_list) - 1)],
+					isJuggernaut: false   // <-- ADD THIS (juggernaut select will override if needed)
                 };
                 _team_idx++;
             } else {
@@ -303,7 +327,8 @@ if (any_start_pressed) {
                     inputType  : inputType.keyboard,
                     inputSlot  : 0,
                     weaponClass: oKnight,
-                    team       : teams.none
+                    team       : teams.none,
+					isJuggernaut: false
                 };
             }
         }
@@ -311,6 +336,13 @@ if (any_start_pressed) {
         // Kick off 1-second fade-to-black transition to rm_cutscreen.
         // Fade out BGM simultaneously over the same duration.
         global.play_ui_select_sfx();
+		// Pass chosen sprites to juggernaut select
+		global.cs_player_sprite = array_create(4, -1);
+		for (var _sp = 0; _sp < max_players; _sp++) {
+		    if (player_active[_sp] && player_choice[_sp] != -1) {
+		        global.cs_player_sprite[_sp] = char_sprite[player_choice[_sp]];
+		    }
+		}
         transitioning = true;
         fade_alpha    = 0.0;
         if (instance_exists(obj_bgm_controller)) {
