@@ -42,7 +42,6 @@ for (var p = 0; p < max_players; p++) {
 
     var confirm_pressed = false;
     var any_button_held = false;
-    var back_pressed = false;
 
     // ----------------------------------------------
     // KEYBOARD SCHEMA 1 = WASD + QE
@@ -55,8 +54,7 @@ for (var p = 0; p < max_players; p++) {
         up_down_now = keyboard_check(ord("W"));
         down_down_now = keyboard_check(ord("S"));
 
-        confirm_pressed = keyboard_check_pressed(ord("Q"));
-        back_pressed = keyboard_check_pressed(ord("E"));
+        confirm_pressed = keyboard_check_pressed(ord("Q")) || keyboard_check_pressed(ord("E"));
         any_button_held = keyboard_check(ord("Q")) || keyboard_check(ord("E"));
     }
 
@@ -71,8 +69,7 @@ for (var p = 0; p < max_players; p++) {
         up_down_now = keyboard_check(ord("I"));
         down_down_now = keyboard_check(ord("K"));
 
-        confirm_pressed = keyboard_check_pressed(ord("U"));
-        back_pressed = keyboard_check_pressed(ord("O"));
+        confirm_pressed = keyboard_check_pressed(ord("U")) || keyboard_check_pressed(ord("O"));
         any_button_held = keyboard_check(ord("U")) || keyboard_check(ord("O"));
     }
 
@@ -87,8 +84,7 @@ for (var p = 0; p < max_players; p++) {
         up_down_now = keyboard_check(vk_up);
         down_down_now = keyboard_check(vk_down);
 
-        confirm_pressed = keyboard_check_pressed(vk_shift);
-        back_pressed = keyboard_check_pressed(vk_enter);
+        confirm_pressed = keyboard_check_pressed(vk_shift) || keyboard_check_pressed(vk_enter);
         any_button_held = keyboard_check(vk_shift) || keyboard_check(vk_enter);
     }
 
@@ -129,9 +125,7 @@ for (var p = 0; p < max_players; p++) {
             // Confirm / back
             confirm_pressed =
                 gamepad_button_check_pressed(pad, gp_face1) ||
-                gamepad_button_check_pressed(pad, gp_shoulderlb);
-
-            back_pressed =
+                gamepad_button_check_pressed(pad, gp_shoulderlb) ||
                 gamepad_button_check_pressed(pad, gp_face2) ||
                 gamepad_button_check_pressed(pad, gp_shoulderrb);
 
@@ -244,19 +238,6 @@ for (var p = 0; p < max_players; p++) {
         else {
             show_debug_message("P" + string(p + 1) + " confirm pressed, but cursor is not hovering any tile.");
         }
-    }
-
-    // ----------------------------------------------
-    // BACK
-    // Remove player's stamped selection.
-    // ----------------------------------------------
-    if (back_pressed) {
-        if (player_confirmed[p]) {
-            show_debug_message("P" + string(p + 1) + " BACK pressed. Clearing confirmed selection.");
-        }
-
-        player_confirmed[p] = false;
-        player_choice[p] = -1;
     }
 
     // ----------------------------------------------
