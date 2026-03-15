@@ -49,6 +49,8 @@ if (!isVertical) {
         if (_hit) continue;
         if (id == _myOwner) continue;
         if (team == _myTeam && _myTeam != teams.none) continue;
+		if (currentState == states.dead) continue;
+		if (currentState == states.victory) continue;
         var _ignored = false;
         for (var _i = 0; _i < ds_list_size(other.ignoreList); _i++) {
             if (other.ignoreList[| _i] == id) {

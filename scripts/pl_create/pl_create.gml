@@ -1,5 +1,6 @@
 function pl_create() {
     event_inherited();
+	_specialFire = function() {}; // no-op default
 	victoryAnim     = false;
 	victoryAnimDone = false;
 	victorySprite   = sprEmpty;

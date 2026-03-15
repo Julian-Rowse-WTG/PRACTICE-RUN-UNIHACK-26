@@ -14,3 +14,12 @@ global.play_ui_success_sfx = function() {
 };
 
 global.debug = false;
+
+if (!audio_group_is_loaded(audiogroup_BGM)) {
+    audio_group_load(audiogroup_BGM);
+}
+
+global.loadtimes++;
+if (global.loadtimes <= 1) {
+	room_goto(preloadroom)
+}

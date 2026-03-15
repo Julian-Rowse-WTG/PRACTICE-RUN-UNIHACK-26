@@ -1,1 +1,1 @@
-draw_sprite_ext(sprDagger_Projectile, image_index, x, y, facing, 1, 0, c_white, 1);
+draw_sprite_ext(sprDagger_Projectile, 0, x, y, 1, 1, -dirAngle, c_white, 1);

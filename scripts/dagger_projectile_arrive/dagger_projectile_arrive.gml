@@ -4,40 +4,49 @@ function dagger_projectile_arrive() {
         exit;
     }
 
-    // teleport owner to projectile position
-    owner.x = x;
-    owner.y = y;
+    // find nearest enemy
+    var _nearest = noone;
+    var _nearestDist = 999999;
 
-    // push out of wall — step back until no collision
-    var _pushDir = -owner.facing;
-    var _maxPush = 32;
-    var _pushed  = 0;
-    while (place_meeting(owner.x, owner.y, parentBlocker) && _pushed < _maxPush) {
-        owner.x += _pushDir;
-        _pushed++;
-    }
-    // if still stuck after max push, try opposite direction
-    if (place_meeting(owner.x, owner.y, parentBlocker)) {
-        owner.x = x;
-        _pushed = 0;
-        while (place_meeting(owner.x, owner.y, parentBlocker) && _pushed < _maxPush) {
-            owner.x += owner.facing;
-            _pushed++;
+    with (oPlayer) {
+        if (id == other.owner) continue;
+        if (team == other.team && other.team != teams.none) continue;
+        if (currentState == states.dead) continue;
+        if (currentState == states.victory) continue;
+        var _dist = point_distance(x, y, other.owner.x, other.owner.y);
+        if (_dist < _nearestDist) {
+            _nearestDist = _dist;
+            _nearest     = id;
         }
+    }
+
+    // if no valid target found just vanish
+    if (_nearest == noone) {
+        if (instance_exists(owner)) owner.specialProjectile = noone;
+        instance_destroy();
+        exit;
+    }
+
+    // teleport owner directly to nearest enemy position
+    owner.x = _nearest.x;
+    owner.y = _nearest.y;
+    owner.xSpeed = 0;
+    owner.ySpeed = 0;
+
+    // trigger arrival — forced air attack
+    with (owner) {
+        subState     = attacks.side_air;
+        currentState = states.attack;
+        xSpeed       = facing * 3;
+        ySpeed       = -2;
+        frame_reset();
+        squash_stretch(1.3, 0.7);
     }
 
     // grant invincibility frames
     owner.teleportInvincible  = owner.teleportInvincibleMax;
     owner.invincible          = true;
     owner.arrivalAttackFired  = false;
-
-    // trigger arrival attack
-    with (owner) {
-        subState     = attacks.side_ground;
-        currentState = states.attack;
-        frame_reset();
-        squash_stretch(1.3, 0.7);
-    }
 
     god.shake     = true;
     god.freeze    = true;

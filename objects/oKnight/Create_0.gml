@@ -19,7 +19,6 @@ specialKnockback = 5;
 specialHitStun   = 30;
 specialSpeed     = 8;
 burstDamage      = 5;   // burst reversal deals light damage
-specialPlatformDur = 300;       // 5 seconds at 60fps
 // burst
 burstSprite        = sprSword_Special; // same as special for now
 victorySprite = sprSword_Victory;
@@ -54,3 +53,14 @@ specialFd = fd_sword_special;
 fd_side = fd_sword_side;
 fd_up   = fd_sword_up;
 fd_down = fd_sword_down;
+
+_specialFire = function() {
+    var _proj         = instance_create_layer(x, y - 11, "Instances", oKnightSword);
+    _proj.owner       = id;
+    _proj.team        = team;
+    _proj.facing      = facing;
+    _proj.speed_x     = specialSpeed * facing;
+    _proj.damage      = specialDamage * (superMode ? superDamage : 1);
+    _proj.hitStun     = specialHitStun;
+    specialProjectile = _proj;
+};

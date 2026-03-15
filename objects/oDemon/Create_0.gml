@@ -66,3 +66,83 @@ fd_victory    = fd_dagger_victory;
 sfx_attack  = sound_demon_attack;
 sfx_hit     = sound_demon_is_hit;
 sfx_special = sound_demon_ultimate_attack;
+
+_specialFire = function() {
+    // find nearest enemy
+    var _nearest     = noone;
+    var _nearestDist = 999999;
+    with (oPlayer) {
+        if (id == other.id) continue;
+        if (team == other.team && other.team != teams.none) continue;
+        if (currentState == states.dead) continue;
+        if (currentState == states.victory) continue;
+        var _dist = point_distance(x, y, other.x, other.y);
+        if (_dist < _nearestDist) {
+            _nearestDist = _dist;
+            _nearest     = id;
+        }
+    }
+    // no valid target — cancel and refund cooldown
+    if (_nearest == noone) {
+        specialCooldown = 0;
+        state_reset();
+        exit;
+    }
+
+    // try several positions around the target until a valid one is found
+    var _destX  = _nearest.x;
+    var _destY  = _nearest.y;
+    var _found  = false;
+
+    // candidate offsets to try — beside, below, above target
+    var _offsets = [
+        [facing * -32, 0  ],  // beside in facing direction
+        [facing *  32, 0  ],  // beside opposite direction
+        [facing * -32, 16 ],  // beside and down
+        [facing *  32, 16 ],
+        [0,            16 ],  // directly below
+        [facing * -48, 0  ],  // further beside
+        [facing *  48, 0  ],
+        [0,            32 ],  // further below
+    ];
+
+    for (var _i = 0; _i < array_length(_offsets); _i++) {
+        var _tx = _nearest.x + _offsets[_i][0];
+        var _ty = _nearest.y + _offsets[_i][1];
+        if (!place_meeting(_tx, _ty, parentBlocker)) {
+            _destX = _tx;
+            _destY = _ty;
+            _found = true;
+            break;
+        }
+    }
+
+    // no valid position found — cancel and refund cooldown
+    if (!_found) {
+        specialCooldown = 0;
+        state_reset();
+        exit;
+    }
+
+    // teleport to valid position
+    x      = _destX;
+    y      = _destY;
+    xSpeed = 0;
+    ySpeed = 0;
+
+    // grant invincibility
+    teleportInvincible = teleportInvincibleMax;
+    invincible         = true;
+
+    // trigger arrival attack
+    subState     = attacks.side_air;
+    currentState = states.attack;
+    xSpeed       = facing * 3;
+    ySpeed       = -2;
+    frame_reset();
+    squash_stretch(1.3, 0.7);
+    god.shake     = true;
+    god.freeze    = true;
+    god.freezeDur = 3;
+    specialCooldown = specialCooldownMax;
+};

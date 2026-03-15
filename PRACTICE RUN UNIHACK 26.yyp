@@ -112,6 +112,7 @@
     {"id":{"name":"parentPhysics","path":"objects/parentPhysics/parentPhysics.yy",},},
     {"id":{"name":"settings_menu","path":"objects/settings_menu/settings_menu.yy",},},
     {"id":{"name":"main_menu","path":"rooms/main_menu/main_menu.yy",},},
+    {"id":{"name":"preloadroom","path":"rooms/preloadroom/preloadroom.yy",},},
     {"id":{"name":"rm_Autumn","path":"rooms/rm_Autumn/rm_Autumn.yy",},},
     {"id":{"name":"rm_Autumn2","path":"rooms/rm_Autumn2/rm_Autumn2.yy",},},
     {"id":{"name":"rm_character_select","path":"rooms/rm_character_select/rm_character_select.yy",},},
@@ -191,7 +192,6 @@
     {"id":{"name":"state_change","path":"scripts/state_change/state_change.yy",},},
     {"id":{"name":"state_reset","path":"scripts/state_reset/state_reset.yy",},},
     {"id":{"name":"sword_attacks","path":"scripts/sword_attacks/sword_attacks.yy",},},
-    {"id":{"name":"sword_projectile_embed","path":"scripts/sword_projectile_embed/sword_projectile_embed.yy",},},
     {"id":{"name":"team_asymmetry_check","path":"scripts/team_asymmetry_check/team_asymmetry_check.yy",},},
     {"id":{"name":"weapon_stats","path":"scripts/weapon_stats/weapon_stats.yy",},},
     {"id":{"name":"x_collide","path":"scripts/x_collide/x_collide.yy",},},
@@ -330,6 +330,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
+    {"roomId":{"name":"preloadroom","path":"rooms/preloadroom/preloadroom.yy",},},
     {"roomId":{"name":"main_menu","path":"rooms/main_menu/main_menu.yy",},},
     {"roomId":{"name":"rm_Field","path":"rooms/rm_Field/rm_Field.yy",},},
     {"roomId":{"name":"rm_settings","path":"rooms/rm_settings/rm_settings.yy",},},

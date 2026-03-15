@@ -69,3 +69,17 @@ fd_victory    = fd_spear_victory;
 sfx_attack  = sound_dragon_attack;
 sfx_hit     = sound_dragon_is_hit;
 sfx_special = sound_dragon_ultimate_attack;
+
+_specialFire = function() {
+    var _proj          = instance_create_layer(x, y - 11, "Instances", oSpearSpike);
+    _proj.owner        = id;
+    _proj.team         = team;
+    _proj.facing       = facing;
+    _proj.speed_x      = specialSpeed * facing;
+    _proj.damage       = specialDamage * (superMode ? superDamage : 1);
+    _proj.launchDamage = specialDamage * 2 * (superMode ? superDamage : 1);
+    _proj.launchSpeed  = -12;
+    _proj.hitStun      = specialHitStun;
+    _proj.embedTimer   = 120;
+    specialProjectile  = _proj;
+};
