@@ -1,3 +1,9 @@
+global.level_rooms = [rm_Autumn, rm_Autumn2, rm_Field, rm_Winter];
+
+global.arr_random = function(arr) {
+	return arr[irandom(array_length(arr) - 1)];
+};
+
 // BGM categories
 bgm_menu = [BGM_Knight, BGM_woodlands_battle];
 bgm_game = [BGM_Flame, BGM_touhou_inspired_sketch];
@@ -8,7 +14,7 @@ is_fading = false;
 fade_timer = 0;
 
 // Track which category is currently playing
-last_room_is_game = (room == rm_Field);
+last_room_is_game = array_contains(global.level_rooms, room);
 
 // Sound handle (invalid until audio group has loaded)
 current_sound = -1;

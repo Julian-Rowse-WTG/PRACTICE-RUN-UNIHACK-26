@@ -33,7 +33,7 @@ if (is_fading) {
             audio_stop_sound(current_sound);
         }
         is_fading = false;
-        last_room_is_game = (room == rm_Field);
+        last_room_is_game = (array_contains(global.level_rooms, room));
         var _category = last_room_is_game ? bgm_game : bgm_menu;
         if (array_length(_category) > 0) {
             var _idx = irandom(array_length(_category) - 1);

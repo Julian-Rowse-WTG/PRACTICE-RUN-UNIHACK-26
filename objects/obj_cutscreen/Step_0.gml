@@ -4,7 +4,7 @@ if (cs_phase == 0) {
     if (hold_timer <= 0) {
         // Switch to rm_game; this object persists and runs the fade-in there
         cs_phase = 1;
-        room_goto(rm_Field);
+        room_goto(global.arr_random(global.level_rooms));
     }
 } else if (cs_phase == 1) {
     // FADE_IN phase: fade the black overlay out, then clean up

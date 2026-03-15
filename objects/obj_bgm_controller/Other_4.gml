@@ -1,5 +1,5 @@
 // Check if the music category needs to change when entering a new room
-var _now_is_game = (room == rm_Field);
+var _now_is_game = array_contains(global.level_rooms, room);
 
 if (room == rm_cutscreen) {
     // No BGM during the cutscreen - stop any remaining sound immediately
@@ -11,7 +11,7 @@ if (room == rm_cutscreen) {
     }
     is_fading = false;
     bgm_muted = true;
-} else if (room == rm_Field) {
+} else if (array_contains(global.level_rooms, room)) {
     // Entering game room: unmute and wait for the cutscreen fade-in to finish
     // before starting game music (1 second = room_speed steps).
     bgm_muted         = false;
