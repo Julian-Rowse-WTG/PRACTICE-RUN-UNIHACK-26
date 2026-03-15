@@ -150,6 +150,11 @@ if (hp <= 0 && currentState != states.dead) {
         god.deathFreezeTimer = god.deathFreezeFrames;
         // last kill — slow down but skip zoom
         god.deathSkipZoom    = (_enemiesLeft == 0);
+
+        // nice and loud death boom
+        for(var i = 0; i < 4; i++) {
+            audio_play_sound(sound_death_boom, 1, false);
+        }
     } else {
         destroy = true;
     }

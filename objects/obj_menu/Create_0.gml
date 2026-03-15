@@ -7,5 +7,5 @@ if window_get_caption() != ""
 }
 
 menu_x = (display_get_gui_width()) * 0.5;
-menu_y = (display_get_gui_height()) * 0.65;
-spacing = 80; 
+menu_y = (display_get_gui_height()) * 0.775;
+spacing = 60;

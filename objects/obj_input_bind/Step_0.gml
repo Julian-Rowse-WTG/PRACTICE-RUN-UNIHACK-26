@@ -15,7 +15,7 @@ if (startup_lock_frames > 0)
 // BACK BUTTON: B on any connected pad OR Escape on keyboard
 // Sends back to mode_menu
 // --------------------------------------------------
-if (keyboard_check_pressed(vk_escape))
+if (keyboard_check_pressed(vk_escape) || keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(ord("B")))
 {
     show_debug_message("BACK: Escape pressed, returning to mode_menu");
     room_goto(rm_mode_menu);

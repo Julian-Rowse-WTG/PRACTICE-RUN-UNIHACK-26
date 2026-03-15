@@ -106,31 +106,6 @@ else
 selection = clamp(selection, 0, array_length(options) - 1);
 
 
-// -------------------------------------------------
-// MOUSE HOVER SELECTION
-// -------------------------------------------------
-var mx = device_mouse_x_to_gui(0);
-var my = device_mouse_y_to_gui(0);
-
-var hovered_any = false;
-
-for (var i = 0; i < array_length(options); i++)
-{
-    var row_y = menu_y + i * spacing;
-
-    if (
-        mx > menu_x - btn_w * 0.5 &&
-        mx < menu_x + btn_w * 0.5 &&
-        my > row_y - btn_h * 0.5 &&
-        my < row_y + btn_h * 0.5
-    )
-    {
-        selection = i;
-        hovered_any = true;
-    }
-}
-
-
 
 // -------------------------------------------------
 // ACTIVATION
@@ -140,13 +115,11 @@ var activate = false;
 if (keyboard_check_pressed(vk_enter))
 {
     activate = true;
-    show_debug_message("Keyboard ENTER pressed");
 }
 
-if (hovered_any && mouse_check_button_pressed(mb_left))
+if (mouse_check_button_pressed(mb_left))
 {
     activate = true;
-    show_debug_message("Mouse click on button");
 }
 
 if (gp != -1)
@@ -190,24 +163,25 @@ if (gp != -1)
 
 var current_type = types[selection];
 
-if(adjust_left || adjust_right) {
-    global.play_ui_select_sfx();
-}
+var should_play_ui_sfx = adjust_left || adjust_right;
 
 if (current_type == "slider")
 {
     if (adjust_left)
     {
         values[selection] -= 0.05;
-        values[selection] = clamp(values[selection], 0, 1);
-        show_debug_message("Slider value: " + string(values[selection]));
     }
-
     if (adjust_right)
     {
         values[selection] += 0.05;
+    }
+    if(values[selection] < 0 || values[selection] > 1) {
         values[selection] = clamp(values[selection], 0, 1);
-        show_debug_message("Slider value: " + string(values[selection]));
+        should_play_ui_sfx = false;
+        global.play_ui_error_sfx();
+    }
+    if(selection == 1) {
+        audio_master_gain(values[selection]);
     }
 }
 
@@ -217,8 +191,15 @@ if (current_type == "checkbox")
     {
         values[selection] = !values[selection];
         show_debug_message("Checkbox toggled: " + string(values[selection]));
+        if(selection == 2) {
+            global.music_enabled = values[selection];
+        }
         if(selection == 3) {
             global.debug = values[selection];
         }
     }
+}
+
+if(should_play_ui_sfx) {
+    global.play_ui_select_sfx();
 }
