@@ -19,3 +19,4 @@
 
 And of course...
 - Special credits to Copilot, Claude, ChatGPT etc.
+- AI tools were used to generate boilerplate code and as a debug tool.
