@@ -10,10 +10,6 @@ fade_in_speed = 1.0 / room_speed; // 1 second to fade in
 gui_w = display_get_gui_width();
 gui_h = display_get_gui_height();
 
-// Loading animation state
-dot_timer = 0;
-dot_count = 0;  // 0-3 cycling dots appended to "LOADING"
-
 // Load audio groups for selected characters
 var _needKnight = false;
 var _needDemon  = false;
@@ -23,7 +19,7 @@ for (var _p = 0; _p < 4; _p++) {
         if (_sess.weaponClass == oDemon) {
             _needDemon = true;
         } else {
-            _needKnight = true; // knight and axe (judge) both use knight sounds
+            _needKnight = true; // knight and dragon both use knight sounds
         }
     }
 }
