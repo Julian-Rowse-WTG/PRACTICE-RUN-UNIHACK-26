@@ -17,8 +17,8 @@ anim_timer++;
 if (transitioning) {
     fade_alpha = min(1.0, fade_alpha + (1.0 / fade_duration));
     if (fade_alpha >= 1.0) {
-        show_debug_message("Transitioning to rm_game. Juggernaut = P" + string(juggernaut_player + 1));
-        room_goto(rm_game);
+        show_debug_message("Transitioning to level. Juggernaut = P" + string(juggernaut_player + 1));
+        room_goto(rm_cutscreen);
     }
     exit;
 }
