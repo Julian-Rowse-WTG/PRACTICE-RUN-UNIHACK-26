@@ -197,7 +197,7 @@ for (var p = 0; p < max_players; p++) {
     // is over the bottom bar.
     // Only activates if a juggernaut has been assigned.
     // --------------------------------------------------
-    if (confirm_pressed &&
+    if (any_action_pressed &&
         cursor_y[p] >= divider_y &&
         cursor_y[p] <= divider_y + divider_h) {
         any_start_pressed = true;
