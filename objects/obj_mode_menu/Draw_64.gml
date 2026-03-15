@@ -33,15 +33,14 @@ var right_bx = pair_start_x + box_w + box_gap;
 // --------------------------------------------------
 // Box outlines
 // --------------------------------------------------
-draw_set_alpha(0.25);
+draw_set_alpha(0.7);
 draw_set_colour(c_white);
 
-var BORDER_RADIUS = 30;
+draw_sprite_stretched(sprMenuBox, 0, left_bx, box_y, box_w, box_h);
 
-draw_roundrect_ext(left_bx, box_y, left_bx + box_w, box_y + box_h, BORDER_RADIUS, BORDER_RADIUS, false);
 if (left_locked || column_focus == 1 || final_locked)
 {
-    draw_roundrect_ext(right_bx, box_y, right_bx + box_w, box_y + box_h, BORDER_RADIUS, BORDER_RADIUS, false);
+    draw_sprite_stretched(sprMenuBox, 0, right_bx, box_y, box_w, box_h);
 }
 draw_set_alpha(1);
 
