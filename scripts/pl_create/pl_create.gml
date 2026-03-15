@@ -74,7 +74,7 @@ function pl_create() {
     aSpeedDefault = aSpeed;
     cSpeed        = 1;
     tSpeed        = 20;
-    jPower        = -6;
+    jPower        = -8;
     facing        = 1;
     gSpeedDefault = gSpeed;
     dashDur       = 10;

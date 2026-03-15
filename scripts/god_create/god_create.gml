@@ -2,6 +2,7 @@ function god_create() {
     enum_init();
     // screen shake
     shake      = false;
+	deathSkipZoom = false;
     shakeDur   = 5;
     shakeForce = 1;
     // freeze/hitstop

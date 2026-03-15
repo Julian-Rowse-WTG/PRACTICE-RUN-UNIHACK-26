@@ -59,13 +59,13 @@ grid_y = 20;
 char_sprite = array_create(panel_count, -1);
 char_sprite[0] = sprSword_Idle_Body;   // Knight
 char_sprite[1] = sprDagger_Idle;  // Demon
-char_sprite[2] = sprSpear_Idle;     // Axe (oJudge)
+char_sprite[2] = sprSpear_Idle;     // Dragon
 
 // Map tile index to weapon-class object for session building
 char_weapon_class = array_create(panel_count, noone);
 char_weapon_class[0] = oKnight;
 char_weapon_class[1] = oDemon;
-char_weapon_class[2] = oJudge;
+char_weapon_class[2] = oDragon;
 
 // Character names for hover display
 character_names = array_create(panel_count, "");

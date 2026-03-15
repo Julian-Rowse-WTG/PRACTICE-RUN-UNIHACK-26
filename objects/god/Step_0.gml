@@ -28,6 +28,7 @@ if (deathCinematic) {
         deathTimer--;
         if (deathTimer <= 0) {
             deathCinematic = false;
+            deathSkipZoom  = false;
             gameSpeed      = 1;
             __view_set(e__VW.WView, 0, camDefaultW);
             __view_set(e__VW.HView, 0, camDefaultH);
@@ -35,13 +36,14 @@ if (deathCinematic) {
                 deathTarget.destroy = true;
             }
             deathTarget = noone;
-        } else if (instance_exists(deathTarget)) {
+        } else if (instance_exists(deathTarget) && !deathSkipZoom) {
+            // only zoom if not the final kill
             var _targetW = camDefaultW / deathZoomAmount;
             var _targetH = camDefaultH / deathZoomAmount;
             var _targetX = deathTarget.x - _targetW * 0.5;
             var _targetY = deathTarget.y - _targetH * 0.5;
-			_targetX = clamp(_targetX, 0, max(0, room_width  - _targetW));
-			_targetY = clamp(_targetY, 0, max(0, room_height - _targetH));
+            _targetX = clamp(_targetX, 0, max(0, room_width  - _targetW));
+            _targetY = clamp(_targetY, 0, max(0, room_height - _targetH));
             var _curW = __view_get(e__VW.WView, 0);
             var _curH = __view_get(e__VW.HView, 0);
             __view_set(e__VW.WView, 0, lerp(_curW, _targetW, 0.1));
@@ -51,7 +53,6 @@ if (deathCinematic) {
         }
     }
 }
-
 
 if (victory == victoryState.none && !deathCinematic) {
     // count alive players per team

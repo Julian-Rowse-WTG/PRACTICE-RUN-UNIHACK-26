@@ -16,7 +16,6 @@ if (_count == 0) {
 var _guiW      = display_get_gui_width();
 var _barH      = 18;
 var _barPadX   = 40;
-var _barPadY   = 16;
 var _gap       = 10;
 var _totalBarW = _guiW - (_barPadX * 2);
 var _barW      = floor((_totalBarW - (_gap * (_count - 1))) / _count);
@@ -25,10 +24,13 @@ var _labelW    = 24; // width reserved for player label on left
 // sub-bar layout
 var _subH    = 8;
 var _subGap  = 4;
-var _subY    = _barPadY + _barH + _subGap;
 var _iconW   = sprite_get_width(sprBurstIcon);
 var _iconH   = sprite_get_height(sprBurstIcon);
+var _barPadY = display_get_gui_height() - _barH - _subGap - _iconH - 16;
+var _subY    = _barPadY + _barH + _subGap;
 var _iconGap = 3;
+
+
 
 for (var i = 0; i < _count; i++) {
     var _pl      = _players[| i];
