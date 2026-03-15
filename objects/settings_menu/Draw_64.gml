@@ -1,5 +1,24 @@
 draw_set_valign(fa_middle);
 
+
+var gui_w = display_get_gui_width();
+var gui_h = display_get_gui_height();
+
+var spr_w = sprite_get_width(spr_background_castle);
+var spr_h = sprite_get_height(spr_background_castle);
+
+var xscale = gui_w / spr_w;
+var yscale = gui_h / spr_h;
+
+draw_sprite_ext(spr_background_castle, 0, 0, 0, xscale, yscale, 0, c_white, 1);
+
+draw_set_alpha(0.6); // 50% transparency
+draw_set_color(c_black);
+
+draw_rectangle(0, 0, gui_w, gui_h, false);
+
+draw_set_alpha(1); // reset alpha
+
 for (var i = 0; i < array_length(options); i++)
 {
     var row_y = menu_y + i * spacing;

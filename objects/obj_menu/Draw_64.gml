@@ -2,6 +2,8 @@
 // =====================
 // LAYER 3: Menu text
 // =====================
+menu_x = display_get_gui_width() * 0.5;
+menu_y = display_get_gui_height() * 0.775;
 draw_set_font(VT323);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);

@@ -1,5 +1,14 @@
 // STEP EVENT
 
+
+if (keyboard_check_pressed(vk_escape) || keyboard_check_pressed(vk_backspace) || keyboard_check_pressed(ord("B")))
+{
+    show_debug_message("BACK: Escape pressed, returning to mode_menu");
+    room_goto(main_menu);
+    global.play_ui_error_sfx();
+    exit;
+}
+
 // -------------------------------------------------
 // FIND FIRST CONNECTED CONTROLLER
 // -------------------------------------------------
@@ -144,6 +153,7 @@ if (activate)
         case 0:
             show_debug_message("Going back to main menu");
             room_goto(main_menu);
+            global.play_ui_error_sfx();
         break;
     }
 }

@@ -91,6 +91,7 @@ if (keyboard_check_pressed(vk_shift))  cancel_pressed = true;
 // FEATURE 1: Esc and B keyboard keys = back
 if (keyboard_check_pressed(vk_escape)) back_pressed = true;
 if (keyboard_check_pressed(ord("B")))  back_pressed = true;
+if (keyboard_check_pressed(vk_backspace))  back_pressed = true;
 
 show_debug_message("back_pressed (keyboard) = " + string(back_pressed));
 
