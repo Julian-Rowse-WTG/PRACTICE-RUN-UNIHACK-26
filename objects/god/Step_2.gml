@@ -3,8 +3,9 @@
 if (shake) {
     shakeDur--;
     if (shakeDur <= 0) {
-        shakeDur = 5;
-        shake    = false;
+        shakeDur   = 5;
+        shakeForce = 1; // reset to default after shake ends
+        shake      = false;
     }
     var _curW = __view_get(e__VW.WView, 0);
     var _curH = __view_get(e__VW.HView, 0);

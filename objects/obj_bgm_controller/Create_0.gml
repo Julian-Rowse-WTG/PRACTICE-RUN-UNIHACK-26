@@ -1,5 +1,5 @@
 global.level_rooms = [rm_Autumn, rm_Autumn2, rm_Field, rm_Winter];
-
+global.music_enabled = true;
 global.arr_random = function(arr) {
 	return arr[irandom(array_length(arr) - 1)];
 };

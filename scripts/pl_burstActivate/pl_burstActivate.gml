@@ -9,16 +9,26 @@ function pl_burstActivate() {
         comboTimer[_i] = 0;
     }
 
+    // force out of any knockdown state
+	audio_play_sound(sound_burst,10,false);
+    hit        = false;
+    hitStun    = 0;
+    softHitStun = 0;
+    invincible  = true;
+    teleportInvincible = teleportInvincibleMax;
+
     lastState    = currentState;
     currentState = states.burst;
     frame_reset();
 
-    // solo players always get reversal since they're permanently in super
     if (isSolo || lastState == states.tumble || lastState == states.softKnock) {
-        softHitStun = 0;
-        ySpeed      = jPower * 0.5;
+        ySpeed = jPower * 1.5;
+        xSpeed = 0;
+        squash_stretch(0.7, 1.3);
         pl_burstReversal();
     } else {
+        ySpeed = jPower * 0.8;
+        squash_stretch(0.7, 1.3);
         pl_burstSuper();
     }
 }

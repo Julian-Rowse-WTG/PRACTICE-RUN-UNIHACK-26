@@ -1,6 +1,11 @@
 function pl_burstState() {
-    // hold for exactly 1 frame then release
     xSpeed = approach(xSpeed, 0, aSpeed * god.gameSpeed);
-    ySpeed = 0;
-    currentState = lastState;
+    // after burst flash frame, go into side attack
+    if (onGround) {
+        subState = attacks.side_ground;
+    } else {
+        subState = attacks.side_air;
+    }
+    currentState = states.attack;
+    frame_reset();
 }
