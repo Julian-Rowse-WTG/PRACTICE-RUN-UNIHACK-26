@@ -10,7 +10,13 @@
 if (transitioning) {
     fade_alpha = min(1.0, fade_alpha + (1.0 / fade_duration));
     if (fade_alpha >= 1.0) {
-        room_goto(rm_cutscreen);
+        //room_goto(rm_cutscreen);
+		// Juggernaut modes skip cutscreen and go to role selection first
+		if (global.selected_mode == "1v2" || global.selected_mode == "1v3") {
+		    room_goto(rm_juggernaut_select);
+		} else {
+		    room_goto(rm_cutscreen);
+		}
     }
     exit;
 }
@@ -311,6 +317,13 @@ if (any_start_pressed) {
         // Kick off 1-second fade-to-black transition to rm_cutscreen.
         // Fade out BGM simultaneously over the same duration.
         global.play_ui_select_sfx();
+		// Pass chosen sprites to juggernaut select
+		global.cs_player_sprite = array_create(4, -1);
+		for (var _sp = 0; _sp < max_players; _sp++) {
+		    if (player_active[_sp] && player_choice[_sp] != -1) {
+		        global.cs_player_sprite[_sp] = char_sprite[player_choice[_sp]];
+		    }
+		}
         transitioning = true;
         fade_alpha    = 0.0;
         if (instance_exists(obj_bgm_controller)) {

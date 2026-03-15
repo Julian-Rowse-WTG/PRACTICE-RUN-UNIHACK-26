@@ -89,6 +89,7 @@
     {"id":{"name":"obj_cutscreen","path":"objects/obj_cutscreen/obj_cutscreen.yy",},},
     {"id":{"name":"obj_game_background","path":"objects/obj_game_background/obj_game_background.yy",},},
     {"id":{"name":"obj_input_bind","path":"objects/obj_input_bind/obj_input_bind.yy",},},
+    {"id":{"name":"obj_juggernaut_select","path":"objects/obj_juggernaut_select/obj_juggernaut_select.yy",},},
     {"id":{"name":"obj_menu","path":"objects/obj_menu/obj_menu.yy",},},
     {"id":{"name":"obj_mode_menu","path":"objects/obj_mode_menu/obj_mode_menu.yy",},},
     {"id":{"name":"oDemon","path":"objects/oDemon/oDemon.yy",},},
@@ -111,6 +112,7 @@
     {"id":{"name":"rm_cutscreen","path":"rooms/rm_cutscreen/rm_cutscreen.yy",},},
     {"id":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
     {"id":{"name":"rm_input_bind","path":"rooms/rm_input_bind/rm_input_bind.yy",},},
+    {"id":{"name":"rm_juggernaut_select","path":"rooms/rm_juggernaut_select/rm_juggernaut_select.yy",},},
     {"id":{"name":"rm_mode_menu","path":"rooms/rm_mode_menu/rm_mode_menu.yy",},},
     {"id":{"name":"rm_settings","path":"rooms/rm_settings/rm_settings.yy",},},
     {"id":{"name":"__global_object_depths","path":"scripts/__global_object_depths/__global_object_depths.yy",},},
@@ -302,6 +304,7 @@
     {"roomId":{"name":"rm_input_bind","path":"rooms/rm_input_bind/rm_input_bind.yy",},},
     {"roomId":{"name":"rm_mode_menu","path":"rooms/rm_mode_menu/rm_mode_menu.yy",},},
     {"roomId":{"name":"rm_cutscreen","path":"rooms/rm_cutscreen/rm_cutscreen.yy",},},
+    {"roomId":{"name":"rm_juggernaut_select","path":"rooms/rm_juggernaut_select/rm_juggernaut_select.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
