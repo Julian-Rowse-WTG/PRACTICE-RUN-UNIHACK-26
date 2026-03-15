@@ -35,10 +35,13 @@ var right_bx = pair_start_x + box_w + box_gap;
 // --------------------------------------------------
 draw_set_alpha(0.25);
 draw_set_colour(c_white);
-draw_roundrect(left_bx, box_y, left_bx + box_w, box_y + box_h, false);
+
+var BORDER_RADIUS = 30;
+
+draw_roundrect_ext(left_bx, box_y, left_bx + box_w, box_y + box_h, BORDER_RADIUS, BORDER_RADIUS, false);
 if (left_locked || column_focus == 1 || final_locked)
 {
-    draw_roundrect(right_bx, box_y, right_bx + box_w, box_y + box_h, false);
+    draw_roundrect_ext(right_bx, box_y, right_bx + box_w, box_y + box_h, BORDER_RADIUS, BORDER_RADIUS, false);
 }
 draw_set_alpha(1);
 

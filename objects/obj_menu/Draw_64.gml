@@ -15,10 +15,10 @@ draw_set_colour(c_white);
 // =====================
 // LAYER 3: Menu text
 // =====================
-draw_set_font(VT323);
+draw_set_font(fnt_fighter);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-var basescale = 1.7;
+var basescale = 1.3;
 for (var i = 0; i < array_length(options); i++) {
     var draw_x = menu_x;
     var draw_y = menu_y + i * spacing;
