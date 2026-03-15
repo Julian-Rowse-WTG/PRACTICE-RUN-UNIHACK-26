@@ -40,9 +40,9 @@ show_debug_message("Right box = " + string(right_box_x) + ", " + string(right_bo
 // LEFT COLUMN = PLAYER COUNTS
 // --------------------------------------------------
 left_options = array_create(3);
-left_options[0] = "2 player";
-left_options[1] = "3 player";
-left_options[2] = "4 player";
+left_options[0] = "2 PLAYER";
+left_options[1] = "3 PLAYER";
+left_options[2] = "4 PLAYER";
 
 // --------------------------------------------------
 // CURRENT LEFT SELECTION
