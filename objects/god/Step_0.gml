@@ -81,6 +81,7 @@ if (victory == victoryState.none && !deathCinematic) {
         victoryTeam  = _lastTeam;
         victoryDelay = victoryDelayMax;
         gameSpeed    = 0;
+        obj_bgm_controller.fade_out_current_music_for_victory();
     }
 }
 

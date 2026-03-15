@@ -50,3 +50,17 @@ if (is_fading) {
         }
     }
 } 
+
+
+if(is_fading_for_victory) {
+    victory_fade_timer--;
+    if (victory_fade_timer <= -5 * room_speed) { // 5s gap between end of fade and music stopping, to allow victory jingle to play before the next track starts
+        is_fading_for_victory = false;
+        if (audio_is_playing(current_sound)) {
+            audio_stop_sound(current_sound);
+        }
+    } else {
+        // Continue fading out towards victory
+        audio_sound_gain(current_sound, 0, (victory_fade_timer / room_speed) * 1000);  // fade to silence over remaining victory_fade_timer steps
+    }
+}

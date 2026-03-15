@@ -14,6 +14,9 @@
 - https://www.youtube.com/@AZALI00013: background music
 - https://pixabay.com/sound-effects/film-special-effects-level-up-08-402152/: victory sfx
 - https://pixabay.com/sound-effects/success-videogame-sfx-423626/: success sfx
+- https://www.artstation.com/artwork/3Eo4KJ/: base demon sprite, we fully animated it
+- https://pin.it/6V9GS223i/: base knight sprite, we fully animated it
 
 And of course...
 - Special credits to Copilot, Claude, ChatGPT etc.
+- AI tools were used to generate boilerplate code and as a debug tool.
