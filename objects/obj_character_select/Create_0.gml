@@ -285,3 +285,4 @@ transitioning  = false;  // true once the player has confirmed + pressed start
 fade_alpha     = 0.0;
 fade_duration  = room_speed;  // 1 second fade-to-black
 
+hovering_over_start_button = false;

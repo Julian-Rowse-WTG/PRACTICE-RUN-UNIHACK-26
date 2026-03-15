@@ -24,6 +24,7 @@ if (transitioning) {
 }
 
 var any_start_pressed = false;
+hovering_over_start_button = false;
 
 // --------------------------------------------------
 // PER-PLAYER INPUT LOOP
@@ -202,6 +203,9 @@ for (var p = 0; p < max_players; p++) {
         cursor_y[p] <= divider_y + divider_h) {
         any_start_pressed = true;
         show_debug_message("P" + string(p + 1) + " pressed confirm over START bar.");
+    }
+    if(cursor_y[p] >= divider_y && cursor_y[p] <= divider_y + divider_h) {
+        hovering_over_start_button = true;
     }
 }
 

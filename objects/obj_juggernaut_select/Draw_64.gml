@@ -179,7 +179,11 @@ var bar_y1 = divider_y;
 var bar_y2 = divider_y + divider_h;
 
 draw_set_alpha(1.0);
-draw_set_colour(make_colour_rgb(35, 38, 55));
+if(juggernaut_player != -1 && hovering_over_start_button) {
+    draw_set_colour(make_colour_rgb(70, 75, 110));
+} else {
+    draw_set_colour(make_colour_rgb(45, 48, 65));
+}
 draw_rectangle(bar_x1, bar_y1, bar_x2, bar_y2, false);
 
 draw_set_colour(make_colour_rgb(65, 70, 95));
