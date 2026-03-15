@@ -6,10 +6,18 @@ if (shake) {
         shakeDur = 5;
         shake    = false;
     }
-    __view_set(e__VW.XView, 0, __view_get(e__VW.XView, 0) + (choose(-shakeForce, shakeForce)));
-    __view_set(e__VW.YView, 0, __view_get(e__VW.YView, 0) + (choose(-shakeForce, shakeForce)));
-    __view_set(e__VW.Angle, 0, __view_get(e__VW.Angle, 0) + (choose(-shakeForce * 0.5, shakeForce * 0.5)));
-} else {
+    var _curW = __view_get(e__VW.WView, 0);
+    var _curH = __view_get(e__VW.HView, 0);
+    // clamp shake offset strictly within room
+    var _maxX = max(0, room_width  - _curW);
+    var _maxY = max(0, room_height - _curH);
+    var _newX = clamp(choose(-shakeForce, shakeForce),     -_maxX, _maxX);
+    var _newY = clamp(choose(-shakeForce, shakeForce),     -_maxY, _maxY);
+    var _newA = choose(-shakeForce * 0.5, shakeForce * 0.5);
+    __view_set(e__VW.XView, 0, clamp(_newX, 0, _maxX));
+    __view_set(e__VW.YView, 0, clamp(_newY, 0, _maxY));
+    __view_set(e__VW.Angle, 0, _newA);
+} else if (!deathCinematic && victory == victoryState.none) {
     __view_set(e__VW.XView, 0, approach(__view_get(e__VW.XView, 0), 0, 0.3));
     __view_set(e__VW.YView, 0, approach(__view_get(e__VW.YView, 0), 0, 0.3));
     __view_set(e__VW.Angle, 0, approach(__view_get(e__VW.Angle, 0), 0, 0.5));

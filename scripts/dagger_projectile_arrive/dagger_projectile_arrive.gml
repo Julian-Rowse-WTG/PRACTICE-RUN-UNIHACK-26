@@ -5,29 +5,44 @@ function dagger_projectile_arrive() {
     }
 
     // teleport owner to projectile position
-	// offset away from wall so demon doesn't clip into it
-	var _offset = sprite_get_width(owner.sprite_index) * 0.5 + 2;
-	owner.x = x - (owner.facing * _offset);
-	owner.y = y;
+    owner.x = x;
+    owner.y = y;
+
+    // push out of wall — step back until no collision
+    var _pushDir = -owner.facing;
+    var _maxPush = 32;
+    var _pushed  = 0;
+    while (place_meeting(owner.x, owner.y, parentBlocker) && _pushed < _maxPush) {
+        owner.x += _pushDir;
+        _pushed++;
+    }
+    // if still stuck after max push, try opposite direction
+    if (place_meeting(owner.x, owner.y, parentBlocker)) {
+        owner.x = x;
+        _pushed = 0;
+        while (place_meeting(owner.x, owner.y, parentBlocker) && _pushed < _maxPush) {
+            owner.x += owner.facing;
+            _pushed++;
+        }
+    }
+
     // grant invincibility frames
     owner.teleportInvincible  = owner.teleportInvincibleMax;
     owner.invincible          = true;
     owner.arrivalAttackFired  = false;
 
-    // trigger arrival attack — reuses side attack hitbox
-	with (owner) {
-	    subState     = attacks.side_ground;
-	    currentState = states.attack;
-	    frame_reset();
-	    squash_stretch(1.3, 0.7);
-	}
+    // trigger arrival attack
+    with (owner) {
+        subState     = attacks.side_ground;
+        currentState = states.attack;
+        frame_reset();
+        squash_stretch(1.3, 0.7);
+    }
 
-    // screen shake
     god.shake     = true;
     god.freeze    = true;
     god.freezeDur = 3;
 
-    // clean up projectile
     owner.specialProjectile = noone;
     owner.specialCooldown   = owner.specialCooldownMax;
     instance_destroy();

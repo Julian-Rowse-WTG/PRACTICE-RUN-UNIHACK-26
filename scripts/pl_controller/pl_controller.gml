@@ -74,11 +74,12 @@ function pl_controller() {
             down  = gamepad_button_check(_pad, gp_padd) || (_axisY >  _deadzone);
 
             // face buttons — A=Jump, X=Attack, B=Dash, Y=Special, Down=Block
-            jump    = gamepad_button_check(_pad, gp_face1); // A
-            attack  = gamepad_button_check(_pad, gp_face3); // X
-            dash    = gamepad_button_check(_pad, gp_face2); // B
-            special = gamepad_button_check(_pad, gp_face4); // Y
-            block   = down;
+			// face buttons — A=Jump, X=Attack, B=Dash, Y=Special, Down=Block
+			jump    = gamepad_button_check(_pad, gp_face1); // A
+			attack  = gamepad_button_check(_pad, gp_face3) || gamepad_button_value(_pad, gp_shoulderlb) > 0.5; // X or LT
+			dash    = gamepad_button_check(_pad, gp_face2); // B
+			special = gamepad_button_check(_pad, gp_face4) || gamepad_button_value(_pad, gp_shoulderrb) > 0.5; // Y or RT
+			block   = down;
         }
     }
 }

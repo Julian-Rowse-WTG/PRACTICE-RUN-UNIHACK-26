@@ -138,10 +138,18 @@ if (hp <= 0 && currentState != states.dead) {
     xSpeed       = xSpeed * 0.5;
     ySpeed       = -3;
     if (!god.deathCinematic) {
+        // check if this is the last enemy alive
+        var _enemiesLeft = 0;
+        with (oPlayer) {
+            if (id == other.id) continue;
+            if (currentState != states.dead) _enemiesLeft++;
+        }
         god.deathCinematic   = true;
         god.deathTarget      = id;
         god.deathTimer       = god.deathTimerMax;
         god.deathFreezeTimer = god.deathFreezeFrames;
+        // last kill — slow down but skip zoom
+        god.deathSkipZoom    = (_enemiesLeft == 0);
     } else {
         destroy = true;
     }
