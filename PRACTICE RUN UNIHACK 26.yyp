@@ -315,6 +315,7 @@
     {"id":{"name":"sprTilesetHell","path":"sprites/sprTilesetHell/sprTilesetHell.yy",},},
     {"id":{"name":"sprTilesetIce","path":"sprites/sprTilesetIce/sprTilesetIce.yy",},},
     {"id":{"name":"sprVictory","path":"sprites/sprVictory/sprVictory.yy",},},
+    {"id":{"name":"TLR_Title","path":"sprites/TLR_Title/TLR_Title.yy",},},
     {"id":{"name":"Weeping_Willow2","path":"sprites/Weeping_Willow2/Weeping_Willow2.yy",},},
     {"id":{"name":"tsDecor","path":"tilesets/tsDecor/tsDecor.yy",},},
     {"id":{"name":"tsGrass","path":"tilesets/tsGrass/tsGrass.yy",},},
