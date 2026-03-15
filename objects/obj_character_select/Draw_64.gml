@@ -156,10 +156,11 @@ else {
 // --------------------------------------------------
 draw_set_font(VT323);
 
+var player_char_x_offset = (4 - max_players) * 0.5 * (slot_w + slot_gap);
 for (var p = 0; p < max_players; p++) {
-    var rx1 = slot_px[p];
+    var rx1 = slot_px[p] + player_char_x_offset;
     var ry1 = bottom_y;
-    var rx2 = slot_px[p] + slot_w;
+    var rx2 = slot_px[p] + slot_w + player_char_x_offset;
     var ry2 = bottom_y + slot_h;
 
     // Slot background
