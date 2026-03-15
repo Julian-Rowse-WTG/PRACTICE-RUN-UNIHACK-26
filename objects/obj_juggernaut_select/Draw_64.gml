@@ -23,7 +23,7 @@ draw_set_font(VT323);
 draw_set_colour(make_colour_rgb(180, 160, 255));
 draw_set_halign(fa_center);
 draw_set_valign(fa_top);
-draw_text(gui_w * 0.5, 62, "Press [BACK] to claim the Juggernaut role — only one allowed!");
+draw_text(gui_w * 0.5, 700, "Claim the Juggernaut role - only one allowed!");
 
 // --------------------------------------------------
 // PLAYER TILES
@@ -104,7 +104,7 @@ for (var i = 0; i < max_players; i++) {
         var max_sw  = (x2 - x1) - 20;
         var max_sh  = tile_h * 0.52;
         var _scale  = min(max_sw / spr_w, max_sh / spr_h);
-        var spr_y   = y1 + tile_h * 0.58; // lower half of tile
+        var spr_y   = y1 + tile_h * 0.8; // lower half of tile
         draw_set_alpha(1.0);
         draw_sprite_ext(spr, 0, tcx, spr_y, _scale, _scale, 0, c_white, 1.0);
     }
@@ -159,7 +159,7 @@ for (var i = 0; i < max_players; i++) {
         draw_set_colour(make_colour_rgb(140, 150, 185));
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
-        draw_text(tcx, y1 + 28, "CHALLENGER");
+        draw_text(tcx, y1 + 80, "CHALLENGER");
     }
 
     // ---- Player name / number ----
@@ -179,7 +179,11 @@ var bar_y1 = divider_y;
 var bar_y2 = divider_y + divider_h;
 
 draw_set_alpha(1.0);
-draw_set_colour(make_colour_rgb(35, 38, 55));
+if(juggernaut_player != -1 && hovering_over_start_button) {
+    draw_set_colour(make_colour_rgb(70, 75, 110));
+} else {
+    draw_set_colour(make_colour_rgb(45, 48, 65));
+}
 draw_rectangle(bar_x1, bar_y1, bar_x2, bar_y2, false);
 
 draw_set_colour(make_colour_rgb(65, 70, 95));

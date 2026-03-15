@@ -1,5 +1,7 @@
 if (god.victory != victoryState.none) exit;
 
+draw_set_font(VT323);
+
 var _count   = 0;
 var _players = ds_list_create();
 with (oPlayer) {

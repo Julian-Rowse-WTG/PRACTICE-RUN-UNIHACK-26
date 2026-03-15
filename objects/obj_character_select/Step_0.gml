@@ -23,6 +23,7 @@ if (transitioning) {
 
 all_confirmed = true;
 var any_start_pressed = false;
+hovering_over_start_button = false;
 
 // --------------------------------------------------
 // PROCESS EACH PLAYER STRICTLY BY THEIR ASSIGNED SCHEMA
@@ -49,105 +50,114 @@ for (var p = 0; p < max_players; p++) {
     var down_down_now = false;
 
     var confirm_pressed = false;
-	var back_pressed    = false;
     var any_button_held = false;
 
-	// ----------------------------------------------
-	// KEYBOARD SCHEMA 1 = WASD + QE
-	// confirm = E  (was Q — swapped per Feature 1)
-	// back    = Q  (was E — swapped per Feature 1)
-	// ----------------------------------------------
-	if (schema_type == "kb1") {
-	    left_down_now  = keyboard_check(ord("A"));
-	    right_down_now = keyboard_check(ord("D"));
-	    up_down_now    = keyboard_check(ord("W"));
-	    down_down_now  = keyboard_check(ord("S"));
+    // ----------------------------------------------
+    // KEYBOARD SCHEMA 1 = WASD + QE
+    // confirm = Q
+    // back    = E
+    // ----------------------------------------------
+    if (schema_type == "kb1") {
+        left_down_now = keyboard_check(ord("A"));
+        right_down_now = keyboard_check(ord("D"));
+        up_down_now = keyboard_check(ord("W"));
+        down_down_now = keyboard_check(ord("S"));
 
-	    confirm_pressed = keyboard_check_pressed(ord("E"));
-	    back_pressed    = keyboard_check_pressed(ord("Q"));
-	    any_button_held = keyboard_check(ord("E")) || keyboard_check(ord("Q"));
-	}
+        confirm_pressed = keyboard_check_pressed(ord("Q")) || keyboard_check_pressed(ord("E"));
+        any_button_held = keyboard_check(ord("Q")) || keyboard_check(ord("E"));
+    }
 
-	// ----------------------------------------------
-	// KEYBOARD SCHEMA 2 = IJKL + UO
-	// confirm = O  (was U — swapped per Feature 1)
-	// back    = U  (was O — swapped per Feature 1)
-	// ----------------------------------------------
-	else if (schema_type == "kb2") {
-	    left_down_now  = keyboard_check(ord("J"));
-	    right_down_now = keyboard_check(ord("L"));
-	    up_down_now    = keyboard_check(ord("I"));
-	    down_down_now  = keyboard_check(ord("K"));
+    // ----------------------------------------------
+    // KEYBOARD SCHEMA 2 = IJKL + UO
+    // confirm = U
+    // back    = O
+    // ----------------------------------------------
+    else if (schema_type == "kb2") {
+        left_down_now = keyboard_check(ord("J"));
+        right_down_now = keyboard_check(ord("L"));
+        up_down_now = keyboard_check(ord("I"));
+        down_down_now = keyboard_check(ord("K"));
 
-	    confirm_pressed = keyboard_check_pressed(ord("O"));
-	    back_pressed    = keyboard_check_pressed(ord("U"));
-	    any_button_held = keyboard_check(ord("O")) || keyboard_check(ord("U"));
-	}
+        confirm_pressed = keyboard_check_pressed(ord("U")) || keyboard_check_pressed(ord("O"));
+        any_button_held = keyboard_check(ord("U")) || keyboard_check(ord("O"));
+    }
 
-	// ----------------------------------------------
-	// KEYBOARD SCHEMA 3 = ARROWS + SHIFT/ENTER
-	// confirm = Enter  (was Shift — swapped per Feature 1)
-	// back    = Shift  (was Enter — swapped per Feature 1)
-	// ----------------------------------------------
-	else if (schema_type == "kb3") {
-	    left_down_now  = keyboard_check(vk_left);
-	    right_down_now = keyboard_check(vk_right);
-	    up_down_now    = keyboard_check(vk_up);
-	    down_down_now  = keyboard_check(vk_down);
+    // ----------------------------------------------
+    // KEYBOARD SCHEMA 3 = ARROWS + SHIFT/ENTER
+    // confirm = Shift
+    // back    = Enter
+    // ----------------------------------------------
+    else if (schema_type == "kb3") {
+        left_down_now = keyboard_check(vk_left);
+        right_down_now = keyboard_check(vk_right);
+        up_down_now = keyboard_check(vk_up);
+        down_down_now = keyboard_check(vk_down);
 
-	    confirm_pressed = keyboard_check_pressed(vk_enter);
-	    back_pressed    = keyboard_check_pressed(vk_shift);
-	    any_button_held = keyboard_check(vk_enter) || keyboard_check(vk_shift);
-	}
+        confirm_pressed = keyboard_check_pressed(vk_shift) || keyboard_check_pressed(vk_enter);
+        any_button_held = keyboard_check(vk_shift) || keyboard_check(vk_enter);
+    }
 
-	// ----------------------------------------------
-	// PAD = LEFT STICK OR DPAD
-	// confirm = A (gp_face1) or LB/RB shoulders
-	// back    = B (gp_face2) — split out from confirm for Feature 2
-	// ----------------------------------------------
-	else if (schema_type == "pad") {
-	    var pad = schema_id;
+    // ----------------------------------------------
+    // PAD = LEFT STICK OR DPAD
+    // confirm = A or LT
+    // back    = B or RT
+    //
+    // IMPORTANT:
+    // - never assume slot 0
+    // - only poll this player's assigned pad slot
+    // - use documented constants only
+    // ----------------------------------------------
+    else if (schema_type == "pad") {
+        var pad = schema_id;
 
-	    if (gamepad_is_connected(pad)) {
-	        var ax = gamepad_axis_value(pad, gp_axislh);
-	        var ay = gamepad_axis_value(pad, gp_axislv);
+        if (gamepad_is_connected(pad)) {
+            var ax = gamepad_axis_value(pad, gp_axislh);
+            var ay = gamepad_axis_value(pad, gp_axislv);
 
-	        var stick_left  = (ax <= -stick_deadzone);
-	        var stick_right = (ax >=  stick_deadzone);
-	        var stick_up    = (ay <= -stick_deadzone);
-	        var stick_down  = (ay >=  stick_deadzone);
+            // Analog stick to digital intent
+            var stick_left = (ax <= -stick_deadzone);
+            var stick_right = (ax >= stick_deadzone);
+            var stick_up = (ay <= -stick_deadzone);
+            var stick_down = (ay >= stick_deadzone);
 
-	        var dpad_left  = gamepad_button_check(pad, gp_padl);
-	        var dpad_right = gamepad_button_check(pad, gp_padr);
-	        var dpad_up    = gamepad_button_check(pad, gp_padu);
-	        var dpad_down  = gamepad_button_check(pad, gp_padd);
+            // D-pad also counts
+            var dpad_left = gamepad_button_check(pad, gp_padl);
+            var dpad_right = gamepad_button_check(pad, gp_padr);
+            var dpad_up = gamepad_button_check(pad, gp_padu);
+            var dpad_down = gamepad_button_check(pad, gp_padd);
 
-	        left_down_now  = stick_left  || dpad_left;
-	        right_down_now = stick_right || dpad_right;
-	        up_down_now    = stick_up    || dpad_up;
-	        down_down_now  = stick_down  || dpad_down;
+            left_down_now = stick_left || dpad_left;
+            right_down_now = stick_right || dpad_right;
+            up_down_now = stick_up || dpad_up;
+            down_down_now = stick_down || dpad_down;
 
-	        // A / LB / RB = confirm.  B is now handled separately below (Feature 2).
-	        confirm_pressed =
-	            gamepad_button_check_pressed(pad, gp_face1)     ||
-	            gamepad_button_check_pressed(pad, gp_shoulderlb) ||
-	            gamepad_button_check_pressed(pad, gp_shoulderrb);
+            // Confirm / back
+            confirm_pressed =
+                gamepad_button_check_pressed(pad, gp_face1) ||
+                gamepad_button_check_pressed(pad, gp_shoulderlb) ||
+                gamepad_button_check_pressed(pad, gp_face2) ||
+                gamepad_button_check_pressed(pad, gp_shoulderrb);
 
-	        back_pressed = gamepad_button_check_pressed(pad, gp_face2);
+            any_button_held =
+                gamepad_button_check(pad, gp_face1) ||
+                gamepad_button_check(pad, gp_shoulderlb) ||
+                gamepad_button_check(pad, gp_face2) ||
+                gamepad_button_check(pad, gp_shoulderrb);
 
-	        any_button_held =
-	            gamepad_button_check(pad, gp_face1)      ||
-	            gamepad_button_check(pad, gp_shoulderlb)  ||
-	            gamepad_button_check(pad, gp_face2)       ||
-	            gamepad_button_check(pad, gp_shoulderrb);
+            // Continuous analog motion for stick users
+            // D-pad users still get digital stepping below.
+            if (abs(ax) >= stick_deadzone) {
+                cursor_x[p] += ax * stick_speed;
+            }
 
-	        if (abs(ax) >= stick_deadzone) cursor_x[p] += ax * stick_speed;
-	        if (abs(ay) >= stick_deadzone) cursor_y[p] += ay * stick_speed;
-	    }
-	    else {
-	        show_debug_message("WARNING: P" + string(p + 1) + " assigned pad slot " + string(pad) + " is disconnected.");
-	    }
-	}    
+            if (abs(ay) >= stick_deadzone) {
+                cursor_y[p] += ay * stick_speed;
+            }
+        }
+        else {
+            show_debug_message("WARNING: P" + string(p + 1) + " assigned pad slot " + string(pad) + " is disconnected.");
+        }
+    }
 
     // ----------------------------------------------
     // DIGITAL HELD MOVEMENT
@@ -238,25 +248,6 @@ for (var p = 0; p < max_players; p++) {
             show_debug_message("P" + string(p + 1) + " confirm pressed, but cursor is not hovering any tile.");
         }
     }
-	// ----------------------------------------------
-	// BACK / DESELECT
-	// Keyboard back key (Q / U / Shift): deselect if confirmed.
-	// Controller B: deselect if confirmed; go to rm_mode_menu if not confirmed.
-	// Global Esc or letter-B key: always return to rm_mode_menu.
-	// ----------------------------------------------
-	if (back_pressed) {
-	    if (player_confirmed[p]) {
-	        // Deselect — let the player rechoose
-	        player_confirmed[p] = false;
-	        player_choice[p]    = -1;
-	        global.play_ui_error_sfx();
-	        show_debug_message("P" + string(p + 1) + " deselected their character.");
-	    }
-	    else if (schema_type == "pad") {
-	        // Controller B with no character locked in → back to mode menu
-	        room_goto(rm_mode_menu);
-	    }
-	}
     // ----------------------------------------------
     // START BAR PRESS
     // When this player's cursor is over the divider bar and
@@ -268,6 +259,10 @@ for (var p = 0; p < max_players; p++) {
         cursor_y[p] <= divider_y + divider_h) {
         any_start_pressed = true;
     }
+    if( cursor_y[p] >= divider_y &&
+        cursor_y[p] <= divider_y + divider_h) {
+            hovering_over_start_button = true;
+        }
 
     // ----------------------------------------------
     // ADVANCE CHECK STUB

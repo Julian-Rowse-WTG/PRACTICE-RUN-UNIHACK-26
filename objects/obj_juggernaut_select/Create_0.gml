@@ -150,4 +150,6 @@ fade_duration = room_speed; // 1 second
 // Shared animation timer for pulsing/glow effects
 anim_timer = 0;
 
+hovering_over_start_button = false;
+
 show_debug_message("=== JUGGERNAUT SELECT CREATE END ===");

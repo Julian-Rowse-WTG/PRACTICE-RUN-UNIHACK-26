@@ -103,7 +103,11 @@ var bar_y1 = divider_y;
 var bar_y2 = divider_y + divider_h;
 
 // Bar background
-draw_set_colour(make_colour_rgb(45, 48, 65));
+if(all_confirmed && hovering_over_start_button) {
+    draw_set_colour(make_colour_rgb(70, 75, 110));
+} else {
+    draw_set_colour(make_colour_rgb(45, 48, 65));
+}
 draw_rectangle(bar_x1, bar_y1, bar_x2, bar_y2, false);
 
 // Bar top/bottom border lines
@@ -152,10 +156,11 @@ else {
 // --------------------------------------------------
 draw_set_font(VT323);
 
+var player_char_x_offset = (4 - max_players) * 0.5 * (slot_w + slot_gap);
 for (var p = 0; p < max_players; p++) {
-    var rx1 = slot_px[p];
+    var rx1 = slot_px[p] + player_char_x_offset;
     var ry1 = bottom_y;
-    var rx2 = slot_px[p] + slot_w;
+    var rx2 = slot_px[p] + slot_w + player_char_x_offset;
     var ry2 = bottom_y + slot_h;
 
     // Slot background
