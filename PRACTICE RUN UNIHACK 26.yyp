@@ -256,6 +256,7 @@
     {"id":{"name":"sprDot","path":"sprites/sprDot/sprDot.yy",},},
     {"id":{"name":"sprEmpty","path":"sprites/sprEmpty/sprEmpty.yy",},},
     {"id":{"name":"sprJumpthru","path":"sprites/sprJumpthru/sprJumpthru.yy",},},
+    {"id":{"name":"sprMenuBox","path":"sprites/sprMenuBox/sprMenuBox.yy",},},
     {"id":{"name":"sprPlatform","path":"sprites/sprPlatform/sprPlatform.yy",},},
     {"id":{"name":"sprPlayer_Dash_Base","path":"sprites/sprPlayer_Dash_Base/sprPlayer_Dash_Base.yy",},},
     {"id":{"name":"sprPlayer_Dead_Base","path":"sprites/sprPlayer_Dead_Base/sprPlayer_Dead_Base.yy",},},
