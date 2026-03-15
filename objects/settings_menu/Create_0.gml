@@ -3,7 +3,7 @@ options = [
     "BACK",
     "VOLUME",
     "MUSIC",
-    "INPUT DISPLAY"
+    "DEBUG MODE"
 ];
 
 // type per entry
@@ -19,7 +19,7 @@ values = [
     0,      // BACK unused
     0.7,    // volume slider (0..1)
     1,      // music on/off
-    0,      // input display
+    0,      // debug mode
 ];
 
 selection = 0;

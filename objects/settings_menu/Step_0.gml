@@ -190,6 +190,10 @@ if (gp != -1)
 
 var current_type = types[selection];
 
+if(adjust_left || adjust_right) {
+    global.play_ui_select_sfx();
+}
+
 if (current_type == "slider")
 {
     if (adjust_left)
@@ -213,5 +217,8 @@ if (current_type == "checkbox")
     {
         values[selection] = !values[selection];
         show_debug_message("Checkbox toggled: " + string(values[selection]));
+        if(selection == 3) {
+            global.debug = values[selection];
+        }
     }
 }
