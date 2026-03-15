@@ -202,7 +202,7 @@ break;
 
 case victoryState.leave:
     // clean up session and go to main menu
-    global.session = undefined;
+    global.session = array_create(4, undefined);
 	//game_restart();
     room_goto(main_menu);
 break;
