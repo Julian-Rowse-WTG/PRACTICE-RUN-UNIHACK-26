@@ -10,7 +10,7 @@ function god_create() {
     freeze     = false;
     freezeDur  = 5;
     // debug
-    showBox = false;
+    showBox = global.debug;
     // session
     session = array_create(4, undefined);
     //session_init_test();

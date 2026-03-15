@@ -26,8 +26,8 @@ function team_asymmetry_check() {
             // bonus bursts on top of character burstMax
             burstMax     += _diff;
             burstCharges += _diff;
-			hpMax *= max(1.5, _diff/4)
-			hp *= max(1.5, _diff/4)
+			hpMax *= max(1.5, _diff/1.5)
+			hp *= max(1.5, _diff/1.5)
         }
     }
 }

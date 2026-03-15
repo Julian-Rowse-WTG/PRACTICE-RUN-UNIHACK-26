@@ -3,7 +3,7 @@ event_inherited();
 hpMax       = 150;
 hp          = hpMax;
 canCharge   = false;
-block_reduction = 0.3;
+block_reduction = 0.5;
 burstMax    = 1;
 burstCharges = burstMax;
 superDamage = 1.5;

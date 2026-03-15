@@ -11,7 +11,7 @@ burstDamage     = 2;
 burstKnockback  = 4;
 burstHitStun    = 20;
 comboTimeoutMax = 90;   // 1.5 seconds — faster, more aggressive
-hardKnockEvery  = 5;
+hardKnockEvery  = 3;
 // special
 specialProjectileObject = oDemonOrb;
 specialPlatformDur      = 180; // 3 seconds before projectile vanishes if not arrived

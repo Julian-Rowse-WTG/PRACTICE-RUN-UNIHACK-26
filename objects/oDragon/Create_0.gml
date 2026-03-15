@@ -3,7 +3,7 @@ event_inherited();
 hpMax           = 130;
 hp              = hpMax;
 canCharge       = false;
-blockReduction  = 0.35;
+blockReduction  = 0.7;
 burstMax        = 2;
 burstCharges    = burstMax;
 superDamage     = 1.3;
@@ -11,7 +11,7 @@ burstDamage     = 2;
 burstKnockback  = 4;
 burstHitStun    = 20;
 comboTimeoutMax = 130;
-hardKnockEvery  = 2;
+hardKnockEvery  = 4;
 jPower        = -10;
 // special
 specialCooldownMax     = 360;       // 6 seconds

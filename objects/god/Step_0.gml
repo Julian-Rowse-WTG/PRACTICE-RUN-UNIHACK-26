@@ -10,11 +10,6 @@ if(keyboard_check_pressed(vk_escape)){
     game_end();
 }
 
-//show boxes
-if(keyboard_check_pressed(vk_rcontrol)){
-    showBox = !showBox;
-}
-
 // death cinematic
 if (deathCinematic) {
     if (deathFreezeTimer > 0) {
