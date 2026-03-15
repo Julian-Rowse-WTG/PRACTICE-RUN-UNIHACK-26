@@ -106,31 +106,6 @@ else
 selection = clamp(selection, 0, array_length(options) - 1);
 
 
-// -------------------------------------------------
-// MOUSE HOVER SELECTION
-// -------------------------------------------------
-var mx = device_mouse_x_to_gui(0);
-var my = device_mouse_y_to_gui(0);
-
-var hovered_any = false;
-
-for (var i = 0; i < array_length(options); i++)
-{
-    var row_y = menu_y + i * spacing;
-
-    if (
-        mx > menu_x - btn_w * 0.5 &&
-        mx < menu_x + btn_w * 0.5 &&
-        my > row_y - btn_h * 0.5 &&
-        my < row_y + btn_h * 0.5
-    )
-    {
-        selection = i;
-        hovered_any = true;
-    }
-}
-
-
 
 // -------------------------------------------------
 // ACTIVATION
@@ -140,13 +115,11 @@ var activate = false;
 if (keyboard_check_pressed(vk_enter))
 {
     activate = true;
-    show_debug_message("Keyboard ENTER pressed");
 }
 
-if (hovered_any && mouse_check_button_pressed(mb_left))
+if (mouse_check_button_pressed(mb_left))
 {
     activate = true;
-    show_debug_message("Mouse click on button");
 }
 
 if (gp != -1)
