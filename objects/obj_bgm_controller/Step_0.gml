@@ -3,6 +3,13 @@ if (!audio_group_is_loaded(audiogroup_BGM)) {
     exit;
 }
 
+if(!global.music_enabled) {
+    if(current_sound != -1 && audio_is_playing(current_sound)) {
+        audio_stop_sound(current_sound);
+    }
+    exit;
+}
+
 // No music while muted (e.g. in rm_cutscreen)
 if (bgm_muted) {
     exit;

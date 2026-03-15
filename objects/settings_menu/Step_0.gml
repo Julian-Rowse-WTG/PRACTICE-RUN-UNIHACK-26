@@ -190,24 +190,25 @@ if (gp != -1)
 
 var current_type = types[selection];
 
-if(adjust_left || adjust_right) {
-    global.play_ui_select_sfx();
-}
+var should_play_ui_sfx = adjust_left || adjust_right;
 
 if (current_type == "slider")
 {
     if (adjust_left)
     {
         values[selection] -= 0.05;
-        values[selection] = clamp(values[selection], 0, 1);
-        show_debug_message("Slider value: " + string(values[selection]));
     }
-
     if (adjust_right)
     {
         values[selection] += 0.05;
+    }
+    if(values[selection] < 0 || values[selection] > 1) {
         values[selection] = clamp(values[selection], 0, 1);
-        show_debug_message("Slider value: " + string(values[selection]));
+        should_play_ui_sfx = false;
+        global.play_ui_error_sfx();
+    }
+    if(selection == 1) {
+        audio_master_gain(values[selection]);
     }
 }
 
@@ -217,8 +218,15 @@ if (current_type == "checkbox")
     {
         values[selection] = !values[selection];
         show_debug_message("Checkbox toggled: " + string(values[selection]));
+        if(selection == 2) {
+            global.music_enabled = values[selection];
+        }
         if(selection == 3) {
             global.debug = values[selection];
         }
     }
+}
+
+if(should_play_ui_sfx) {
+    global.play_ui_select_sfx();
 }

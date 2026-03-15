@@ -14,3 +14,6 @@ global.play_ui_success_sfx = function() {
 };
 
 global.debug = false;
+global.music_enabled = true;
+
+audio_master_gain(0.7); // DEFAULT as in the settings menu
