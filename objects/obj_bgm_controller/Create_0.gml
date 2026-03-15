@@ -8,7 +8,7 @@ is_fading = false;
 fade_timer = 0;
 
 // Track which category is currently playing
-last_room_is_game = (room == rm_game);
+last_room_is_game = (room == rm_Field);
 
 // Sound handle (invalid until audio group has loaded)
 current_sound = -1;

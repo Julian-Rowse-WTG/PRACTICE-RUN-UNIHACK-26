@@ -12,6 +12,7 @@ burstKnockback  = 4;
 burstHitStun    = 20;
 comboTimeoutMax = 130;
 hardKnockEvery  = 2;
+jPower        = -10;
 // special
 specialCooldownMax     = 360;       // 6 seconds
 specialSprite          = sprSpear_Special;
