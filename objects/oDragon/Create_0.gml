@@ -11,13 +11,13 @@ burstDamage     = 2;
 burstKnockback  = 4;
 burstHitStun    = 20;
 comboTimeoutMax = 130;
-hardKnockEvery  = 4;
+hardKnockEvery  = 2;
 jPower        = -10;
 // special
 specialCooldownMax     = 360;       // 6 seconds
 specialSprite          = sprSpear_Special;
 specialFd              = fd_spear_special;
-specialDamage          = 10;
+specialDamage          = 6;
 specialKnockback       = 6;
 specialHitStun         = 35;
 specialSpeed           = 7;
@@ -80,6 +80,6 @@ _specialFire = function() {
     _proj.launchDamage = specialDamage * 2 * (superMode ? superDamage : 1);
     _proj.launchSpeed  = -12;
     _proj.hitStun      = specialHitStun;
-    _proj.embedTimer   = 120;
+    _proj.embedTimer   = 180;
     specialProjectile  = _proj;
 };

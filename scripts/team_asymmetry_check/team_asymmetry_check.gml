@@ -24,10 +24,10 @@ function team_asymmetry_check() {
             soloSuperLocked = true;
             superMode       = true;
             // bonus bursts on top of character burstMax
-            burstMax     += _diff;
-            burstCharges += _diff;
-			hpMax *= max(1.5, _diff/1.5)
-			hp *= max(1.5, _diff/1.5)
+            //burstMax     += 1;//_diff;
+            //burstCharges += 1;//_diff;
+			hpMax += 10 //*= max(1.5, _diff/1.5)
+			hp += 10 //*= max(1.5, _diff/1.5)
         }
     }
 }

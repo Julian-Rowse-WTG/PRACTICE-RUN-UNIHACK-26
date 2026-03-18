@@ -10,6 +10,6 @@ launchDamage = 12;
 launchSpeed  = -12;
 isVertical   = false;
 isBounced    = false;
-embedTimer   = 120;
+embedTimer   = 150;
 angle        = 0;
 ignoreList   = ds_list_create();

@@ -1,10 +1,10 @@
 event_inherited();
 // stats
-hpMax           = 100;
+hpMax           = 110;
 hp              = hpMax;
 canCharge       = false;
 block_reduction = 0.4;  // slightly worse block than knight
-burstMax        = 2;    // more bursts to compensate for low hp
+burstMax        = 3;    // more bursts to compensate for low hp
 burstCharges    = burstMax;
 superDamage     = 1.75; // hits harder in super
 burstDamage     = 2;
@@ -15,7 +15,7 @@ hardKnockEvery  = 3;
 // special
 specialProjectileObject = oDemonOrb;
 specialPlatformDur      = 180; // 3 seconds before projectile vanishes if not arrived
-specialCooldownMax = 240;       // 4 seconds — faster cooldown than knight
+specialCooldownMax = 180;       // 4 seconds — faster cooldown than knight
 specialSprite      = sprDagger_Special;
 specialDamage      = 10;
 specialKnockback   = 4;
@@ -51,7 +51,7 @@ downSpriteG = sprDagger_Attack_Down_G;
 downSpriteA = sprDagger_Attack_Down_A;
 
 teleportInvincible  = 0;
-teleportInvincibleMax = 5;
+teleportInvincibleMax = 30;
 arrivalAttackFired  = false;
 
 // attacks function

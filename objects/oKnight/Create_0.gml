@@ -1,6 +1,6 @@
 event_inherited();
 // stats
-hpMax       = 150;
+hpMax       = 130;
 hp          = hpMax;
 canCharge   = false;
 block_reduction = 0.5;
@@ -14,7 +14,7 @@ hardKnockEvery  = 3;
 specialProjectileObject = oKnightSword;
 specialCooldownMax = 300;       // 5 seconds
 specialSprite      = sprSword_Special;
-specialDamage    = 12;  // slightly stronger than a normal hit
+specialDamage    = 10;  // slightly stronger than a normal hit
 specialKnockback = 5;
 specialHitStun   = 30;
 specialSpeed     = 8;
